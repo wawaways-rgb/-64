@@ -1,1305 +1,236 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>STRATEGIC WORK ARCHETYPE | BIG5 × MBTI 30問精密ジョブ診断</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-base: #070b14;
-      --card-bg: rgba(15, 23, 42, 0.85);
-      --border-subtle: rgba(148, 163, 184, 0.16);
-      --accent-cyan: #06b6d4;
-      --accent-indigo: #6366f1;
-    }
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      font-family: 'Inter', 'Noto Sans JP', sans-serif;
-      background-color: var(--bg-base);
-      color: #f8fafc;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background-image:
-        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.12), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.14), transparent 40%);
-    }
-    .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.65);
-    }
-    .btn-option {
-      transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .btn-option:active {
-      transform: scale(0.98);
-    }
-    .btn-option.selected {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.24), rgba(99, 102, 241, 0.28));
-      border-color: #22d3ee;
-      box-shadow: 0 0 18px rgba(34, 211, 238, 0.22);
-    }
-    .fade-in {
-      animation: fadeIn 0.28s ease-out forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #070b14;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 3px;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>JOB ARCHETYPE | BIG5 × MBTI 30問精密診断</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#070b14;color:#f8fafc;margin:0;background-image:radial-gradient(circle at 15% 15%,rgba(6,182,212,.14),transparent 35%),radial-gradient(circle at 85% 80%,rgba(99,102,241,.16),transparent 40%)}
+.glass{background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border:1px solid rgba(148,163,184,.18);box-shadow:0 18px 36px -14px rgba(0,0,0,.7)}
+.opt-btn{transition:transform .12s,border-color .15s,background .15s}.opt-btn:active{transform:scale(.98)}
+.opt-btn.sel{background:linear-gradient(135deg,rgba(6,182,212,.26),rgba(99,102,241,.3));border-color:#22d3ee;box-shadow:0 0 15px rgba(34,211,238,.25)}
+.fade{animation:fd .25s ease-out}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
-<body class="flex flex-col min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="min-h-screen flex flex-col antialiased">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md">
-    <div class="max-w-md mx-auto px-4 h-14 flex items-center justify-between">
-      <div class="flex items-center space-x-2.5 cursor-pointer" onclick="app.goHome()">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-          <i class="fa-solid fa-compass-drafting text-slate-950 text-sm"></i>
+<!-- 自己診断エラーバナー（異常時のみ自動表示） -->
+<div id="err-box" class="hidden bg-rose-950 border-b border-rose-500 text-rose-200 px-4 py-3 text-xs font-mono"></div>
+
+<header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur-md">
+  <div class="max-w-md mx-auto px-4 h-14 flex items-center justify-between">
+    <button type="button" id="nav-home" class="flex items-center space-x-2.5 text-left">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center font-black text-slate-950 text-xs">JA</div>
+      <div>
+        <span class="font-extrabold tracking-wider text-xs text-white block leading-none">JOB ARCHETYPE</span>
+        <span class="text-[10px] text-cyan-400 font-bold tracking-widest">BIG5 × MBTI 30Q</span>
+      </div>
+    </button>
+    <button type="button" id="nav-dir" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-bold text-cyan-300">16類型図鑑</button>
+  </div>
+</header>
+
+<main class="flex-grow w-full max-w-md mx-auto px-4 py-5">
+
+  <!-- 1. HOME -->
+  <section id="scr-home" class="space-y-4 fade">
+    <div class="glass rounded-2xl p-5">
+      <span class="inline-block px-2.5 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-[10px] font-bold mb-3">全30問・3フェーズ精密解析エンジン</span>
+      <h1 class="text-xl font-black text-white leading-snug mb-2.5">あなたの<span class="text-cyan-400">仕事偏差値</span>と<br>精密ジョブタイプを完全解明</h1>
+      <p class="text-xs text-slate-300 leading-relaxed mb-4">MBTIの4軸スペクトラム、BIG5の5大因子（正逆ペア補正）、4大実務ケイパビリティを同時計測し、16類型×自律安定度(-A/-T)×転職適性を冷徹に算出します。</p>
+
+      <div class="space-y-2 mb-5 text-[11px]">
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[10px]">01</span>
+          <div><strong class="text-slate-100 block">16ジョブ類型 × -A/-T × BIG5優勢バッジ</strong><span class="text-slate-400">「静かなる構造改革アーキテクト(INFJ)」等の名称と強み波形を統合。</span></div>
         </div>
-        <div>
-          <span class="font-extrabold tracking-wider text-xs text-slate-100 block leading-none">JOB ARCHETYPE</span>
-          <span class="text-[10px] text-cyan-400 font-semibold tracking-widest">BIG5 × MBTI 30Q</span>
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold text-[10px]">02</span>
+          <div><strong class="text-slate-100 block">総合仕事偏差値 ＆ 4大実務偏差値</strong><span class="text-slate-400">「戦略・遂行・折衝・越境」の4領域を偏差値化して可視化。</span></div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">03</span>
+          <div><strong class="text-slate-100 block">組織フェーズ別・転職適性 ＆ 致命的な罠</strong><span class="text-slate-400">大手・成長企業・起業・独立の適合率と陥りやすい弱点を警告。</span></div>
         </div>
       </div>
-      <div class="flex items-center space-x-2">
-        <button onclick="app.openAllTypes()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-300 flex items-center space-x-1.5 transition">
-          <i class="fa-solid fa-book-open text-cyan-400 text-[11px]"></i>
-          <span>16類型図鑑</span>
-        </button>
+
+      <button type="button" id="btn-start" class="w-full py-4 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-black text-sm shadow-lg active:scale-[0.98] transition">30問・精密診断をスタート →</button>
+
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="flex justify-between text-[10px] text-slate-400 mb-2"><span>即時結果プレビュー（30問デモ自動入力）</span><span class="text-cyan-400">ワンタップ検証</span></div>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-demo="strategist" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-slate-200">戦略参謀型</button>
+          <button type="button" data-demo="commander" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-slate-200">事業変革型</button>
+          <button type="button" data-demo="random" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-cyan-300">ランダム30問</button>
+        </div>
       </div>
     </div>
-  </header>
+    <p class="text-[10px] text-slate-500 text-center px-2">※回答データは端末内のみで処理され外部送信されません。自己理解・キャリア設計の参考としてご活用ください。</p>
+  </section>
 
-  <!-- Main Container -->
-  <main class="flex-grow w-full max-w-md mx-auto px-4 py-6 flex flex-col">
+  <!-- 2. QUIZ -->
+  <section id="scr-quiz" class="hidden space-y-4 fade">
+    <div class="glass rounded-2xl p-4">
+      <div class="flex justify-between items-center text-xs mb-2">
+        <span id="q-phase" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[10px]">Phase 1</span>
+        <span id="q-prog-txt" class="font-mono font-bold text-slate-200">Q01 / 30</span>
+      </div>
+      <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-2">
+        <div id="q-prog-bar" class="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-200" style="width:3%"></div>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5 text-[10px] text-center">
+        <div id="p-ind-1" class="py-1 rounded bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">P1: 認知軸</div>
+        <div id="p-ind-2" class="py-1 rounded bg-slate-900 border border-slate-800 text-slate-500">P2: BIG5</div>
+        <div id="p-ind-3" class="py-1 rounded bg-slate-900 border border-slate-800 text-slate-500">P3: 実務力</div>
+      </div>
+    </div>
 
-    <!-- 1. HOME SCREEN -->
-    <section id="screen-home" class="space-y-5 fade-in">
-      <div class="glass-card rounded-2xl p-6 relative overflow-hidden">
-        <div class="absolute -right-10 -top-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="absolute -left-10 -bottom-10 w-36 h-36 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+    <div class="glass rounded-2xl p-5">
+      <div class="flex justify-between text-[10px] mb-2">
+        <span id="q-tag" class="font-bold text-indigo-400">軸ラベル</span>
+        <span id="q-code" class="font-mono text-slate-500">CODE</span>
+      </div>
+      <h2 id="q-text" class="text-sm font-bold text-white leading-relaxed mb-4 min-h-[68px]">質問文</h2>
 
-        <div class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold mb-4">
-          <i class="fa-solid fa-microchip"></i>
-          <span>全30問・3フェーズ精密解析エンジン</span>
-        </div>
-
-        <h1 class="text-2xl font-black tracking-tight text-white leading-snug mb-3">
-          あなたの<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">仕事偏差値</span>と<br>精密ジョブタイプを完全解明
-        </h1>
-
-        <p class="text-xs text-slate-300 leading-relaxed mb-5">
-          全30問の多角的アセスメントにより、MBTIの「認知・意思決定4軸スペクトラム」と、BIG5の「5大パーソナリティ因子（逆転項目含む）」、さらに「4大実務ケイパビリティ」を同時計測。16ジョブアーキタイプ×自律安定度（-A/-T）×BIG5優勢特性の緻密なハイブリッド診断と、冷徹な転職適性・キャリア処方箋を出力します。
-        </p>
-
-        <div class="space-y-2.5 mb-6">
-          <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-extrabold mt-0.5">01</span>
-            <div>
-              <h3 class="text-xs font-bold text-slate-100">16ジョブ類型 × -A/-T × BIG5優勢バッジ</h3>
-              <p class="text-[11px] text-slate-400 mt-0.5">「静かなる構造改革アーキテクト（INFJ）」等の16類型に、自律安定度とBIG5波形を統合。</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-[10px] font-extrabold mt-0.5">02</span>
-            <div>
-              <h3 class="text-xs font-bold text-slate-100">総合仕事偏差値 ＆ 4大実務偏差値の算出</h3>
-              <p class="text-[11px] text-slate-400 mt-0.5">「戦略・構造化」「遂行・品質管理」「折衝・組織牽引」「越境・環境適応」の4大実務力を偏差値化。</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-extrabold mt-0.5">03</span>
-            <div>
-              <h3 class="text-xs font-bold text-slate-100">組織フェーズ別・転職適性 ＆ 致命的な罠の警告</h3>
-              <p class="text-[11px] text-slate-400 mt-0.5">10→100大手・1→10成長企業・0→1起業・独立の適合率と、陥りやすいキャリアの罠を冷徹に指摘。</p>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="app.startQuiz()" class="w-full py-4 px-5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-slate-950 font-black text-sm shadow-lg shadow-cyan-500/25 flex items-center justify-center space-x-2 transition transform active:scale-[0.98]">
-          <span>30問・精密診断をスタート（約2分〜3分）</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-
-        <!-- Instant Demo Bar -->
-        <div class="mt-4 pt-4 border-t border-slate-800/80">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">即時結果プレビュー（30問デモデータ自動入力）</span>
-            <span class="text-[10px] text-cyan-400">ワンタップ検証</span>
-          </div>
-          <div class="grid grid-cols-3 gap-2">
-            <button onclick="app.runDemo('strategist')" class="py-2 px-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-[11px] font-semibold text-slate-200 transition">
-              戦略参謀・高完遂
-            </button>
-            <button onclick="app.runDemo('commander')" class="py-2 px-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-[11px] font-semibold text-slate-200 transition">
-              事業変革・高安定
-            </button>
-            <button onclick="app.runDemo('random')" class="py-2 px-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-[11px] font-semibold text-cyan-300 transition">
-              ランダム30問判定
-            </button>
-          </div>
-        </div>
+      <div id="opt-list" class="space-y-2">
+        <button type="button" data-v="5" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-xs flex items-center justify-center">5</span><span class="text-xs font-bold text-white">非常に当てはまる</span></button>
+        <button type="button" data-v="4" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-cyan-500/10 text-cyan-400 font-bold text-xs flex items-center justify-center">4</span><span class="text-xs font-semibold text-slate-200">やや当てはまる</span></button>
+        <button type="button" data-v="3" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-slate-800 text-slate-300 font-bold text-xs flex items-center justify-center">3</span><span class="text-xs font-semibold text-slate-300">どちらとも言えない（中立）</span></button>
+        <button type="button" data-v="2" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-indigo-500/10 text-indigo-400 font-bold text-xs flex items-center justify-center">2</span><span class="text-xs font-semibold text-slate-200">あまり当てはまらない</span></button>
+        <button type="button" data-v="1" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-300 font-bold text-xs flex items-center justify-center">1</span><span class="text-xs font-bold text-white">全く当てはまらない</span></button>
       </div>
 
-      <!-- Architecture Overview -->
-      <div class="glass-card rounded-2xl p-5">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-xs font-extrabold text-slate-200 tracking-wide">全30問・3フェーズ精密測定アーキテクチャ</h2>
-          <span class="text-[10px] font-mono text-slate-400">30 Questions</span>
+      <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-800">
+        <button type="button" id="btn-prev" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 disabled:opacity-40">← 前へ</button>
+        <label class="flex items-center space-x-1.5 text-[11px] text-slate-400"><input type="checkbox" id="chk-auto" checked class="rounded bg-slate-800 border-slate-600"/><span>自動送り</span></label>
+        <button type="button" id="btn-next" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-xs font-bold text-cyan-300">次へ →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. RESULT -->
+  <section id="scr-res" class="hidden space-y-4 fade pb-8">
+    <div class="glass rounded-2xl p-5 border-t-2 border-t-cyan-400">
+      <div class="flex justify-between items-center mb-2">
+        <span id="r-code" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-black text-xs">INFJ-A</span>
+        <span id="r-grp" class="text-[11px] font-bold text-slate-400">類型グループ</span>
+      </div>
+      <h1 id="r-name" class="text-xl font-black text-white mb-1.5">アーキタイプ名</h1>
+      <div id="r-mod" class="inline-block px-2 py-0.5 rounded bg-indigo-950 border border-indigo-500/40 text-indigo-300 text-[10px] font-bold mb-3">修飾バッジ</div>
+      <p id="r-desc" class="text-xs text-slate-300 leading-relaxed mb-4">解説文</p>
+
+      <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-700 mb-3">
+        <div class="flex justify-between items-end mb-1.5">
+          <div><span class="text-[9px] text-slate-400 block">WORK DEVIATION</span><span class="text-xs font-extrabold text-slate-200">総合仕事偏差値</span></div>
+          <div class="text-right"><span id="r-rank" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-black mr-1">Sランク</span><span id="r-dev" class="text-2xl font-black text-cyan-300">64.8</span></div>
         </div>
-        <div class="space-y-2 text-[11px]">
-          <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/80 flex justify-between items-center">
-            <span class="font-bold text-cyan-400">Phase 1 (Q1-Q12) MBTI 認知・意思決定スタイル</span>
-            <span class="text-slate-400">4軸×3問</span>
-          </div>
-          <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/80 flex justify-between items-center">
-            <span class="font-bold text-indigo-400">Phase 2 (Q13-Q22) BIG5 職務パーソナリティ因子</span>
-            <span class="text-slate-400">5因子×正逆ペア</span>
-          </div>
-          <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/80 flex justify-between items-center">
-            <span class="font-bold text-emerald-400">Phase 3 (Q23-Q30) 4大実務ケイパビリティ</span>
-            <span class="text-slate-400">4領域×2問</span>
-          </div>
-        </div>
+        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden"><div id="r-dev-bar" class="h-full bg-gradient-to-r from-cyan-400 to-amber-400" style="width:75%"></div></div>
       </div>
 
-      <p class="text-[10px] text-slate-500 text-center leading-relaxed px-2">
-        ※本ツールはブラウザ内のみで完結し、回答データや個人情報は外部サーバーへ一切送信・保存されません。自己理解およびキャリア設計の参考資料としてご活用ください。
-      </p>
-    </section>
+      <div id="r-caps" class="grid grid-cols-2 gap-2"></div>
+    </div>
 
-    <!-- 2. QUIZ SCREEN -->
-    <section id="screen-quiz" class="hidden space-y-4 fade-in">
-      <!-- Progress Card -->
-      <div class="glass-card rounded-2xl p-4">
-        <div class="flex items-center justify-between text-xs mb-2">
-          <span id="quiz-phase-badge" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[10px]">Phase 1: MBTI 認知・意思決定スタイル</span>
-          <span id="quiz-progress-text" class="font-mono font-bold text-slate-200">Q01 / 30 (3%)</span>
-        </div>
-        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-2.5">
-          <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300" style="width: 3.33%"></div>
-        </div>
-        <div class="grid grid-cols-3 gap-1.5 text-[10px] text-center">
-          <div id="phase-ind-1" class="py-1 rounded bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 font-semibold">P1: 認知軸 1/12</div>
-          <div id="phase-ind-2" class="py-1 rounded bg-slate-900/80 border border-slate-800 text-slate-500">P2: BIG5 0/10</div>
-          <div id="phase-ind-3" class="py-1 rounded bg-slate-900/80 border border-slate-800 text-slate-500">P3: 実務 0/8</div>
+    <div class="glass rounded-2xl p-5">
+      <h2 class="text-xs font-extrabold text-white mb-2">BIG5 職務パーソナリティ波形（正逆補正済）</h2>
+      <div class="flex justify-center my-1"><svg id="r-radar" width="260" height="220" viewBox="0 0 260 220"></svg></div>
+      <div id="r-big5-bars" class="space-y-2 mt-2 pt-2 border-t border-slate-800"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <h2 class="text-xs font-extrabold text-white mb-3">MBTI 認知・意思決定4軸スペクトラム</h2>
+      <div id="r-spec" class="space-y-3"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xs font-extrabold text-white">転職適性・環境適合ジャッジ</h2>
+        <span id="r-tr-pct" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-black text-[11px]">越境推奨 78%</span>
+      </div>
+      <p id="r-tr-txt" class="text-xs text-slate-300 leading-relaxed p-3 rounded-xl bg-slate-900 border border-slate-800 mb-3"></p>
+      <h3 class="text-[11px] font-bold text-slate-200 mb-2">組織フェーズ別・適合確率</h3>
+      <div id="r-envs" class="space-y-2 mb-4"></div>
+      <h3 class="text-[11px] font-bold text-slate-200 mb-1.5">市場価値を最大化する推奨職種（適職）</h3>
+      <div id="r-roles" class="flex flex-wrap gap-1.5 mb-4"></div>
+
+      <div class="p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/30 space-y-1.5">
+        <div id="r-trap-t" class="text-rose-300 font-extrabold text-xs">警告</div>
+        <p id="r-trap-d" class="text-[11px] text-slate-300 leading-relaxed"></p>
+        <div class="pt-1.5 border-t border-rose-500/20">
+          <span class="text-[10px] font-bold text-cyan-300 block">戦略的処方箋：</span>
+          <p id="r-presc" class="text-[11px] text-slate-200 leading-relaxed"></p>
         </div>
       </div>
+    </div>
 
-      <!-- Question Card -->
-      <div class="glass-card rounded-2xl p-5 flex flex-col justify-between min-h-[340px]">
-        <div>
-          <div class="flex items-center justify-between mb-3">
-            <span id="question-dimension-tag" class="text-[11px] font-bold text-indigo-400 tracking-wide">エネルギー方向性 (E / I)</span>
-            <span id="question-code-tag" class="text-[10px] font-mono text-slate-500">MBTI-EI-1</span>
-          </div>
-          <h2 id="question-text" class="text-base font-bold text-white leading-relaxed mb-2">
-            質問文がここに表示されます
-          </h2>
-          <p class="text-[11px] text-slate-400 mb-5">職場やプロジェクトでの普段の行動・判断基準に最も近いものを直感で選んでください。</p>
-        </div>
-
-        <!-- 5-Point Likert Options -->
-        <div class="space-y-2.5" id="options-container">
-          <button onclick="app.selectOption(5)" data-val="5" class="btn-option w-full p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between text-left">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-xs flex items-center justify-center border border-cyan-500/40">5</span>
-              <span class="text-xs font-bold text-slate-100">非常に当てはまる</span>
-            </div>
-            <span class="text-[10px] text-slate-500">Strongly Agree</span>
-          </button>
-
-          <button onclick="app.selectOption(4)" data-val="4" class="btn-option w-full p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between text-left">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-cyan-500/10 text-cyan-400 font-bold text-xs flex items-center justify-center border border-cyan-500/30">4</span>
-              <span class="text-xs font-semibold text-slate-200">やや当てはまる</span>
-            </div>
-            <span class="text-[10px] text-slate-500">Agree</span>
-          </button>
-
-          <button onclick="app.selectOption(3)" data-val="3" class="btn-option w-full p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between text-left">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600">3</span>
-              <span class="text-xs font-semibold text-slate-300">どちらとも言えない（中立）</span>
-            </div>
-            <span class="text-[10px] text-slate-500">Neutral</span>
-          </button>
-
-          <button onclick="app.selectOption(2)" data-val="2" class="btn-option w-full p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between text-left">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-indigo-500/10 text-indigo-400 font-bold text-xs flex items-center justify-center border border-indigo-500/30">2</span>
-              <span class="text-xs font-semibold text-slate-200">あまり当てはまらない</span>
-            </div>
-            <span class="text-[10px] text-slate-500">Disagree</span>
-          </button>
-
-          <button onclick="app.selectOption(1)" data-val="1" class="btn-option w-full p-3.5 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-between text-left">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-300 font-bold text-xs flex items-center justify-center border border-indigo-500/40">1</span>
-              <span class="text-xs font-bold text-slate-100">全く当てはまらない</span>
-            </div>
-            <span class="text-[10px] text-slate-500">Strongly Disagree</span>
-          </button>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div class="flex items-center justify-between mt-5 pt-4 border-t border-slate-800/80">
-          <button id="btn-prev" onclick="app.prevQuestion()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 disabled:opacity-40 transition flex items-center space-x-1">
-            <i class="fa-solid fa-chevron-left text-[10px]"></i>
-            <span>前の設問へ</span>
-          </button>
-          <label class="flex items-center space-x-1.5 text-[11px] text-slate-400 cursor-pointer select-none">
-            <input type="checkbox" id="auto-advance" checked class="rounded bg-slate-800 border-slate-600 text-cyan-500 focus:ring-0" />
-            <span>選択後に自動で次へ</span>
-          </label>
-          <button id="btn-next" onclick="app.nextQuestion()" class="px-3 py-2 rounded-lg bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-xs font-bold text-cyan-300 transition flex items-center space-x-1">
-            <span>次へ</span>
-            <i class="fa-solid fa-chevron-right text-[10px]"></i>
-          </button>
-        </div>
+    <div class="space-y-2">
+      <button type="button" id="btn-copy" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-black text-xs">診断結果サマリーをコピー（LINE/SNS共有用）</button>
+      <div class="grid grid-cols-2 gap-2">
+        <button type="button" id="btn-retry" class="py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-200">もう一度診断</button>
+        <button type="button" id="btn-all" class="py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-cyan-300">全16類型比較</button>
       </div>
-    </section>
-
-    <!-- 3. RESULT SCREEN -->
-    <section id="screen-result" class="hidden space-y-5 fade-in">
-      <!-- Hero Result Card -->
-      <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-2 border-t-cyan-400">
-        <div class="flex items-center justify-between mb-3">
-          <span id="res-mbti-badge" class="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-black text-xs tracking-wider">INFJ-A</span>
-          <span id="res-group-label" class="text-[11px] font-bold text-slate-400">戦略洞察系ジョブ類型</span>
-        </div>
-
-        <h1 id="res-archetype-name" class="text-2xl font-black text-white leading-tight mb-2">
-          静かなる構造改革アーキテクト
-        </h1>
-
-        <div id="res-big5-modifier" class="inline-block px-2.5 py-1 rounded-lg bg-indigo-950/90 border border-indigo-500/40 text-indigo-300 text-[11px] font-bold mb-3">
-          INFJ-A × 鉄壁完遂・高開放ハイブリッド
-        </div>
-
-        <p id="res-catchcopy" class="text-xs text-slate-300 leading-relaxed mb-5">
-          本質を見抜く長期的洞察力と、組織や業務の歪みを根本から再設計する構造化能力を併せ持つタイプです。
-        </p>
-
-        <!-- Overall Work Deviation Score Box -->
-        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 mb-4">
-          <div class="flex items-end justify-between mb-2">
-            <div>
-              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">OVERALL WORK DEVIATION</span>
-              <span class="text-xs font-extrabold text-slate-200">総合仕事偏差値</span>
-            </div>
-            <div class="text-right">
-              <span id="res-rank-badge" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[10px] font-black mr-1.5">Sランク（上位8%）</span>
-              <span id="res-total-deviation" class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300">64.8</span>
-            </div>
-          </div>
-          <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-            <div id="res-deviation-bar" class="h-full bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 rounded-full" style="width: 75%"></div>
-          </div>
-        </div>
-
-        <!-- 4 Core Capabilities Breakdown -->
-        <div class="grid grid-cols-2 gap-2.5">
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">戦略・構造化</span>
-              <span id="cap-strategy-val" class="font-mono font-bold text-cyan-300">66.2</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-strategy-bar" class="h-full bg-cyan-400" style="width: 80%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">遂行・品質管理</span>
-              <span id="cap-execution-val" class="font-mono font-bold text-indigo-300">63.5</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-execution-bar" class="h-full bg-indigo-400" style="width: 75%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">折衝・組織牽引</span>
-              <span id="cap-influence-val" class="font-mono font-bold text-emerald-300">58.4</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-influence-bar" class="h-full bg-emerald-400" style="width: 65%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">越境・環境適応</span>
-              <span id="cap-agility-val" class="font-mono font-bold text-amber-300">62.1</span>
-            </div>
-            <div class="w-full hh-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-strategy-bar" class="h-full bg-cyan-400" style="width: 80%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">遂行・品質管理</span>
-              <span id="cap-execution-val" class="font-mono font-bold text-indigo-300">63.5</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-execution-bar" class="h-full bg-indigo-400" style="width: 75%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">折衝・組織牽引</span>
-              <span id="cap-influence-val" class="font-mono font-bold text-emerald-300">58.4</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-influence-bar" class="h-full bg-emerald-400" style="width: 65%"></div>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between items-center text-[11px] mb-1">
-              <span class="text-slate-400 font-semibold">越境・環境適応</span>
-              <span id="cap-agility-val" class="font-mono font-bold text-amber-300">62.1</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="cap-agility-bar" class="h-full bg-amber-400" style="width: 72%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BIG5 Radar Chart + Scores -->
-      <div class="glass-card rounded-2xl p-5">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-sm font-extrabold text-white flex items-center space-x-2">
-            <i class="fa-solid fa-chart-pie text-cyan-400"></i>
-            <span>BIG5 職務パーソナリティ波形</span>
-          </h2>
-          <span class="text-[10px] text-slate-400">正逆ペア補正済</span>
-        </div>
-
-        <div class="flex justify-center my-2">
-          <svg id="big5-radar-svg" width="270" height="230" viewBox="0 0 270 230" class="overflow-visible"></svg>
-        </div>
-
-        <div id="big5-bars-list" class="space-y-2.5 mt-3 pt-3 border-t border-slate-800/80">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-
-      <!-- MBTI 4-Axis Spectrum Bars -->
-      <div class="glass-card rounded-2xl p-5">
-        <h2 class="text-sm font-extrabold text-white flex items-center space-x-2 mb-4">
-          <i class="fa-solid fa-sliders text-indigo-400"></i>
-          <span>MBTI 認知・意思決定4軸スペクトラム</span>
-        </h2>
-        <div id="mbti-spectrum-list" class="space-y-4">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-
-      <!-- Career & Transfer Suitability Matrix -->
-      <div class="glass-card rounded-2xl p-5">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-sm font-extrabold text-white flex items-center space-x-2">
-            <i class="fa-solid fa-compass text-emerald-400"></i>
-            <span>転職適性・環境適合ジャッジメント</span>
-          </h2>
-          <span id="res-transfer-score" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-black text-xs">越境推奨度 78%</span>
-        </div>
-
-        <p id="res-transfer-verdict" class="text-xs text-slate-300 leading-relaxed p-3 rounded-xl bg-slate-900/80 border border-slate-800 mb-4">
-          転職・越境判定コメント
-        </p>
-
-        <h3 class="text-xs font-bold text-slate-200 mb-2.5">組織フェーズ別・生存＆活躍確率</h3>
-        <div id="res-env-matrix" class="space-y-2.5 mb-5">
-          <!-- Populated dynamically -->
-        </div>
-
-        <h3 class="text-xs font-bold text-slate-200 mb-2">市場価値を最大化する推奨ポジション（適職）</h3>
-        <div id="res-roles-list" class="flex flex-wrap gap-1.5 mb-5">
-          <!-- Populated dynamically -->
-        </div>
-
-        <!-- Fatal Trap & Prescription -->
-        <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-2">
-          <div class="flex items-center space-x-2 text-rose-300 font-extrabold text-xs">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span id="res-trap-title">警告：陥りやすい致命的な罠</span>
-          </div>
-          <p id="res-trap-desc" class="text-[11px] text-slate-300 leading-relaxed">
-            罠の詳細説明
-          </p>
-          <div class="pt-2 border-t border-rose-500/20">
-            <span class="text-[10px] font-bold text-cyan-300 block mb-0.5">戦略的処方箋（対策アクション）：</span>
-            <p id="res-prescription" class="text-[11px] text-slate-200 leading-relaxed">
-              具体的な対策
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- Share & Retry Actions -->
-      <div class="space-y-2.5 pb-6">
-        <button onclick="app.copyShareText()" id="btn-copy-result" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-slate-950 font-black text-xs shadow-lg flex items-center justify-center space-x-2 transition active:scale-[0.98]">
-          <i class="fa-solid fa-share-nodes"></i>
-          <span>診断結果サマリーをクリップボードにコピー（LINE/SNS共有用）</span>
-        </button>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button onclick="app.startQuiz()" class="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-slate-200 transition">
-            もう一度30問診断する
-          </button>
-          <button onclick="app.openAllTypes()" class="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-cyan-300 transition">
-            全16類型を比較する
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. ALL 16 TYPES DIRECTORY MODAL / SCREEN -->
-    <section id="screen-directory" class="hidden space-y-4 fade-in pb-8">
-      <div class="glass-card rounded-2xl p-5">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-base font-black text-white">全16ジョブアーキタイプ図鑑</h2>
-          <button onclick="app.closeDirectory()" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-slate-300 hover:text-white">
-            <i class="fa-solid fa-xmark mr-1"></i>閉じる
-          </button>
-        </div>
-        <p class="text-[11px] text-slate-400">タップすると各タイプの詳細診断レポート（仕事偏差値モデル・適職・致命的な罠）を即座にプレビューできます。</p>
-      </div>
-
-      <div id="directory-list" class="space-y-2.5">
-        <!-- Populated dynamically -->
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    // =========================================================================
-    // 1. 30-QUESTION PRECISION INVENTORY (MBTI 12 + BIG5 10 + CAPABILITY 8)
-    // =========================================================================
-    const QUESTIONS = [
-      // --- PHASE 1: MBTI 4 AXES (Q1 - Q12) ---
-      { id: 1, phase: 1, dim: 'EI', dir: 1, tag: 'エネルギー方向性 (E / I)', code: 'MBTI-EI-1',
-        text: '未知のプロジェクトや新しい部署に配属された際、まず関係者と積極的に会話して現場の空気や人脈を掴むことから始める。' },
-      { id: 2, phase: 1, dim: 'EI', dir: -1, tag: 'エネルギー方向性 (E / I)', code: 'MBTI-EI-2',
-        text: '長時間の会議や社内外の折衝が続いた後は、強い充実感よりも「一人の静かな時間で集中力を回復させたい」という欲求が強く出る。' },
-      { id: 3, phase: 1, dim: 'EI', dir: 1, tag: 'エネルギー方向性 (E / I)', code: 'MBTI-EI-3',
-        text: '思考を整理するときは、頭の中で一人で練り上げるよりも、誰かと議論したり壁打ちしたりしながらアイデアを広げる方が生産性が高い。' },
-
-      { id: 4, phase: 1, dim: 'SN', dir: 1, tag: '情報収集・認識スタイル (S / N)', code: 'MBTI-SN-1',
-        text: '業務の改善を検討するとき、目の前の具体的なデータ・過去の実績・手順書の細部よりも、「数年後にこの仕組み自体がどう変わるべきか」という全体構造に意識が向く。' },
-      { id: 5, phase: 1, dim: 'SN', dir: -1, tag: '情報収集・認識スタイル (S / N)', code: 'MBTI-SN-2',
-        text: '抽象的なビジョンや概念的な議論よりも、今すぐ現場で使える具体的な手順・チェックリスト・実証済みの事実を重視する。' },
-      { id: 6, phase: 1, dim: 'SN', dir: 1, tag: '情報収集・認識スタイル (S / N)', code: 'MBTI-SN-3',
-        text: '一見無関係に見える複数のトラブルや事象の背後に、共通する「根本的な構造やパターン」を見出すのが得意だ。' },
-{ id: 7, phase: 1, dim: 'TF', dir: 1, tag: '意思決定・判断基準 (T / F)', code: 'MBTI-TF-1',
-        text: 'チーム内で意見が対立した際、メンバーの感情やその場の和を保つことよりも、客観的な論理の正しさと費用対効果（合理性）を優先して結論を出す。' },
-      { id: 8, phase: 1, dim: 'TF', dir: -1, tag: '意思決定・判断基準 (T / F)', code: 'MBTI-TF-2',
-        text: '正論であっても相手のモチベーションや信頼関係を損なう恐れがあるなら、表現を和らげたり納得感を醸成するプロセスを最優先する。' },
-      { id: 9, phase: 1, dim: 'TF', dir: 1, tag: '意思決定・判断基準 (T / F)', code: 'MBTI-TF-3',
-        text: '業務評価やフィードバックを受ける際、優しい励ましの言葉よりも、改善すべき欠点や論理的弱点を率直に指摘される方がありがたい。' },
-
-      { id: 10, phase: 1, dim: 'JP', dir: 1, tag: '行動規範・タスク管理 (J / P)', code: 'MBTI-JP-1',
-        text: '仕事は事前にマイルストーンと完了基準を明確に決め、スケジュール通りに前倒しで片付けて不確実性を減らしておきたい。' },
-      { id: 11, phase: 1, dim: 'JP', dir: -1, tag: '行動規範・タスク管理 (J / P)', code: 'MBTI-JP-2',
-        text: 'ガチガチに計画を固めるよりも、状況の変化に合わせて選択肢をギリギリまで残し、その場で柔軟に軌道修正する方が力を発揮できる。' },
-      { id: 12, phase: 1, dim: 'JP', dir: 1, tag: '行動規範・タスク管理 (J / P)', code: 'MBTI-JP-3',
-        text: 'ルールや基準が曖昧なまま物事が進んでいる状態に強いストレスを感じ、自分の手で標準化・体系化したくなる。' },
-
-      // --- PHASE 2: BIG5 PERSONALITY FACTORS (Q13 - Q22: 5 Factors x Forward/Reverse) ---
-      { id: 13, phase: 2, dim: 'O', dir: 1, tag: 'BIG5：開放性 (Openness)', code: 'BIG5-O-1',
-        text: '従来のやり方が問題なく機能していても、最新のテクノロジーや異業種のフレームワークを積極的に試して業務をアップデートしたい。' },
-      { id: 14, phase: 2, dim: 'O', dir: -1, tag: 'BIG5：開放性 (Openness / 逆転)', code: 'BIG5-O-2',
-        text: '新しいツールや未経験の手法をゼロから学ぶよりも、すでに慣れ親しんだ確実なやり方を踏襲する方が安心できる。' },
-
-      { id: 15, phase: 2, dim: 'C', dir: 1, tag: 'BIG5：誠実性 (Conscientiousness)', code: 'BIG5-C-1',
-        text: '一度引き受けたタスクや約束は、細部の品質や期限に至るまで一切の妥協なく完遂する強い責任感がある。' },
-      { id: 16, phase: 2, dim: 'C', dir: -1, tag: 'BIG5：誠実性 (Conscientiousness / 逆転)', code: 'BIG5-C-2',
-        text: '興味が薄れた作業や単調な事務処理になると、つい後回しにしたり詰めが甘くなったりすることがある。' },
-
-      { id: 17, phase: 2, dim: 'E', dir: 1, tag: 'BIG5：外向性 (Extraversion)', code: 'BIG5-E-1',
-        text: '初対面の相手や他部署のキーマンに対しても、自分から主導権を持って働きかけ、場の空気を動かすことができる。' },
-      { id: 18, phase: 2, dim: 'E', dir: -1, tag: 'BIG5：外向性 (Extraversion / 逆転)', code: 'BIG5-E-2',
-        text: '大人数の懇親会や初対面ばかりのビジネス交流会では、自分から話題を振るよりも聞き役に回って様子を見ることが多い。' },
-
-      { id: 19, phase: 2, dim: 'A', dir: 1, tag: 'BIG5：協調性 (Agreeableness)', code: 'BIG5-A-1',
-        text: '自分の成果や主張を通すこと以上に、周囲のメンバーが働きやすいようにサポートし、利害を調整することに喜びを感じる。' },
-      { id: 20, phase: 2, dim: 'A', dir: -1, tag: 'BIG5：協調性 (Agreeableness / 逆転)', code: 'BIG5-A-2',
-        text: '組織の同調圧力や「空気を読むこと」にはあまり関心がなく、必要であれば周囲と衝突してでも自分の合理的判断を貫く。' },
-
-      { id: 21, phase: 2, dim: 'N', dir: 1, tag: 'BIG5：情緒安定性 (Emotional Stability)', code: 'BIG5-N-1',
-        text: '予期せぬトラブルや厳しいプレッシャーがかかる場面でも、感情的に動揺せず冷静に優先順位を切り替えて対処できる。' },
-      { id: 22, phase: 2, dim: 'N', dir: -1, tag: 'BIG5：情緒安定性 (Emotional Stability / 逆転)', code: 'BIG5-N-2',
-        text: '上司や顧客からの批判、あるいは将来のキャリアに対する不確実性について、業務時間外でも頭から離れず考え込んでしまうことがある。' },
-
-      // --- PHASE 3: 4 CORE WORK CAPABILITIES (Q23 - Q30) ---
-      { id: 23, phase: 3, dim: 'STRAT', dir: 1, tag: '実務力：戦略・構造化設計', code: 'CAP-STR-1',
-        text: '複雑な問題に直面したとき、感覚や経験則に頼らず、原因を要素分解して再現性のある解決フレームワークを設計できる。' },
-      { id: 24, phase: 3, dim: 'STRAT', dir: 1, tag: '実務力：戦略・構造化設計', code: 'CAP-STR-2',
-        text: '定量的データ（数値・コスト・時間）と定性的事実を組み合わせて、経営層や意思決定者を納得させる論理的な企画・提案書を作れる。' },
-
-      { id: 25, phase: 3, dim: 'EXEC', dir: 1, tag: '実務力：完遂・品質規律', code: 'CAP-EXE-1',
-        text: 'ヒューマンエラーや手戻りを防ぐため、ダブルチェックや標準作業手順（SOP）の整備を徹底し、高い品質基準を維持できる。' },
-      { id: 26, phase: 3, dim: 'EXEC', dir: 1, tag: '実務力：完遂・品質規律', code: 'CAP-EXE-2',
-        text: '華やかな企画立案だけでなく、泥臭い検証作業や地道なオペレーションの磨き込みを最後までやり抜く粘り強さがある。' },
-{ id: 27, phase: 3, dim: 'INFL', dir: 1, tag: '実務力：対人折衝・巻き込み', code: 'CAP-INF-1',
-        text: '利害が対立する他部署や外部ベンダーとの交渉において、相手の核心的ニーズを突き止め、Win-Winの合意形成を引き出せる。' },
-      { id: 28, phase: 3, dim: 'INFL', dir: 1, tag: '実務力：対人折衝・巻き込み', code: 'CAP-INF-2',
-        text: '後輩やチームメンバーの特性を見極め、適切な権限委譲と指導を行うことで、組織全体の生産性を底上げできる。' },
-
-      { id: 29, phase: 3, dim: 'AGIL', dir: 1, tag: '実務力：変化適応・越境サバイバル', code: 'CAP-AGI-1',
-        text: 'マニュアルや前例が存在しない新規事業・未知の領域であっても、仮説検証を高速で回しながら自力で専門知識を習得できる。' },
-      { id: 30, phase: 3, dim: 'AGIL', dir: 1, tag: '実務力：変化適応・越境サバイバル', code: 'CAP-AGI-2',
-        text: '現在の組織や肩書きに依存せず、「どこへ行っても通用するポータブルスキル」を常に意識して自己投資・アップデートを続けている。' }
-    ];
-
-    // =========================================================================
-    // 2. 16 JOB ARCHETYPES DATABASE
-    // =========================================================================
-    const ARCHETYPES = {
-      INTJ: {
-        code: 'INTJ',
-        name: '冷徹なシステム戦略参謀',
-        group: '戦略洞察系（アナリスト）',
-        catchcopy: '感情や慣習に流されず、複雑な事象の背後にある構造的欠陥を見抜き、長期最適解を設計する知略家。',
-        roles: ['経営企画・事業戦略', 'DX・業務プロセス設計', 'テクニカルPM / PMO', 'データサイエンティスト', 'R&D・システムアーキテクト'],
-        env: { mature: 72, growth: 88, startup: 84, solo: 95 },
-        trapTitle: '「正論による孤立」と「現場の感情軽視」',
-        trap: '論理的整合性を追求するあまり、現場の納得感や政治的調整を軽視し「正しいが誰も動かない計画」を作って孤立するリスクがあります。',
-        prescription: '提案時は正論だけでなく「相手にとってのメリット（実利）」に翻訳して提示し、実行フェーズでは調整力に優れた推進役とタッグを組むこと。'
-      },
-      INTP: {
-        code: 'INTP',
-        name: '孤高の原理探究イノベーター',
-        group: '戦略洞察系（アナリスト）',
-        catchcopy: '既存の常識を疑い、ゼロベースで原理原則を解明して独創的なアルゴリズムや仕組みを生み出す知の探究者。',
-        roles: ['AI・アルゴリズム開発', '新規事業R&D', '業務自動化エンジニア', '戦略リサーチャー', '高度専門コンサルタント'],
-        env: { mature: 52, growth: 82, startup: 86, solo: 96 },
-        trapTitle: '「構想完了の錯覚」と「ルーチン放棄」',
-        trap: '仕組みの解明やプロトタイプ作成で知的好奇心が満たされると、その後の泥臭い運用・保守や事務処理への関心が急落しがちです。',
-        prescription: '0→1の設計と検証に専門特化し、標準化後の運用フェーズは誠実性の高いオペレーション人材へ引き継ぐ役割分担を確立すること。'
-      },
-      ENTJ: {
-        code: 'ENTJ',
-        name: '剛腕の事業変革コマンダー',
-        group: '戦略洞察系（アナリスト）',
-        catchcopy: '高い視座と圧倒的な決断力で組織のボトルネックを突破し、最短距離で目標達成へ導く指揮官。',
-        roles: ['事業部長・COO候補', '大規模プロジェクトPM', '事業再生・M&A推進', '営業統括マネージャー', '起業家・スタートアップCXO'],
-        env: { mature: 78, growth: 95, startup: 94, solo: 85 },
-        trapTitle: '「過剰なトップダウン」によるメンバー疲弊',
-        trap: '自身の処理速度と基準が高すぎるため、周囲の歩調を待てずにマイクロマネジメントや過度なプレッシャーを与え、離職を招く恐れがあります。',
-        prescription: '「期待する成果の定義」だけを明確に示し、プロセスは部下に委ねる権限委譲と、意図的な傾聴の時間をスケジュールに組み込むこと。'
-      },
-      ENTP: {
-        code: 'ENTP',
-        name: '常識破壊の越境カタリスト',
-        group: '戦略洞察系（アナリスト）',
-        catchcopy: '異分野の知見を掛け合わせて斬新なビジネスモデルや突破口を次々と生み出す変革の触媒。',
-        roles: ['新規事業開発（0→1）', '事業提携・アライアンス', 'プロダクトマネージャー', 'グロースハッカー', '変革推進コンサルタント'],
-        env: { mature: 48, growth: 89, startup: 96, solo: 90 },
-        trapTitle: '「風呂敷の広げすぎ」と「収束不足」',
-        trap: '次々と新しいアイデアに飛びつく一方で、既存プロジェクトの詰めや細部の品質管理が疎かになり、信頼を損ねるリスクがあります。',
-        prescription: 'アイデア出しの段階から「撤退基準」と「完了責任者」をセットで設定し、実務の完遂を担保する右腕パートナーを確保すること。'
-      },
-      INFJ: {
-        code: 'INFJ',
-        name: '静かなる構造改革アーキテクト',
-        group: '理念共創系（ディプロマット）',
-        catchcopy: '人の心理と組織の力学を深く洞察し、大義あるビジョンと緻密な構造設計で静かに変革を成し遂げる参謀。',
-        roles: ['組織開発・HRBP', '教育体系・トレーニング設計', '品質保証・安全管理統括', '事業企画・PMO', 'UXリサーチャー'],
-        env: { mature: 82, growth: 88, startup: 76, solo: 91 },
-        trapTitle: '「過剰な責任抱え込み」による静かな燃え尽き',
-        trap: '周囲の期待や組織の歪みを敏感に察知して一人で背負い込み、限界まで我慢した末にある日突然プツリと糸が切れる傾向があります。',
-        prescription: '感情労働と実務負荷の境界線を明確に引き、自分の権限外の問題は冷徹に切り離す「戦略的割り切り」を習慣化すること。'
-      },
-      INFP: {
-        code: 'INFP',
-        name: '本質追求のクリエイティブ職人',
-        group: '理念共創系（ディプロマット）',
-        catchcopy: '妥協のない美意識と深い共感力を武器に、独自の価値観が込められたコンテンツや企画を紡ぎ出す表現者。',
-        roles: ['UI/UXデザイナー', 'ブランド戦略・コピーライター', '専門領域ライター・編集者', 'カウンセラー・キャリア支援', 'プロダクト企画'],
-        env: { mature: 55, growth: 76, startup: 78, solo: 94 },
-        trapTitle: '「理想と現実のギャップ」による自己批判ループ',
-        trap: '利益至上主義や無機質な数字管理だけの環境では強い違和感を覚え、自己効力感を失って行動が止まりやすくなります。',
-        prescription: '自分が心から納得できる社会的意義のある領域を選び、数値目標を「誰のどんな課題を救う指標か」に意味づけし直すこと。'
-      },
-      ENFJ: {
-        code: 'ENFJ',
-        name: '人心掌握の組織エバンジェリスト',
-        group: '理念共創系（ディプロマット）',
-        catchcopy: '明確なビジョンと圧倒的な熱量・共感力で多様な人材を一つに束ね、組織の潜在能力を引き出す牽引役。',
-        roles: ['人材育成・研修マネージャー', 'カスタマーサクセス統括', '広報・PR・採用責任者', 'プロジェクトリーダー', '組織変革ファシリテーター'],
-        env: { mature: 84, growth: 92, startup: 85, solo: 78 },
-        trapTitle: '「八方美人化」と「決断の遅れ」',
-        trap: '全員の納得と調和を重んじるあまり、痛みを伴うリストラや不採算事業の切り捨てといった冷徹な意思決定を先送りしがちです。',
-        prescription: '「全員を救うことはできない」という前提を受け入れ、判断基準を事前に数値化・ルール化して感情と決断を切り離すこと。'
-      },
-      ENFP: {
-        code: 'ENFP',
-        name: '熱狂創出のアイデアプロデューサー',
-        group: '理念共創系（ディプロマット）',
-        catchcopy: '枠にとらわれない発想力と人懐っこい巻き込み力で、停滞した現場に新しい風と熱狂を生み出す開拓者。',
-        roles: ['マーケティング企画', '新規顧客開拓・コミュニティ運営', 'イベント・プロモーション企画', '新規事業立ち上げ', 'タレントマネジメント'],
-        env: { mature: 54, growth: 87, startup: 93, solo: 86 },
-        trapTitle: '「計画倒れ」と「締切直前のパニック」',
-        trap: '好奇心の赴くままに複数の案件を同時進行させた結果、スケジュール管理や細かい事務手続きが破綻するリスクがあります。',
-        prescription: 'タスク管理ツールへの即時記録を徹底し、ルーチン業務は自動化するか、管理能力の高いパートナーに委ねること。'
-      },
-      ISTJ: {
-        code: 'ISTJ',
-        name: '鉄壁の品質保証・規律ガーディアン',
-        group: '規律遂行系（センチネル）',
-        catchcopy: '揺るぎない責任感と緻密な事実検証力で、組織の安全性・品質・コンプライアンスを完璧に守り抜く要石。',
-        roles: ['品質保証・品質管理（QA/QC）', '監査・コンプライアンス', 'インフラ・航空機/設備整備統括', '経理・財務管理', '業務オペレーション設計'],
-        env: { mature: 96, growth: 80, startup: 58, solo: 84 },
-        trapTitle: '「前例踏襲への固執」と「急激な変化への拒絶」',
-        trap: 'ルールや手順の遵守を重視するあまり、市場環境が激変して既存ルール自体が時代遅れになった際に対応が遅れるリスクがあります。',
-        prescription: '「ルールを守ること」ではなく「ルールが目指す本質的安全性・品質を保ちつつ最短化すること」へ意識をアップデートすること。'
-      },
-      ISFJ: {
-        code: 'ISFJ',
-        name: '献身のオペレーション安定化スペシャリスト',
-        group: '規律遂行系（センチネル）',
-        catchcopy: '細部への鋭い気配りと実直なサポート力で、現場の摩擦を未然に防ぎ組織の安定稼働を支える縁の下の力持ち。',
-        roles: ['カスタマーサポート・秘書', '総務・労務・バックオフィス統括', '医療・福祉・安全支援専門職', 'プロジェクト進行管理', '社内SE・ヘルプデスク'],
-        env: { mature: 94, growth: 78, startup: 55, solo: 76 },
-        trapTitle: '「過度な自己犠牲」と「正当な評価の取りこぼし」',
-        trap: '他者のサポートを優先して自分の業務負荷を断れず、さらに成果を控えめに報告するため昇進や昇給で損をしやすい傾向があります。',
-        prescription: '自分が防いだトラブルや改善した業務工数を必ず「数値（時間・コスト削減額）」で可視化し、評価面談で論理的に提示すること。'
-      },
-      ESTJ: {
-        code: 'ESTJ',
-        name: '実務統括のオペレーションディレクター',
-        group: '規律遂行系（センチネル）',
-        catchcopy: '明確な基準と強力な実行管理能力で、カオスな現場に秩序をもたらし確実に数字と納期を達成する実務リーダー。',
-        roles: ['工場・現場オペレーション部長', '営業マネージャー', 'PMO・進捗統括責任者', 'サプライチェーン管理', '法務・ガバナンス統括'],
-        env: { mature: 95, growth: 88, startup: 70, solo: 80 },
-        trapTitle: '「柔軟性の欠如」と「異質な人材の排除」',
-        trap: '自分の成功体験や既存ルールを絶対視するあまり、型破りなクリエイターやマイペースな部下の強みを潰してしまうことがあります。',
-        prescription: '「やり方（プロセス）」ではなく「達成すべき数値基準（アウトプット）」で管理し、手法の多様性を許容すること。'
-      },
-      ESFJ: {
-        code: 'ESFJ',
-        name: '調和と推進のチームコーディネーター',
-        group: '規律遂行系（センチネル）',
-        catchcopy: '高い対人感受性と段取り力で、部署間の壁を取り払いチーム全体の士気と連携を最大化する調整の達人。',
-        roles: ['法人営業・アカウントエグゼクティブ', '人事・採用コーディネーター', '広報・ステークホルダー調整', '店舗・拠点運営マネージャー', 'コミュニティマネージャー'],
-        env: { mature: 91, growth: 85, startup: 68, solo: 72 },
-        trapTitle: '「周囲の顔色伺い」による主体性の喪失',
-        trap: '人間関係の摩擦を恐れるあまり、本質的な課題提起を避けたり、批判を受けると過剰に落ち込んでパフォーマンスを落とすことがあります。',
-        prescription: '仕事上の反対意見は「人格否定ではなく業務上の議論」と割り切り、自分の意見の根拠をデータで補強する習慣をつけること。'
-      },
-      ISTP: {
-        code: 'ISTP',
-        name: '危機突破のテクニカル・トラブルシューター',
-        group: '機動実践系（エクスプローラー）',
-        catchcopy: '冷静沈着な観察眼と卓越した技術応用力で、マニュアル外の緊急トラブルを最短手数で解決する現場の切り札。',
-        roles: ['フィールドエンジニア・技術調査', 'システム障害対応・SRE', '製品開発・プロトタイピング', '品質解析・原因究明スペシャリスト', '独立系技術コンサルタント'],
-        env: { mature: 74, growth: 84, startup: 88, solo: 96 },
-        trapTitle: '「報告・共有の省略」によるブラックボックス化',
-        trap: '自分で手を動かして解決する方が早いため、周囲への経過報告やドキュメント化を省き、業務が属人化しやすい傾向があります。',
-        prescription: '問題解決のプロセスを最低限のテンプレートに書き残すだけで、組織内での希少価値と報酬が一気に跳ね上がります。'
-      },
-      ISFP: {
-        code: 'ISFP',
-        name: '感覚鋭敏なクラフト・スペシャリスト',
-        group: '機動実践系（エクスプローラー）',
-        catchcopy: '繊細な美意識と柔軟な適応力を持ち、顧客やユーザーの肌感覚に寄り添った高品質なアウトプットを創り出す職人。',
-        roles: ['ビジュアル・空間デザイナー', 'フロントエンド・UI実装', '顧客体験（CX）改善担当', '専門技術職・クラフトマン', '動画・クリエイティブ制作'],
-        env: { mature: 68, growth: 79, startup: 81, solo: 92 },
-        trapTitle: '「長期キャリア戦略の不在」と「受け身姿勢」',
-        trap: '目の前の作業の心地よさを優先するあまり、3年後・5年後の市場価値や年収アップに向けた戦略的な交渉を後回しにしがちです。',
-        prescription: '半年に一度は自分のポートフォリオと市場相場を客観視し、スキル単価が上がる領域へ意識的にポジションを移すこと。'
-      },
-      ESTP: {
-        code: 'ESTP',
-        name: '修羅場最強のディールメーカー',
-        group: '機動実践系（エクスプローラー）',
-        catchcopy: '圧倒的な行動スピードと現場での交渉力で、机上の空論を打ち破り目の前の商機と成果を即座に刈り取る勝負師。',
-        roles: ['トップセールス・新規開拓営業', 'M&A・不動産・金融ディーラー', '危機対応・現場指揮官', '事業開発（BD）', '独立起業家'],
-        env: { mature: 66, growth: 90, startup: 96, solo: 93 },
-        trapTitle: '「短期成果への偏重」と「コンプライアンス軽視」',
-        trap: 'スピードと目の前の数字を優先するあまり、長期的なリスク検証や法務・契約面の細部を見落として大きな火種を作る恐れがあります。',
-        prescription: '大きなディールや契約締結の前には、必ず慎重派（ISTJ/INTJタイプ）のレビューを通すチェックゲートを設けること。'
-      },
-      ESFP: {
-        code: 'ESFP',
-        name: '現場活性化のエンタープライズ・パフォーマー',
-        group: '機動実践系（エクスプローラー）',
-        catchcopy: '抜群のコミュニケーション力とポジティブなエネルギーで、顧客やチームの心を瞬時に掴み商談や場を動かす推進役。',
-        roles: ['ソリューション営業・渉外', 'PR・イベントプロデューサー', 'サービス企画・店舗統括', '採用リクルーター', 'インフルエンサー・広報'],
-        env: { mature: 72, growth: 86, startup: 89, solo: 84 },
-        trapTitle: '「数値分析・事務管理への苦手意識」',
-        trap: '対人折衝では無類の強さを発揮する一方、予算管理やデータ分析、長文の企画書作成になると急に手が止まりがちです。',
-        prescription: '自分の強みを「対人折衝・フロント業務」に100%集中させ、バックオフィスやデータ処理はツールや他者に任せる環境を選ぶこと。'
-      }
-    };
-    
-    // =========================================================================
-    // 3. APPLICATION CONTROLLER & PSYCHOMETRIC ENGINE
-    // =========================================================================
-    const app = {
-      currentIdx: 0,
-      answers: new Array(QUESTIONS.length).fill(null),
-
-      goHome() {
-        this.showScreen('screen-home');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      },
-
-      startQuiz() {
-        this.currentIdx = 0;
-        this.answers = new Array(QUESTIONS.length).fill(null);
-        this.showScreen('screen-quiz');
-        this.renderQuestion();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      },
-
-      showScreen(id) {
-        ['screen-home', 'screen-quiz', 'screen-result', 'screen-directory'].forEach(s => {
-          document.getElementById(s).classList.add('hidden');
-        });
-        document.getElementById(id).classList.remove('hidden');
-      },
-
-      renderQuestion() {
-        const q = QUESTIONS[this.currentIdx];
-        const total = QUESTIONS.length;
-        const pct = Math.round(((this.currentIdx + 1) / total) * 100);
-
-        // Phase badge & indicators
-        const phaseNames = {
-          1: 'Phase 1: MBTI 認知・意思決定スタイル',
-          2: 'Phase 2: BIG5 職務パーソナリティ因子',
-          3: 'Phase 3: 4大実務ケイパビリティ'
-        };
-        document.getElementById('quiz-phase-badge').textContent = phaseNames[q.phase];
-        document.getElementById('quiz-progress-text').textContent = `Q${String(this.currentIdx + 1).padStart(2, '0')} / ${total} (${pct}%)`;
-        document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
-
-        // Count answered per phase
-        const p1Done = this.answers.slice(0, 12).filter(v => v !== null).length;
-        const p2Done = this.answers.slice(12, 22).filter(v => v !== null).length;
-        const p3Done = this.answers.slice(22, 30).filter(v => v !== null).length;
-
-        const ind1 = document.getElementById('phase-ind-1');
-        const ind2 = document.getElementById('phase-ind-2');
-        const ind3 = document.getElementById('phase-ind-3');
-
-        ind1.textContent = `P1: 認知軸 ${p1Done}/12`;
-        ind2.textContent = `P2: BIG5 ${p2Done}/10`;
-        ind3.textContent = `P3: 実務 ${p3Done}/8`;
-
-        [ind1, ind2, ind3].forEach((el, idx) => {
-          if (q.phase === idx + 1) {
-            el.className = 'py-1 rounded bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold';
-          } else {
-            el.className = 'py-1 rounded bg-slate-900/80 border border-slate-800 text-slate-400';
-          }
-        });
-
-        document.getElementById('question-dimension-tag').textContent = q.tag;
-        document.getElementById('question-code-tag').textContent = q.code;
-        document.getElementById('question-text').textContent = `Q${q.id}. ${q.text}`;
-
-        // Highlight selected option
-        const currentVal = this.answers[this.currentIdx];
-        document.querySelectorAll('.btn-option').forEach(btn => {
-          const val = parseInt(btn.getAttribute('data-val'), 10);
-          if (val === currentVal) {
-            btn.classList.add('selected');
-          } else {
-            btn.classList.remove('selected');
-          }
-        });
-
-        // Prev / Next button states
-        document.getElementById('btn-prev').disabled = (this.currentIdx === 0);
-        const btnNext = document.getElementById('btn-next');
-        if (this.currentIdx === total - 1) {
-          btnNext.innerHTML = '<span>診断結果を見る</span><i class="fa-solid fa-check text-[10px]"></i>';
-        } else {
-          btnNext.innerHTML = '<span>次へ</span><i class="fa-solid fa-chevron-right text-[10px]"></i>';
-        }
-      },
-
-      selectOption(val) {
-        this.answers[this.currentIdx] = val;
-        this.renderQuestion();
-
-        const autoAdv = document.getElementById('auto-advance').checked;
-        if (autoAdv) {
-          setTimeout(() => {
-            if (this.currentIdx < QUESTIONS.length - 1) {
-              this.currentIdx++;
-              this.renderQuestion();
-            } else {
-              this.finishQuiz();
-            }
-          }, 180);
-        }
-      },
-
-      prevQuestion() {
-        if (this.currentIdx > 0) {
-          this.currentIdx--;
-          this.renderQuestion();
-        }
-      },
-      finishQuiz() {
-        // Fill any unanswered with neutral 3
-        const cleanAnswers = this.answers.map(v => (v === null ? 3 : v));
-        const result = this.calculateProfile(cleanAnswers);
-        this.renderResult(result);
-        this.showScreen('screen-result');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      },
-
-      runDemo(preset) {
-        let demoAns = [];
-        if (preset === 'strategist') {
-          // INFJ-A / High Conscientiousness & Openness
-          demoAns = [
-            2, 5, 2, // I
-            5, 2, 5, // N
-            3, 4, 4, // F/T balanced
-            5, 2, 5, // J
-            5, 1,    // O high
-            5, 1,    // C high
-            3, 3,    // E mid
-            4, 2,    // A high
-            5, 1,    // N (Emotional Stability) high
-            5, 5,    // STRAT
-            5, 5,    // EXEC
-            4, 4,    // INFL
-            5, 4     // AGIL
-          ];
-        } else if (preset === 'commander') {
-          // ENTJ-A
-          demoAns = [
-            5, 1, 5, // E
-            5, 2, 5, // N
-            5, 1, 5, // T
-            5, 1, 5, // J
-            5, 2,    // O high
-            5, 1,    // C high
-            5, 1,    // E high
-            3, 4,    // A low-mid
-            5, 1,    // ES high
-            5, 5,    // STRAT
-            5, 4,    // EXEC
-            5, 5,    // INFL
-            5, 5     // AGIL
-          ];
-        } else {
-          demoAns = QUESTIONS.map(() => Math.floor(Math.random() * 5) + 1);
-        }
-        this.answers = demoAns;
-        const result = this.calculateProfile(demoAns);
-        this.renderResult(result);
-        this.showScreen('screen-result');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      },
-
-      calculateProfile(ans) {
-        // Helper to normalize 1..5 with direction (1 or -1) into 0..100
-        const scoreItem = (idx) => {
-          const q = QUESTIONS[idx];
-          const raw = ans[idx];
-          const oriented = q.dir === 1 ? raw : (6 - raw);
-          return ((oriented - 1) / 4) * 100;
-        };
-
-        // 1. MBTI 4 Axes (each 3 questions)
-        const eScore = (scoreItem(0) + scoreItem(1) + scoreItem(2)) / 3;
-        const nScore = (scoreItem(3) + scoreItem(4) + scoreItem(5)) / 3;
-        const tScore = (scoreItem(6) + scoreItem(7) + scoreItem(8)) / 3;
-        const jScore = (scoreItem(9) + scoreItem(10) + scoreItem(11)) / 3;
-// 2. BIG5 5 Factors (each 2 questions: forward + reverse)
-        const big5 = {
-          O: Math.round((scoreItem(12) + scoreItem(13)) / 2),
-          C: Math.round((scoreItem(14) + scoreItem(15)) / 2),
-          E: Math.round((scoreItem(16) + scoreItem(17)) / 2),
-          A: Math.round((scoreItem(18) + scoreItem(19)) / 2),
-          ES: Math.round((scoreItem(20) + scoreItem(21)) / 2) // Emotional Stability
-        };
-
-        // Blend BIG5 E and O slightly into MBTI E and N for higher psychometric stability
-        const finalE = Math.round(eScore * 0.75 + big5.E * 0.25);
-        const finalN = Math.round(nScore * 0.8 + big5.O * 0.2);
-        const finalT = Math.round(tScore * 0.85 + (100 - big5.A) * 0.15);
-        const finalJ = Math.round(jScore * 0.8 + big5.C * 0.2);
-
-        const mbtiCode =
-          (finalE >= 50 ? 'E' : 'I') +
-          (finalN >= 50 ? 'N' : 'S') +
-          (finalT >= 50 ? 'T' : 'F') +
-          (finalJ >= 50 ? 'J' : 'P');
-
-        // Identity (-A Assertive vs -T Turbulent) based on Emotional Stability
-        const identity = big5.ES >= 55 ? 'A' : 'T';
-
-        // 3. 4 Core Capabilities (Q23-Q30)
-        const rawStrat = (scoreItem(22) + scoreItem(23)) / 2;
-        const rawExec = (scoreItem(24) + scoreItem(25)) / 2;
-        const rawInfl = (scoreItem(26) + scoreItem(27)) / 2;
-        const rawAgil = (scoreItem(28) + scoreItem(29)) / 2;
-
-        // Combine direct capability with BIG5 predictors to compute Deviation Scores (Mean 50, SD 10)
-        const toDev = (pct) => {
-          const dev = 42 + (pct / 100) * 28; // Range 42.0 to 70.0
-          return Math.round(dev * 10) / 10;
-        };
-
-        const capStrat = toDev(rawStrat * 0.65 + big5.O * 0.2 + finalN * 0.15);
-        const capExec = toDev(rawExec * 0.6 + big5.C * 0.3 + finalJ * 0.1);
-        const capInfl = toDev(rawInfl * 0.65 + big5.E * 0.2 + big5.A * 0.15);
-        const capAgil = toDev(rawAgil * 0.6 + big5.O * 0.2 + big5.ES * 0.2);
-
-        // Overall Work Deviation weighted by BIG5 Conscientiousness & Emotional Stability
-        const totalDev = Math.round(((capStrat + capExec + capInfl + capAgil) / 4) * 10) / 10;
-
-        // BIG5 Dominant Trait Badge
-        const traits = [
-          { key: 'C', val: big5.C, label: '鉄壁完遂' },
-          { key: 'O', val: big5.O, label: '高開放イノベーター' },
-          { key: 'ES', val: big5.ES, label: '鋼鉄メンタル' },
-          { key: 'E', val: big5.E, label: '突破牽引' },
-          { key: 'A', val: big5.A, label: '高度合意形成' }
-        ].sort((a, b) => b.val - a.val);
-
-        const modifierBadge = `${mbtiCode}-${identity} × ${traits[0].label}・${traits[1].label}型`;
-
-        // Transfer / Career Mobility Index (%)
-        const transferPct = Math.min(98, Math.max(32, Math.round(
-          (big5.O * 0.3 + big5.ES * 0.25 + rawAgil * 0.3 + big5.C * 0.15)
-        )));
-
-        return {
-          mbtiCode,
-          identity,
-          archetype: ARCHETYPES[mbtiCode],
-          modifierBadge,
-          spectrum: { E: finalE, N: finalN, T: finalT, J: finalJ },
-          big5,
-          capabilities: {
-            strat: capStrat,
-            exec: capExec,
-            infl: capInfl,
-            agil: capAgil
-          },
-          totalDev,
-          transferPct
-        };
-      },
-
-      renderResult(res) {
-        this.lastResult = res;
-        const arch = res.archetype;
-
-        document.getElementById('res-mbti-badge').textContent = `${res.mbtiCode}-${res.identity}`;
-        document.getElementById('res-group-label').textContent = arch.group;
-        document.getElementById('res-archetype-name').textContent = arch.name;
-        document.getElementById('res-big5-modifier').textContent = res.modifierBadge;
-        document.getElementById('res-catchcopy').textContent = arch.catchcopy;
-
-        // Overall Deviation & Rank
-        document.getElementById('res-total-deviation').textContent = res.totalDev.toFixed(1);
-        const barPct = Math.min(100, Math.max(15, ((res.totalDev - 40) / 30) * 100));
-        document.getElementById('res-deviation-bar').style.width = `${barPct}%`;
-
-        let rankText = 'Bランク（標準・安定層）';
-        if (res.totalDev >= 65) rankText = 'SSランク（上位3%・希少人材）';
-        else if (res.totalDev >= 60) rankText = 'Sランク（上位10%・ハイパフォーマー）';
-        else if (res.totalDev >= 55) rankText = 'Aランク（上位25%・即戦力層）';
-        document.getElementById('res-rank-badge').textContent = rankText;
-
-        // 4 Capabilities
-        const setCap = (idPrefix, val) => {
-          document.getElementById(`${idPrefix}-val`).textContent = val.toFixed(1);
-          const pct = Math.min(100, Math.max(15, ((val - 40) / 30) * 100));
-          document.getElementById(`${idPrefix}-bar`).style.width = `${pct}%`;
-        };
-        setCap('cap-strategy', res.capabilities.strat);
-        setCap('cap-execution', res.capabilities.exec);
-        setCap('cap-influence', res.capabilities.infl);
-        setCap('cap-agility', res.capabilities.agil);
-
-        // Render BIG5 Radar SVG & Bars
-        this.renderRadarChart(res.big5);
-        this.renderBig5Bars(res.big5);
-
-        // Render MBTI Spectrum
-        this.renderMbtiSpectrum(res.spectrum);
-
-        // Transfer Suitability & Environment Matrix
-        document.getElementById('res-transfer-score').textContent = `越境推奨度 ${res.transferPct}%`;
-        let verdict = '';
-        if (res.transferPct >= 75) {
-          verdict = `【積極的越境・キャリアアップ推奨】変化適応力と自走完遂力のバランスが極めて高く、現職の枠を超えて市場価値を大きく引き上げられる状態です。専門性を軸にした異業種・成長企業への挑戦で高いリターンが見込めます。`;
-        } else if (res.transferPct >= 58) {
-          verdict = `【戦略的準備・選択的転職推奨】一定の環境適応力を備えていますが、無計画な環境変化は一時的なストレス増大を招きます。自身の強み（${arch.roles[0]}等）が直結するポジションを厳選して動くべきフェーズです。`;
-        } else {
-          verdict = `【現環境での実績構築・基盤強化優先】現在は急激な環境変化よりも、現職で再現性のある成果（定量実績）と専門スキルを積み上げ、情緒安定性と自信を高めることが最優先の最適解です。`;
-        }
-        document.getElementById('res-transfer-verdict').textContent = verdict;
-
-        // Adjust environment fit dynamically using BIG5
-        const envScores = [
-          {
-            label: '10→100 成熟大手・高信頼インフラ',
-            score: Math.min(99, Math.max(35, Math.round(arch.env.mature * 0.7 + res.big5.C * 0.3)))
-          },
-          {
-            label: '1→10 成長期テック・変革期メーカー',
-            score: Math.min(99, Math.max(35, Math.round(arch.env.growth * 0.7 + res.big5.O * 0.3)))
-          },
-          {
-            label: '0→1 カオス期スタートアップ',
-            score: Math.min(99, Math.max(30, Math.round(arch.env.startup * 0.65 + res.big5.ES * 0.35)))
-          },
-          {
-            label: '独立・高度専門コンサル / フリーランス',
-            score: Math.min(99, Math.max(35, Math.round(arch.env.solo * 0.65 + res.big5.C * 0.35)))
-          }
-        ];
-
-        const envContainer = document.getElementById('res-env-matrix');
-        envContainer.innerHTML = envScores.map(item => `
-          <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div class="flex justify-between text-[11px] font-bold mb-1">
-              <span class="text-slate-200">${item.label}</span>
-              <span class="text-cyan-300 font-mono">適合率 ${item.score}%</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-cyan-400 to-indigo-400" style="width: ${item.score}%"></div>
-            </div>
-          </div>
-        `).join('');
-
-        // Roles
-        const rolesContainer = document.getElementById('res-roles-list');
-        rolesContainer.innerHTML = arch.roles.map(r => `
-          <span class="px-2.5 py-1 rounded-lg bg-slate-800/90 border border-slate-700 text-[11px] font-semibold text-cyan-200">
-            ${r}
-          </span>
-        `).join('');
-
-        // Trap & Prescription
-        document.getElementById('res-trap-title').textContent = `警告：${arch.trapTitle}`;
-        document.getElementById('res-trap-desc').textContent = arch.trap;
-        document.getElementById('res-prescription').textContent = arch.prescription;
-      },
-
-      renderRadarChart(big5) {
-        const svg = document.getElementById('big5-radar-svg');
-        const cx = 135, cy = 115, rMax = 78;
-        const labels = [
-          { key: 'O', text: '開放性' },
-          { key: 'C', text: '誠実性' },
-          { key: 'E', text: '外向性' },
-          { key: 'A', text: '協調性' },
-          { key: 'ES', text: '情緒安定' }
-        ];
-
-      nextQuestion() {
-        if (this.answers[this.currentIdx] === null) {
-          this.answers[this.currentIdx] = 3; // Default neutral if skipped
-        }
-        if (this.currentIdx < QUESTIONS.length - 1) {
-          this.currentIdx++;
-          this.renderQuestion();
-        } else {
-          this.finishQuiz();
-        }
-      },
-      const angleStep = (Math.PI * 2) / 5;
-        const startAngle = -Math.PI / 2;
-
-        let gridHtml = '';
-        [0.25, 0.5, 0.75, 1.0].forEach(level => {
-          const pts = labels.map((_, i) => {
-            const ang = startAngle + i * angleStep;
-            const x = cx + Math.cos(ang) * rMax * level;
-            const y = cy + Math.sin(ang) * rMax * level;
-            return `${x.toFixed(1)},${y.toFixed(1)}`;
-          }).join(' ');
-          gridHtml += `<polygon points="${pts}" fill="none" stroke="rgba(148,163,184,0.22)" stroke-width="1" />`;
-        });
-
-        let axesHtml = '';
-        let labelHtml = '';
-        const dataPts = [];
-
-        labels.forEach((item, i) => {
-          const ang = startAngle + i * angleStep;
-          const xEnd = cx + Math.cos(ang) * rMax;
-          const yEnd = cy + Math.sin(ang) * rMax;
-          axesHtml += `<line x1="${cx}" y1="${cy}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" stroke="rgba(148,163,184,0.22)" stroke-width="1" />`;
-
-          const val = Math.max(10, big5[item.key]) / 100;
-          const dx = cx + Math.cos(ang) * rMax * val;
-          const dy = cy + Math.sin(ang) * rMax * val;
-          dataPts.push(`${dx.toFixed(1)},${dy.toFixed(1)}`);
-
-          const lx = cx + Math.cos(ang) * (rMax + 20);
-          const ly = cy + Math.sin(ang) * (rMax + 16);
-          labelHtml += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="#cbd5e1" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="middle">${item.text}(${big5[item.key]})</text>`;
-        });
-
-        const polyHtml = `<polygon points="${dataPts.join(' ')}" fill="rgba(6, 182, 212, 0.28)" stroke="#22d3ee" stroke-width="2.2" />`;
-        const dotsHtml = dataPts.map(pt => {
-          const [px, py] = pt.split(',');
-          return `<circle cx="${px}" cy="${py}" r="3.5" fill="#22d3ee" />`;
-        }).join('');
-
-        svg.innerHTML = gridHtml + axesHtml + polyHtml + dotsHtml + labelHtml;
-      },
-
-      renderBig5Bars(big5) {
-        const items = [
-          { label: '誠実性（完遂力・規律）', val: big5.C, color: 'bg-cyan-400' },
-          { label: '情緒安定性（ストレス耐性）', val: big5.ES, color: 'bg-indigo-400' },
-          { label: '開放性（知的好奇心・変革力）', val: big5.O, color: 'bg-emerald-400' },
-          { label: '外向性（対人主導・行動量）', val: big5.E, color: 'bg-amber-400' },
-          { label: '協調性（利害調整・共感支援）', val: big5.A, color: 'bg-purple-400' }
-        ];
-        document.getElementById('big5-bars-list').innerHTML = items.map(it => `
-          <div>
-            <div class="flex justify-between text-[11px] mb-1">
-              <span class="text-slate-300 font-semibold">${it.label}</span>
-              <span class="font-mono font-bold text-slate-100">${it.val}%</span>
-            </div>
-            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full ${it.color}" style="width: ${it.val}%"></div>
-            </div>
-          </div>
-        `).join('');
-      },
-
-      renderMbtiSpectrum(spec) {
-        const rows = [
-          { left: '外向 (E)', right: '内向 (I)', leftPct: spec.E, rightPct: 100 - spec.E },
-          { left: '直観・構造 (N)', right: '感覚・事実 (S)', leftPct: spec.N, rightPct: 100 - spec.N },
-          { left: '論理・合理 (T)', right: '感情・調和 (F)', leftPct: spec.T, rightPct: 100 - spec.T },
-          { left: '規範・計画 (J)', right: '柔軟・適応 (P)', leftPct: spec.J, rightPct: 100 - spec.J }
-        ];
-
-        document.getElementById('mbti-spectrum-list').innerHTML = rows.map(r => {
-          const isLeftDom = r.leftPct >= 50;
-          return `
-            <div>
-              <div class="flex justify-between text-[11px] font-bold mb-1">
-                <span class="${isLeftDom ? 'text-cyan-300' : 'text-slate-400'}">${r.left} ${r.leftPct}%</span>
-                <span class="${!isLeftDom ? 'text-indigo-300' : 'text-slate-400'}">${r.rightPct}% ${r.right}</span>
-              </div>
-              <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden flex">
-                <div class="h-full bg-cyan-400" style="width: ${r.leftPct}%"></div>
-                <div class="h-full bg-indigo-500" style="width: ${r.rightPct}%"></div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      },
-
-      copyShareText() {
-        if (!this.lastResult) return;
-        const r = this.lastResult;
-        const text = `【BIG5 × MBTI 30問精密ジョブ診断結果】\n` +
-          `■ ジョブ類型：${r.archetype.name}（${r.mbtiCode}-${r.identity}）\n` +
-          `■ 特性タグ：${r.modifierBadge}\n` +
-          `■ 総合仕事偏差値：${r.totalDev.toFixed(1)}（戦略:${r.capabilities.strat} / 遂行:${r.capabilities.exec} / 折衝:${r.capabilities.infl} / 越境:${r.capabilities.agil}）\n` +
-          `■ 転職・越境推奨度：${r.transferPct}%`;
-navigator.clipboard.writeText(text).then(() => {
-          const btn = document.getElementById('btn-copy-result');
-          const orig = btn.innerHTML;
-          btn.innerHTML = '<i class="fa-solid fa-check"></i><span>コピーしました！LINEやメモに貼り付けできます</span>';
-          setTimeout(() => { btn.innerHTML = orig; }, 2500);
-        });
-      },
-
-      openAllTypes() {
-        const list = document.getElementById('directory-list');
-        list.innerHTML = Object.values(ARCHETYPES).map(a => `
-          <div onclick="app.previewType('${a.code}')" class="glass-card rounded-xl p-4 cursor-pointer hover:border-cyan-400/60 transition flex items-center justify-between">
-            <div>
-              <div class="flex items-center space-x-2 mb-1">
-                <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-black text-[10px]">${a.code}</span>
-                <span class="text-[10px] text-slate-400">${a.group}</span>
-              </div>
-              <h3 class="text-sm font-bold text-white">${a.name}</h3>
-              <p class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${a.catchcopy}</p>
-            </div>
-            <i class="fa-solid fa-chevron-right text-slate-500 text-xs ml-3"></i>
-          </div>
-        `).join('');
-
-        this.showScreen('screen-directory');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      },
-
-      closeDirectory() {
-        if (this.lastResult) {
-          this.showScreen('screen-result');
-        } else {
-          this.showScreen('screen-home');
-        }
-      },
-
-      previewType(code) {
-        // Generate representative 30-question scores matching the selected MBTI type
-        const e = code[0] === 'E' ? 5 : 1;
-        const n = code[1] === 'N' ? 5 : 1;
-        const t = code[2] === 'T' ? 5 : 1;
-        const j = code[3] === 'J' ? 5 : 1;
-
-        const mockAns = [
-          e, 6 - e, e,
-          n, 6 - n, n,
-          t, 6 - t, t,
-          j, 6 - j, j,
-          4, 2,
-          5, 1,
-          e, 6 - e,
-          6 - t, t,
-          4, 2,
-          4, 4,
-          4, 4,
-          4, 4,
-          4, 4
-        ];
-        const result = this.calculateProfile(mockAns);
-        this.renderResult(result);
-        this.showScreen('screen-result');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-  </script>
-</body>
-</html>
+    </div>
+  </section>
+
+  <!-- 4. DIRECTORY -->
+  <section id="scr-dir" class="hidden space-y-3 fade pb-8">
+    <div class="glass rounded-2xl p-4 flex justify-between items-center">
+      <div><h2 class="text-sm font-black text-white">全16ジョブアーキタイプ図鑑</h2><p class="text-[10px] text-slate-400">タップで各類型の詳細レポートを表示</p></div>
+      <button type="button" id="btn-close-dir" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-slate-300">閉じる</button>
+    </div>
+    <div id="dir-list" class="space-y-2"></div>
+  </section>
+
+</main>
+
+<script>
+window.onerror=function(msg,src,line){
+  var b=document.getElementById('err-box');
+  if(b){b.classList.remove('hidden');b.textContent='[ERROR] '+msg+' (Line:'+line+')';}
+};
+
+(function(){
+  const Q=[
+    {p:1,d:'EI',r:1,t:'エネルギー方向性 (E/I)',c:'EI-1',q:'未知のプロジェクトや新部署では、まず関係者と積極的に会話して現場の空気や人脈を掴むことから始める。'},
+    {p:1,d:'EI',r:-1,t:'エネルギー方向性 (E/I)',c:'EI-2',q:'長時間の会議や折衝が続いた後は、充実感よりも「一人の静かな時間で集中力を回復させたい」という欲求が強く出る。'},
+    {p:1,d:'EI',r:1,t:'エネルギー方向性 (E/I)',c:'EI-3',q:'思考を整理するときは、頭の中で一人で練るよりも、誰かと議論や壁打ちをしながらアイデアを広げる方が生産性が高い。'},
+    {p:1,d:'SN',r:1,t:'認識・情報収集 (S/N)',c:'SN-1',q:'業務改善を検討する際、目の前のデータや手順の細部よりも「数年後に仕組み自体がどう変わるべきか」という全体構造に意識が向く。'},
+    {p:1,d:'SN',r:-1,t:'認識・情報収集 (S/N)',c:'SN-2',q:'抽象的なビジョンや概念的議論よりも、今すぐ現場で使える具体的な手順・チェックリスト・実証済みの事実を重視する。'},
+    {p:1,d:'SN',r:1,t:'認識・情報収集 (S/N)',c:'SN-3',q:'一見無関係に見える複数のトラブルや事象の背後に、共通する「根本的な構造やパターン」を見出すのが得意だ。'},
+    {p:1,d:'TF',r:1,t:'意思決定基準 (T/F)',c:'TF-1',q:'意見が対立した際、メンバーの感情やその場の和を保つことよりも、客観的な論理の正しさと費用対効果を優先して結論を出す。'},
+    {p:1,d:'TF',r:-1,t:'意思決定基準 (T/F)',c:'TF-2',q:'正論であっても相手の意欲や信頼関係を損なう恐れがあるなら、表現を和らげ納得感を醸成するプロセスを最優先する。'},
+    {p:1,d:'TF',r:1,t:'意思決定基準 (T/F)',c:'TF-3',q:'評価やフィードバックを受ける際、優しい励ましよりも、改善すべき欠点や論理的弱点を率直に指摘される方がありがたい。'},
+    {p:1,d:'JP',r:1,t:'行動規範・管理 (J/P)',c:'JP-1',q:'仕事は事前にマイルストーンと完了基準を明確に決め、スケジュール通りに前倒しで片付けて不確実性を減らしておきたい。'},
+    {p:1,d:'JP',r:-1,t:'行動規範・管理 (J/P)',c:'JP-2',q:'ガチガチに計画を固めるよりも、状況の変化に合わせて選択肢をギリギリまで残し、その場で柔軟に軌道修正する方が力を発揮できる。'},
+    {p:1,d:'JP',r:1,t:'行動規範・管理 (J/P)',c:'JP-3',q:'ルールや基準が曖昧なまま物事が進んでいる状態に強いストレスを感じ、自分の手で標準化・体系化したくなる。'},
+    {p:2,d:'O',r:1,t:'BIG5：開放性',c:'B5-O1',q:'従来のやり方が問題なく機能していても、最新技術や異業種のフレームワークを積極的に試して業務をアップデートしたい。'},
+    {p:2,d:'O',r:-1,t:'BIG5：開放性(逆転)',c:'B5-O2',q:'新しいツールや未経験の手法をゼロから学ぶよりも、すでに慣れ親しんだ確実なやり方を踏襲する方が安心できる。'},
+    {p:2,d:'C',r:1,t:'BIG5：誠実性',c:'B5-C1',q:'一度引き受けたタスクや約束は、細部の品質や期限に至るまで一切の妥協なく完遂する強い責任感がある。'},
+    {p:2,d:'C',r:-1,t:'BIG5：誠実性(逆転)',c:'B5-C2',q:'興味が薄れた作業や単調な事務処理になると、つい後回しにしたり詰めが甘くなったりすることがある。'},
+    {p:2,d:'E',r:1,t:'BIG5：外向性',c:'B5-E1',q:'初対面の相手や他部署のキーマンに対しても、自分から主導権を持って働きかけ、場の空気を動かすことができる。'},
+    {p:2,d:'E',r:-1,t:'BIG5：外向性(逆転)',c:'B5-E2',q:'大人数の懇親会や初対面ばかりの交流会では、自分から話題を振るよりも聞き役に回って様子を見ることが多い。'},
+    {p:2,d:'A',r:1,t:'BIG5：協調性',c:'B5-A1',q:'自分の成果や主張を通すこと以上に、周囲のメンバーが働きやすいようにサポートし、利害を調整することに喜びを感じる。'},
+    {p:2,d:'A',r:-1,t:'BIG5：協調性(逆転)',c:'B5-A2',q:'組織の同調圧力や「空気を読むこと」にはあまり関心がなく、必要であれば周囲と衝突してでも自分の合理的判断を貫く。'},
+    {p:2,d:'ES',r:1,t:'BIG5：情緒安定性',c:'B5-N1',q:'予期せぬトラブルや厳しいプレッシャーがかかる場面でも、感情的に動揺せず冷静に優先順位を切り替えて対処できる。'},
+    {p:2,d:'ES',r:-1,t:'BIG5：情緒安定性(逆転)',c:'B5-N2',q:'上司や顧客からの批判、あるいは将来のキャリアに対する不確実性について、業務時間外でも頭から離れず考え込んでしまう。'},
+    {p:3,d:'ST',r:1,t:'実務：戦略・構造化',c:'CAP-1',q:'複雑な問題に直面したとき、感覚や経験則に頼らず、原因を要素分解して再現性のある解決フレームワークを設計できる。'},
+    {p:3,d:'ST',r:1,t:'実務：戦略・構造化',c:'CAP-2',q:'定量的データ（数値・コスト・時間）と定性的事実を組み合わせて、意思決定者を納得させる論理的な企画書を作れる。'},
+    {p:3,d:'EX',r:1,t:'実務：完遂・品質管理',c:'CAP-3',q:'ヒューマンエラーや手戻りを防ぐため、ダブルチェックや標準作業手順（SOP）の整備を徹底し高い品質基準を維持できる。'},
+    {p:3,d:'EX',r:1,t:'実務：完遂・品質管理',c:'CAP-4',q:'華やかな企画立案だけでなく、泥臭い検証作業や地道なオペレーションの磨き込みを最後までやり抜く粘り強さがある。'},
+    {p:3,d:'IN',r:1,t:'実務：折衝・組織牽引',c:'CAP-5',q:'利害が対立する他部署や外部ベンダーとの交渉において、相手の核心的ニーズを突き止めWin-Winの合意形成を引き出せる。'},
+    {p:3,d:'IN',r:1,t:'実務：折衝・組織牽引',c:'CAP-6',q:'後輩やチームメンバーの特性を見極め、適切な権限委譲と指導を行うことで、組織全体の生産性を底上げできる。'},
+    {p:3,d:'AG',r:1,t:'実務：越境・環境適応',c:'CAP-7',q:'マニュアルや前例がない新規事業・未知の領域でも、仮説検証を高速で回しながら自力で専門知識を習得できる。'},
+    {p:3,d:'AG',r:1,t:'実務：越境・環境適応',c:'CAP-8',q:'現在の組織や肩書きに依存せず「どこへ行っても通用するポータブルスキル」を意識して自己投資・アップデートを続けている。'}
+  ];
+
+  const ARCH={
+    INTJ:{c:'INTJ',n:'冷徹なシステム戦略参謀',g:'戦略洞察系',d:'感情や慣習に流されず、複雑な事象の背後にある構造的欠陥を見抜き長期最適解を設計する知略家。',r:['経営企画・事業戦略','DX・業務設計','テクニカルPMO','データ分析','システム設計'],e:[72,88,84,95],tt:'正論による孤立と現場感情の軽視',td:'論理的整合性を追求するあまり現場の納得感や調整を軽視し「正しいが誰も動かない計画」を作って孤立するリスクがあります。',pr:'提案時は相手にとっての「実利」に翻訳して提示し、実行段階では調整力に優れた推進役と組むこと。'},
+    INTP:{c:'INTP',n:'孤高の原理探究イノベーター',g:'戦略洞察系',d:'既存の常識を疑い、ゼロベースで原理原則を解明して独創的な仕組みを生み出す知の探究者。',r:['AI・アルゴリズム開発','新規事業R&D','業務自動化設計','戦略リサーチャー','専門コンサル'],e:[52,82,86,96],tt:'構想完了の錯覚とルーチン放棄',td:'仕組みの解明や試作で知的好奇心が満たされると、その後の泥臭い運用・保守や事務処理への関心が急落しがちです。',pr:'0→1の設計と検証に専門特化し、標準化後の運用フェーズは誠実性の高い実務人材へ引き継ぐこと。'},
+    ENTJ:{c:'ENTJ',n:'剛腕の事業変革コマンダー',g:'戦略洞察系',d:'高い視座と圧倒的な決断力で組織のボトルネックを突破し、最短距離で目標達成へ導く指揮官。',r:['事業部長・COO候補','大規模PM','事業再生・M&A','営業統括部長','起業家・CXO'],e:[78,95,94,85],tt:'過剰なトップダウンによるメンバー疲弊',td:'自身の処理速度と基準が高すぎるため、周囲に過度なプレッシャーを与え離職を招く恐れがあります。',pr:'期待する成果の定義だけを明確に示し、プロセスは部下に委ねる権限委譲と傾聴の時間を確保すること。'},
+    ENTP:{c:'ENTP',n:'常識破壊の越境カタリスト',g:'戦略洞察系',d:'異分野の知見を掛け合わせて斬新なビジネスモデルや突破口を次々と生み出す変革の触媒。',r:['新規事業(0→1)','アライアンス提携','プロダクトPM','グロース推進','変革コンサル'],e:[48,89,96,90],tt:'風呂敷の広げすぎと収束不足',td:'次々と新しいアイデアに飛びつく一方、既存案件の詰めや細部の品質管理が疎かになり信頼を損ねるリスクがあります。',pr:'企画段階から「撤退基準」と「完了責任者」をセットで設定し、完遂を担保する右腕を確保すること。'},
+    INFJ:{c:'INFJ',n:'静かなる構造改革アーキテクト',g:'理念共創系',d:'人の心理と組織力学を深く洞察し、大義あるビジョンと緻密な構造設計で静かに変革を成し遂げる参謀。',r:['組織開発・HRBP','訓練・教育体系設計','品質保証・安全統括','事業企画・PMO','UXリサーチャー'],e:[82,88,76,91],tt:'過剰な責任抱え込みによる静かな燃え尽き',td:'周囲の期待や組織の歪みを敏感に察知して一人で背負い込み、限界まで我慢した末に突然燃え尽きる傾向があります。',pr:'感情労働と実務負荷の境界線を明確に引き、権限外の問題は冷徹に切り離す戦略的割り切りを持つこと。'},
+    INFP:{c:'INFP',n:'本質追求のクリエイティブ職人',g:'理念共創系',d:'妥協のない美意識と深い共感力を武器に、独自の価値観が込められた企画や作品を紡ぎ出す表現者。',r:['UI/UXデザイナー','ブランド・広報企画','専門領域編集者','キャリア支援','プロダクト企画'],e:[55,76,78,94],tt:'理想と現実のギャップによる自己批判ループ',td:'利益至上主義や無機質な数字管理だけの環境では強い違和感を覚え、行動が止まりやすくなります。',pr:'社会的意義に納得できる領域を選び、数値目標を「誰のどんな課題を救う指標か」に意味づけし直すこと。'},
+    ENFJ:{c:'ENFJ',n:'人心掌握の組織エバンジェリスト',g:'理念共創系',d:'明確なビジョンと圧倒的な熱量・共感力で多様な人材を束ね、組織の潜在能力を引き出す牽引役。',r:['人材育成・研修統括','CS・顧客成功統括','採用・PR責任者','プロジェクトリーダー','組織変革推進'],e:[84,92,85,78],tt:'八方美人化と痛みを伴う決断の遅れ',td:'全員の納得と調和を重んじるあまり、不採算事業の撤退や厳しい評価といった冷徹な決断を先送りしがちです。',pr:'判断基準を事前に数値化・ルール化し、感情と意思決定を切り離す仕組みを作ること。'},
+    ENFP:{c:'ENFP',n:'熱狂創出のアイデアプロデューサー',g:'理念共創系',d:'枠にとらわれない発想力と巻き込み力で、停滞した現場に新しい風と熱狂を生み出す開拓者。',r:['マーケ企画','コミュニティ運営','プロモーション企画','新規事業立ち上げ','タレント採用'],e:[54,87,93,86],tt:'計画倒れと締切直前のパニック',td:'好奇心の赴くまま複数案件を同時進行させた結果、スケジュール管理や事務手続きが破綻するリスクがあります。',pr:'タスク管理ツールへの即時記録を徹底し、ルーチン業務は自動化するか管理能力の高い相棒に委ねること。'},
+    ISTJ:{c:'ISTJ',n:'鉄壁の品質保証・規律ガーディアン',g:'規律遂行系',d:'揺るぎない責任感と緻密な事実検証力で、組織の安全性・品質・規律を完璧に守り抜く要石。',r:['品質保証・管理(QA/QC)','監査・コンプライアンス','航空・設備整備統括','経理・財務管理','業務SOP設計'],e:[96,80,58,84],tt:'前例踏襲への固執と急激な変化への拒絶',td:'ルール遵守を重視するあまり、環境が激変して既存ルール自体が時代遅れになった際に対応が遅れるリスクがあります。',pr:'「ルールを守ること」ではなく「本質的な安全・品質を保ちつつ最短化すること」へ視点をアップデートすること。'},
+    ISFJ:{c:'ISFJ',n:'献身のオペレーション安定化スペシャリスト',g:'規律遂行系',d:'細部への鋭い気配りと実直なサポート力で、現場の摩擦を未然に防ぎ安定稼働を支える縁の下の力持ち。',r:['CS・エグゼクティブ秘書','総務・労務管理','医療・安全支援職','進行管理・PMO補佐','社内SE・ヘルプデスク'],e:[

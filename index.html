@@ -1,1 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>JOB ARCHETYPE | BIG5 × MBTI 30問精密診断</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#070b14;color:#f8fafc;margin:0;background-image:radial-gradient(circle at 15% 15%,rgba(6,182,212,.14),transparent 35%),radial-gradient(circle at 85% 80%,rgba(99,102,241,.16),transparent 40%);}
+.glass{background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border:1px solid rgba(148,163,184,.18);box-shadow:0 18px 36px -14px rgba(0,0,0,.7);}
+.opt-btn{transition:transform .12s,border-color .15s,background .15s;}
+.opt-btn:active{transform:scale(.98);}
+.opt-btn.sel{background:linear-gradient(135deg,rgba(6,182,212,.26),rgba(99,102,241,.3));border-color:#22d3ee;box-shadow:0 0 15px rgba(34,211,238,.25);}
+.fade{animation:fd .25s ease-out;}
+@keyframes fd{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
 
+<div id="err-box" class="hidden bg-rose-950 border-b border-rose-500 text-rose-200 px-4 py-3 text-xs font-mono"></div>
+
+<header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur-md">
+  <div class="max-w-md mx-auto px-4 h-14 flex items-center justify-between">
+    <button type="button" id="nav-home" class="flex items-center space-x-2.5 text-left">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center font-black text-slate-950 text-xs">JA</div>
+      <div>
+        <span class="font-extrabold tracking-wider text-xs text-white block leading-none">JOB ARCHETYPE</span>
+        <span class="text-[10px] text-cyan-400 font-bold tracking-widest">BIG5 × MBTI 30Q</span>
+      </div>
+    </button>
+    <button type="button" id="nav-dir" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-bold text-cyan-300">16類型図鑑</button>
+  </div>
+</header>
+
+<main class="flex-grow w-full max-w-md mx-auto px-4 py-5">
+
+  <section id="scr-home" class="space-y-4 fade">
+    <div class="glass rounded-2xl p-5">
+      <span class="inline-block px-2.5 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-[10px] font-bold mb-3">全30問・3フェーズ精密解析エンジン</span>
+      <h1 class="text-xl font-black text-white leading-snug mb-2.5">あなたの<span class="text-cyan-400">仕事偏差値</span>と
+<p class="text-xs text-slate-300 leading-relaxed mb-4">MBTIの4軸スペクトラム、BIG5の5大因子（正逆ペア補正）、4大実務ケイパビリティを同時計測し、16類型×自律安定度(-A/-T)×転職適性を冷徹に算出します。</p>
+
+      <div class="space-y-2 mb-5 text-[11px]">
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[10px]">01</span>
+          <div><strong class="text-slate-100 block">16ジョブ類型 × -A/-T × BIG5優勢バッジ</strong><span class="text-slate-400">「静かなる構造改革アーキテクト(INFJ)」等の名称と強み波形を統合。</span></div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold text-[10px]">02</span>
+          <div><strong class="text-slate-100 block">総合仕事偏差値 ＆ 4大実務偏差値</strong><span class="text-slate-400">「戦略・遂行・折衝・越境」の4領域を偏差値化して可視化。</span></div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start space-x-2.5">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">03</span>
+          <div><strong class="text-slate-100 block">組織フェーズ別・転職適性 ＆ 致命的な罠</strong><span class="text-slate-400">大手・成長企業・起業・独立の適合率と陥りやすい弱点を警告。</span></div>
+        </div>
+      </div>
+
+      <button type="button" id="btn-start" class="w-full py-4 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-black text-sm shadow-lg active:scale-[0.98] transition">30問・精密診断をスタート →</button>
+
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="flex justify-between text-[10px] text-slate-400 mb-2"><span>即時結果プレビュー（30問デモ自動入力）</span><span class="text-cyan-400">ワンタップ検証</span></div>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-demo="strategist" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-slate-200">戦略参謀型</button>
+          <button type="button" data-demo="commander" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-slate-200">事業変革型</button>
+          <button type="button" data-demo="random" class="demo-btn py-2 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-bold text-cyan-300">ランダム30問</button>
+        </div>
+      </div>
+    </div>
+    <p class="text-[10px] text-slate-500 text-center px-2">※回答データは端末内のみで処理され外部送信されません。自己理解・キャリア設計の参考としてご活用ください。</p>
+  </section>
+  <section id="scr-quiz" class="hidden space-y-4 fade">
+    <div class="glass rounded-2xl p-4">
+      <div class="flex justify-between items-center text-xs mb-2">
+        <span id="q-phase" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[10px]">Phase 1</span>
+        <span id="q-prog-txt" class="font-mono font-bold text-slate-200">Q01 / 30</span>
+      </div>
+      <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-2">
+        <div id="q-prog-bar" class="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-200" style="width:3%"></div>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5 text-[10px] text-center">
+        <div id="p-ind-1" class="py-1 rounded bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">P1: 認知軸</div>
+        <div id="p-ind-2" class="py-1 rounded bg-slate-900 border border-slate-800 text-slate-500">P2: BIG5</div>
+        <div id="p-ind-3" class="py-1 rounded bg-slate-900 border border-slate-800 text-slate-500">P3: 実務力</div>
+      </div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <div class="flex justify-between text-[10px] mb-2">
+        <span id="q-tag" class="font-bold text-indigo-400">軸ラベル</span>
+        <span id="q-code" class="font-mono text-slate-500">CODE</span>
+      </div>
+      <h2 id="q-text" class="text-sm font-bold text-white leading-relaxed mb-4 min-h-[68px]">質問文</h2>
+
+      <div id="opt-list" class="space-y-2">
+        <button type="button" data-v="5" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-xs flex items-center justify-center">5</span><span class="text-xs font-bold text-white">非常に当てはまる</span></button>
+        <button type="button" data-v="4" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-cyan-500/10 text-cyan-400 font-bold text-xs flex items-center justify-center">4</span><span class="text-xs font-semibold text-slate-200">やや当てはまる</span></button>
+        <button type="button" data-v="3" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-slate-800 text-slate-300 font-bold text-xs flex items-center justify-center">3</span><span class="text-xs font-semibold text-slate-300">どちらとも言えない（中立）</span></button>
+        <button type="button" data-v="2" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-indigo-500/10 text-indigo-400 font-bold text-xs flex items-center justify-center">2</span><span class="text-xs font-semibold text-slate-200">あまり当てはまらない</span></button>
+        <button type="button" data-v="1" class="opt-btn w-full p-3 rounded-xl bg-slate-900 border border-slate-700 flex items-center space-x-3 text-left"><span class="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-300 font-bold text-xs flex items-center justify-center">1</span><span class="text-xs font-bold text-white">全く当てはまらない</span></button>
+      </div>
+
+      <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-800">
+        <button type="button" id="btn-prev" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 disabled:opacity-40">← 前へ</button>
+        <label class="flex items-center space-x-1.5 text-[11px] text-slate-400"><input type="checkbox" id="chk-auto" checked class="rounded bg-slate-800 border-slate-600"/><span>自動送り</span></label>
+        <button type="button" id="btn-next" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-xs font-bold text-cyan-300">次へ →</button>
+      </div>
+    </div>
+  </section>
+   <section id="scr-res" class="hidden space-y-4 fade pb-8">
+    <div class="glass rounded-2xl p-5 border-t-2 border-t-cyan-400">
+      <div class="flex justify-between items-center mb-2">
+        <span id="r-code" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-black text-xs">INFJ-A</span>
+        <span id="r-grp" class="text-[11px] font-bold text-slate-400">類型グループ</span>
+      </div>
+      <h1 id="r-name" class="text-xl font-black text-white mb-1.5">アーキタイプ名</h1>
+      <div id="r-mod" class="inline-block px-2 py-0.5 rounded bg-indigo-950 border border-indigo-500/40 text-indigo-300 text-[10px] font-bold mb-3">修飾バッジ</div>
+      <p id="r-desc" class="text-xs text-slate-300 leading-relaxed mb-4">解説文</p>
+
+      <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-700 mb-3">
+        <div class="flex justify-between items-end mb-1.5">
+          <div><span class="text-[9px] text-slate-400 block">WORK DEVIATION</span><span class="text-xs font-extrabold text-slate-200">総合仕事偏差値</span></div>
+          <div class="text-right"><span id="r-rank" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-black mr-1">Sランク</span><span id="r-dev" class="text-2xl font-black text-cyan-300">64.8</span></div>
+        </div>
+        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden"><div id="r-dev-bar" class="h-full bg-gradient-to-r from-cyan-400 to-amber-400" style="width:75%"></div></div>
+      </div>
+
+      <div id="r-caps" class="grid grid-cols-2 gap-2"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <h2 class="text-xs font-extrabold text-white mb-2">BIG5 職務パーソナリティ波形（正逆補正済）</h2>
+      <div class="flex justify-center my-1"><svg id="r-radar" width="260" height="220" viewBox="0 0 260 220"></svg></div>
+      <div id="r-big5-bars" class="space-y-2 mt-2 pt-2 border-t border-slate-800"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <h2 class="text-xs font-extrabold text-white mb-3">MBTI 認知・意思決定4軸スペクトラム</h2>
+      <div id="r-spec" class="space-y-3"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-5">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xs font-extrabold text-white">転職適性・環境適合ジャッジ</h2>
+        <span id="r-tr-pct" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-black text-[11px]">越境推奨 78%</span>
+      </div>
+      <p id="r-tr-txt" class="text-xs text-slate-300 leading-relaxed p-3 rounded-xl bg-slate-900 border border-slate-800 mb-3"></p>
+      <h3 class="text-[11px] font-bold text-slate-200 mb-2">組織フェーズ別・適合確率</h3>
+      <div id="r-envs" class="space-y-2 mb-4"></div>
+      <h3 class="text-[11px] font-bold text-slate-200 mb-1.5">市場価値を最大化する推奨職種（適職）</h3>
+      <div id="r-roles" class="flex flex-wrap gap-1.5 mb-4"></div>
+<div class="p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/30 space-y-1.5">
+        <div id="r-trap-t" class="text-rose-300 font-extrabold text-xs">警告</div>
+        <p id="r-trap-d" class="text-[11px] text-slate-300 leading-relaxed"></p>
+        <div class="pt-1.5 border-t border-rose-500/20">
+          <span class="text-[10px] font-bold text-cyan-300 block">戦略的処方箋：</span>
+          <p id="r-presc" class="text-[11px] text-slate-200 leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <button type="button" id="btn-copy" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-black text-xs">診断結果サマリーをコピー（LINE/SNS共有用）</button>
+      <div class="grid grid-cols-2 gap-2">
+        <button type="button" id="btn-retry" class="py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-200">もう一度診断</button>
+        <button type="button" id="btn-all" class="py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-cyan-300">全16類型比較</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="scr-dir" class="hidden space-y-3 fade pb-8">
+    <div class="glass rounded-2xl p-4 flex justify-between items-center">
+      <div><h2 class="text-sm font-black text-white">全16ジョブアーキタイプ図鑑</h2><p class="text-[10px] text-slate-400">タップで各類型の詳細レポートを表示</p></div>
+      <button type="button" id="btn-close-dir" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs text-slate-300">閉じる</button>
+    </div>
+    <div id="dir-list" class="space-y-2"></div>
+  </section>
+
+</main>
+
+<script>
+window.onerror=function(msg,src,line){
+  var b=document.getElementById('err-box');
+  if(b){b.classList.remove('hidden');b.textContent='[ERROR] '+msg+' (Line:'+line+')';}
+};
+  (function(){
+  const Q=[
+    {p:1,d:'EI',r:1,t:'エネルギー方向性 (E/I)',c:'EI-1',q:'未知のプロジェクトや新部署では、まず関係者と積極的に会話して現場の空気や人脈を掴むことから始める。'},
+    {p:1,d:'EI',r:-1,t:'エネルギー方向性 (E/I)',c:'EI-2',q:'長時間の会議や折衝が続いた後は、充実感よりも「一人の静かな時間で集中力を回復させたい」という欲求が強く出る。'},
+    {p:1,d:'EI',r:1,t:'エネルギー方向性 (E/I)',c:'EI-3',q:'思考を整理するときは、頭の中で一人で練るよりも、誰かと議論や壁打ちをしながらアイデアを広げる方が生産性が高い。'},
+    {p:1,d:'SN',r:1,t:'認識・情報収集 (S/N)',c:'SN-1',q:'業務改善を検討する際、目の前のデータや手順の細部よりも「数年後に仕組み自体がどう変わるべきか」という全体構造に意識が向く。'},
+    {p:1,d:'SN',r:-1,t:'認識・情報収集 (S/N)',c:'SN-2',q:'抽象的なビジョンや概念的議論よりも、今すぐ現場で使える具体的な手順・チェックリスト・実証済みの事実を重視する。'},
+    {p:1,d:'SN',r:1,t:'認識・情報収集 (S/N)',c:'SN-3',q:'一見無関係に見える複数のトラブルや事象の背後に、共通する「根本的な構造やパターン」を見出すのが得意だ。'},
+    {p:1,d:'TF',r:1,t:'意思決定基準 (T/F)',c:'TF-1',q:'意見が対立した際、メンバーの感情やその場の和を保つことよりも、客観的な論理の正しさと費用対効果を優先して結論を出す。'},
+    {p:1,d:'TF',r:-1,t:'意思決定基準 (T/F)',c:'TF-2',q:'正論であっても相手の意欲や信頼関係を損なう恐れがあるなら、表現を和らげ納得感を醸成するプロセスを最優先する。'},
+    {p:1,d:'TF',r:1,t:'意思決定基準 (T/F)',c:'TF-3',q:'評価やフィードバックを受ける際、優しい励ましよりも、改善すべき欠点や論理的弱点を率直に指摘される方がありがたい。'},
+    {p:1,d:'JP',r:1,t:'行動規範・管理 (J/P)',c:'JP-1',q:'仕事は事前にマイルストーンと完了基準を明確に決め、スケジュール通りに前倒しで片付けて不確実性を減らしておきたい。'},
+    {p:1,d:'JP',r:-1,t:'行動規範・管理 (J/P)',c:'JP-2',q:'ガチガチに計画を固めるよりも、状況の変化に合わせて選択肢をギリギリまで残し、その場で柔軟に軌道修正する方が力を発揮できる。'},
+    {p:1,d:'JP',r:1,t:'行動規範・管理 (J/P)',c:'JP-3',q:'ルールや基準が曖昧なまま物事が進んでいる状態に強いストレスを感じ、自分の手で標準化・体系化したくなる。'},
+    {p:2,d:'O',r:1,t:'BIG5：開放性',c:'B5-O1',q:'従来のやり方が問題なく機能していても、最新技術や異業種のフレームワークを積極的に試して業務をアップデートしたい。'},
+    {p:2,d:'O',r:-1,t:'BIG5：開放性(逆転)',c:'B5-O2',q:'新しいツールや未経験の手法をゼロから学ぶよりも、すでに慣れ親しんだ確実なやり方を踏襲する方が安心できる。'},
+    {p:2,d:'C',r:1,t:'BIG5：誠実性',c:'B5-C1',q:'一度引き受けたタスクや約束は、細部の品質や期限に至るまで一切の妥協なく完遂する強い責任感がある。'},
+    {p:2,d:'C',r:-1,t:'BIG5：誠実性(逆転)',c:'B5-C2',q:'興味が薄れた作業や単調な事務処理になると、つい後回しにしたり詰めが甘くなったりすることがある。'},
+    {p:2,d:'E',r:1,t:'BIG5：外向性',c:'B5-E1',q:'初対面の相手や他部署のキーマンに対しても、自分から主導権を持って働きかけ、場の空気を動かすことができる。'},
+    {p:2,d:'E',r:-1,t:'BIG5：外向性(逆転)',c:'B5-E2',q:'大人数の懇親会や初対面ばかりの交流会では、自分から話題を振るよりも聞き役に回って様子を見ることが多い。'},
+    {p:2,d:'A',r:1,t:'BIG5：協調性',c:'B5-A1',q:'自分の成果や主張を通すこと以上に、周囲のメンバーが働きやすいようにサポートし、利害を調整することに喜びを感じる。'},
+    {p:2,d:'A',r:-1,t:'BIG5：協調性(逆転)',c:'B5-A2',q:'組織の同調圧力や「空気を読むこと」にはあまり関心がなく、必要であれば周囲と衝突してでも自分の合理的判断を貫く。'},
+    {p:2,d:'ES',r:1,t:'BIG5：情緒安定性',c:'B5-N1',q:'予期せぬトラブルや厳しいプレッシャーがかかる場面でも、感情的に動揺せず冷静に優先順位を切り替えて対処できる。'},
+    {p:2,d:'ES',r:-1,t:'BIG5：情緒安定性(逆転)',c:'B5-N2',q:'上司や顧客からの批判、あるいは将来のキャリアに対する不確実性について、業務時間外でも頭から離れず考え込んでしまう。'},
+    {p:3,d:'ST',r:1,t:'実務：戦略・構造化',c:'CAP-1',q:'複雑な問題に直面したとき、感覚や経験則に頼らず、原因を要素分解して再現性のある解決フレームワークを設計できる。'},
+    {p:3,d:'ST',r:1,t:'実務：戦略・構造化',c:'CAP-2',q:'定量的データ（数値・コスト・時間）と定性的事実を組み合わせて、意思決定者を納得させる論理的な企画書を作れる。'},
+    {p:3,d:'EX',r:1,t:'実務：完遂・品質管理',c:'CAP-3',q:'ヒューマンエラーや手戻りを防ぐため、ダブルチェックや標準作業手順（SOP）の整備を徹底し高い品質基準を維持できる。'},
+    {p:3,d:'EX',r:1,t:'実務：完遂・品質管理',c:'CAP-4',q:'華やかな企画立案だけでなく、泥臭い検証作業や地道なオペレーションの磨き込みを最後までやり抜く粘り強さがある。'},
+    {p:3,d:'IN',r:1,t:'実務：折衝・組織牽引',c:'CAP-5',q:'利害が対立する他部署や外部ベンダーとの交渉において、相手の核心的ニーズを突き止めWin-Winの合意形成を引き出せる。'},
+    {p:3,d:'IN',r:1,t:'実務：折衝・組織牽引',c:'CAP-6',q:'後輩やチームメンバーの特性を見極め、適切な権限委譲と指導を行うことで、組織全体の生産性を底上げできる。'},
+    {p:3,d:'AG',r:1,t:'実務：越境・環境適応',c:'CAP-7',q:'マニュアルや前例がない新規事業・未知の領域でも、仮説検証を高速で回しながら自力で専門知識を習得できる。'},
+    {p:3,d:'AG',r:1,t:'実務：越境・環境適応',c:'CAP-8',q:'現在の組織や肩書きに依存せず「どこへ行っても通用するポータブルスキル」を意識して自己投資・アップデートを続けている。'}
+  ];
+const ARCH={
+    INTJ:{c:'INTJ',n:'冷徹なシステム戦略参謀',g:'戦略洞察系',d:'感情や慣習に流されず、複雑な事象の背後にある構造的欠陥を見抜き長期最適解を設計する知略家。',r:['経営企画・事業戦略','DX・業務設計','テクニカルPMO','データ分析','システム設計'],e:[72,88,84,95],tt:'正論による孤立と現場感情の軽視',td:'論理的整合性を追求するあまり現場の納得感や調整を軽視し「正しいが誰も動かない計画」を作って孤立するリスクがあります。',pr:'提案時は相手にとっての「実利」に翻訳して提示し、実行段階では調整力に優れた推進役と組むこと。'},
+    INTP:{c:'INTP',n:'孤高の原理探究イノベーター',g:'戦略洞察系',d:'既存の常識を疑い、ゼロベースで原理原則を解明して独創的な仕組みを生み出す知の探究者。',r:['AI・アルゴリズム開発','新規事業R&D','業務自動化設計','戦略リサーチャー','専門コンサル'],e:[52,82,86,96],tt:'構想完了の錯覚とルーチン放棄',td:'仕組みの解明や試作で知的好奇心が満たされると、その後の泥臭い運用・保守や事務処理への関心が急落しがちです。',pr:'0→1の設計と検証に専門特化し、標準化後の運用フェーズは誠実性の高い実務人材へ引き継ぐこと。'},
+    ENTJ:{c:'ENTJ',n:'剛腕の事業変革コマンダー',g:'戦略洞察系',d:'高い視座と圧倒的な決断力で組織のボトルネックを突破し、最短距離で目標達成へ導く指揮官。',r:['事業部長・COO候補','大規模PM','事業再生・M&A','営業統括部長','起業家・CXO'],e:[78,95,94,85],tt:'過剰なトップダウンによるメンバー疲弊',td:'自身の処理速度と基準が高すぎるため、周囲に過度なプレッシャーを与え離職を招く恐れがあります。',pr:'期待する成果の定義だけを明確に示し、プロセスは部下に委ねる権限委譲と傾聴の時間を確保すること。'},
+    ENTP:{c:'ENTP',n:'常識破壊の越境カタリスト',g:'戦略洞察系',d:'異分野の知見を掛け合わせて斬新なビジネスモデルや突破口を次々と生み出す変革の触媒。',r:['新規事業(0→1)','アライアンス提携','プロダクトPM','グロース推進','変革コンサル'],e:[48,89,96,90],tt:'風呂敷の広げすぎと収束不足',td:'次々と新しいアイデアに飛びつく一方、既存案件の詰めや細部の品質管理が疎かになり信頼を損ねるリスクがあります。',pr:'企画段階から「撤退基準」と「完了責任者」をセットで設定し、完遂を担保する右腕を確保すること。'},
+    INFJ:{c:'INFJ',n:'静かなる構造改革アーキテクト',g:'理念共創系',d:'人の心理と組織力学を深く洞察し、大義あるビジョンと緻密な構造設計で静かに変革を成し遂げる参謀。',r:['組織開発・HRBP','訓練・教育体系設計','品質保証・安全統括','事業企画・PMO','UXリサーチャー'],e:[82,88,76,91],tt:'過剰な責任抱え込みによる静かな燃え尽き',td:'周囲の期待や組織の歪みを敏感に察知して一人で背負い込み、限界まで我慢した末に突然燃え尽きる傾向があります。',pr:'感情労働と実務負荷の境界線を明確に引き、権限外の問題は冷徹に切り離す戦略的割り切りを持つこと。'},
+    INFP:{c:'INFP',n:'本質追求のクリエイティブ職人',g:'理念共創系',d:'妥協のない美意識と深い共感力を武器に、独自の価値観が込められた企画や作品を紡ぎ出す表現者。',r:['UI/UXデザイナー','ブランド・広報企画','専門領域編集者','キャリア支援','プロダクト企画'],e:[55,76,78,94],tt:'理想と現実のギャップによる自己批判ループ',td:'利益至上主義や無機質な数字管理だけの環境では強い違和感を覚え、行動が止まりやすくなります。',pr:'社会的意義に納得できる領域を選び、数値目標を「誰のどんな課題を救う指標か」に意味づけし直すこと。'},
+    ENFJ:{c:'ENFJ',n:'人心掌握の組織エバンジェリスト',g:'理念共創系',d:'明確なビジョンと圧倒的な熱量・共感力で多様な人材を一つに束ね、組織の潜在能力を引き出す牽引役。',r:['人材育成・研修統括','CS・顧客成功統括','採用・PR責任者','プロジェクトリーダー','組織変革推進'],e:[84,92,85,78],tt:'八方美人化と痛みを伴う決断の遅れ',td:'全員の納得と調和を重んじるあまり、不採算事業の撤退や厳しい評価といった冷徹な決断を先送りしがちです。',pr:'判断基準を事前に数値化・ルール化し、感情と意思決定を切り離す仕組みを作ること。'},
+    ENFP:{c:'ENFP',n:'熱狂創出のアイデアプロデューサー',g:'理念共創系',d:'枠にとらわれない発想力と巻き込み力で、停滞した現場に新しい風と熱狂を生み出す開拓者。',r:['マーケ企画','コミュニティ運営','プロモーション企画','新規事業立ち上げ','タレント採用'],e:[54,87,93,86],tt:'計画倒れと締切直前のパニック',td:'好奇心の赴くまま複数案件を同時進行させた結果、スケジュール管理や事務手続きが破綻するリスクがあります。',pr:'タスク管理ツールへの即時記録を徹底し、ルーチン業務は自動化するか管理能力の高い相棒に委ねること。'},
+    ISTJ:{c:'ISTJ',n:'鉄壁の品質保証・規律ガーディアン',g:'規律遂行系',d:'揺るぎない責任感と緻密な事実検証力で、組織の安全性・品質・規律を完璧に守り抜く要石。',r:['品質保証・管理(QA/QC)','監査・コンプライアンス','航空・設備整備統括','経理・財務管理','業務SOP設計'],e:[96,80,58,84],tt:'前例踏襲への固執と急激な変化への拒絶',td:'ルール遵守を重視するあまり、環境が激変して既存ルール自体が時代遅れになった際に対応が遅れるリスクがあります。',pr:'「ルールを守ること」ではなく「本質的な安全・品質を保ちつつ最短化すること」へ視点をアップデートすること。'},
+    ISFJ:{c:'ISFJ',n:'献身のオペレーション安定化スペシャリスト',g:'規律遂行系',d:'細部への鋭い気配りと実直なサポート力で、現場の摩擦を未然に防ぎ組織の安定稼働を支える縁の下の力持ち。',r:['CS・エグゼクティブ秘書','総務・労務管理','医療・安全支援職','進行管理・PMO補佐','社内SE・ヘルプデスク'],e:[94,78,55,76],tt:'過度な自己犠牲と正当評価の取りこぼし',td:'他者支援を優先して業務を断れず、成果も控えめに報告するため昇進や昇給で損をしやすい傾向があります。',pr:'防いだトラブルや削減した工数を必ず「数値（時間・コスト）」で記録し、評価面談で論理的に提示すること。'},
+    ESTJ:{c:'ESTJ',n:'実務統括のオペレーションディレクター',g:'規律遂行系',d:'明確な基準と強力な実行管理能力で、カオスな現場に秩序をもたらし確実に数字と納期を達成するリーダー。',r:['現場・工場運営部長','営業マネージャー','PMO進捗統括','SCM・物流管理','法務・ガバナンス'],e:[95,88,70,80],tt:'柔軟性の欠如と異質な人材の排除',td:'自分の成功体験や既存ルールを絶対視し、型破りなクリエイターやマイペースな部下の強みを潰すことがあります。',pr:'「やり方（プロセス）」ではなく「達成すべき数値基準（アウトプット）」で管理し手法の多様性を許容すること。'},
+    ESFJ:{c:'ESFJ',n:'調和と推進のチームコーディネーター',g:'規律遂行系',d:'高い対人感受性と段取り力で、部署間の壁を取り払いチーム全体の士気と連携を最大化する調整の達人。',r:['法人営業・渉外','人事・採用調整','広報・ステークホルダー対応','拠点運営マネージャー','CS推進'],e:[91,85,68,72],tt:'周囲の顔色伺いによる主体性の喪失',td:'人間関係の摩擦を恐れるあまり、本質的な課題提起を避けたり批判を受けると過剰に落ち込むことがあります。',pr:'業務上の反対意見は「人格否定ではなく構造の議論」と割り切り、主張の根拠をデータで補強すること。'},
+    ISTP:{c:'ISTP',n:'危機突破のテクニカル・トラブルシューター',g:'機動実践系',d:'冷静沈着な観察眼と卓越した技術応用力で、マニュアル外の緊急トラブルを最短手数で解決する現場の切り札。',r:['フィールドエンジニア','システム障害対応(SRE)','試作・プロトタイピング','不具合解析スペシャリスト','独立技術コンサル'],e:[74,84,88,96],tt:'報告・共有の省略による属人化',td:'自分で手を動かして解決する方が早いため、経過報告やドキュメント化を省きブラックボックス化しやすい傾向があります。',pr:'解決プロセスを最低限のテンプレートに残すだけで、組織内での希少価値と報酬が一気に跳ね上がります。'},
+    ISFP:{c:'ISFP',n:'感覚鋭敏なクラフト・スペシャリスト',g:'機動実践系',d:'繊細な美意識と柔軟な適応力を持ち、顧客の肌感覚に寄り添った高品質なアウトプットを創り出す職人。',r:['空間・ビジュアルデザイン','UI・フロントエンド実装','顧客体験(CX)改善','専門技術クラフト職','映像・制作クリエイター'],e:[68,79,81,92],tt:'長期キャリア戦略の不在と受け身姿勢',td:'目の前の作業の心地よさを優先するあまり、数年後の市場価値や年収アップに向けた戦略的交渉を後回しにしがちです。',pr:'半年に一度は自身のポートフォリオと市場相場を客観視し、スキル単価が上がる領域へ意識的に移ること。'},
+    ESTP:{c:'ESTP',n:'修羅場最強のディールメーカー',g:'機動実践系',d:'圧倒的な行動スピードと現場での交渉力で、机上の空論を打ち破り目の前の商機と成果を即座に刈り取る勝負師。',r:['トップセールス・新規開拓','M&A・金融ディーラー','危機対応・現場指揮','事業開発(BD)','独立起業家'],e:[66,90,96,93],tt:'短期成果への偏重とリスク管理軽視',td:'スピードと目の前の数字を優先するあまり、長期的なリスク検証や契約面の細部を見落とす恐れがあります。',pr:'大きな契約や決断の前には、必ず慎重派（ISTJ/INTJ型）のレビューを通すチェックゲートを設けること。'},
+    ESFP:{c:'ESFP',n:'現場活性化のエンタープライズ・パフォーマー',g:'機動実践系',d:'抜群の対人魅力とポジティブなエネルギーで、顧客やチームの心を瞬時に掴み商談や場を動かす推進役。',r:['ソリューション営業','PR・イベント企画','サービス・店舗統括','採用リクルーター','広報・アンバサダー'],e:[72,86,89,84],tt:'数値分析・事務管理への苦手意識',td:'対人折衝では無類の強さを発揮する一方、予算管理やデータ分析、長文の企画書作成になると手が止まりがちです。',pr:'強みを「フロント折衝」に100%集中させ、バックオフィスやデータ処理はツールや他者に任せる環境を選ぶこと。'}
+  };
+
+  let idx=0, ans=new Array(30).fill(null), lastRes=null;
+  const $=function(id){return document.getElementById(id);};
+
+  function show(id){
+    ['scr-home','scr-quiz','scr-res','scr-dir'].forEach(function(s){$(s).classList.add('hidden');});
+    $(id).classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
+
+  function renderQ(){
+    const item=Q[idx], pct=Math.round(((idx+1)/30)*100);
+    const pNames={1:'Phase 1: MBTI 認知・意思決定',2:'Phase 2: BIG5 職務パーソナリティ',3:'Phase 3: 4大実務ケイパビリティ'};
+    $('q-phase').textContent=pNames[item.p];
+    $('q-prog-txt').textContent='Q'+String(idx+1).padStart(2,'0')+' / 30 ('+pct+'%)';
+    $('q-prog-bar').style.width=pct+'%';
+const c1=ans.slice(0,12).filter(function(v){return v!==null;}).length;
+    const c2=ans.slice(12,22).filter(function(v){return v!==null;}).length;
+    const c3=ans.slice(22,30).filter(function(v){return v!==null;}).length;
+    $('p-ind-1').textContent='P1: 認知 '+c1+'/12';
+    $('p-ind-2').textContent='P2: BIG5 '+c2+'/10';
+    $('p-ind-3').textContent='P3: 実務 '+c3+'/8';
+    [$('p-ind-1'),$('p-ind-2'),$('p-ind-3')].forEach(function(el,i){
+      el.className=(item.p===i+1)?'py-1 rounded bg-cyan-950 border border-cyan-500/50 text-cyan-300 font-bold':'py-1 rounded bg-slate-900 border border-slate-800 text-slate-500';
+    });
+
+    $('q-tag').textContent=item.t;
+    $('q-code').textContent=item.c;
+    $('q-text').textContent='Q'+(idx+1)+'. '+item.q;
+
+    document.querySelectorAll('.opt-btn').forEach(function(b){
+      b.classList.toggle('sel', parseInt(b.dataset.v,10)===ans[idx]);
+    });
+    $('btn-prev').disabled=(idx===0);
+    $('btn-next').textContent=(idx===29)?'診断結果を見る ✓':'次へ →';
+  }
+
+  function calc(a){
+    const sc=function(i){const raw=a[i], or=Q[i].r===1?raw:(6-raw); return ((or-1)/4)*100;};
+    const e0=(sc(0)+sc(1)+sc(2))/3, n0=(sc(3)+sc(4)+sc(5))/3, t0=(sc(6)+sc(7)+sc(8))/3, j0=(sc(9)+sc(10)+sc(11))/3;
+    const b5={
+      O:Math.round((sc(12)+sc(13))/2),
+      C:Math.round((sc(14)+sc(15))/2),
+      E:Math.round((sc(16)+sc(17))/2),
+      A:Math.round((sc(18)+sc(19))/2),
+      ES:Math.round((sc(20)+sc(21))/2)
+    };
+    const fE=Math.round(e0*.75+b5.E*.25), fN=Math.round(n0*.8+b5.O*.2), fT=Math.round(t0*.85+(100-b5.A)*.15), fJ=Math.round(j0*.8+b5.C*.2);
+    const code=(fE>=50?'E':'I')+(fN>=50?'N':'S')+(fT>=50?'T':'F')+(fJ>=50?'J':'P');
+    const iden=b5.ES>=55?'A':'T';
+
+    const rST=(sc(22)+sc(23))/2, rEX=(sc(24)+sc(25))/2, rIN=(sc(26)+sc(27))/2, rAG=(sc(28)+sc(29))/2;
+    const dev=function(p){return Math.round((42+(p/100)*28)*10)/10;};
+    const cST=dev(rST*.65+b5.O*.2+fN*.15), cEX=dev(rEX*.6+b5.C*.3+fJ*.1), cIN=dev(rIN*.65+b5.E*.2+b5.A*.15), cAG=dev(rAG*.6+b5.O*.2+b5.ES*.2);
+    const tot=Math.round(((cST+cEX+cIN+cAG)/4)*10)/10;
+const tr=[{v:b5.C,l:'鉄壁完遂'},{v:b5.O,l:'高開放イノベーター'},{v:b5.ES,l:'鋼鉄メンタル'},{v:b5.E,l:'突破牽引'},{v:b5.A,l:'高度合意形成'}].sort(function(x,y){return y.v-x.v;});
+    const mod=code+'-'+iden+' × '+tr[0].l+'・'+tr[1].l+'型';
+    const mob=Math.min(98,Math.max(32,Math.round(b5.O*.3+b5.ES*.25+rAG*.3+b5.C*.15)));
+
+    return {code:code,iden:iden,arch:ARCH[code],mod:mod,spec:{E:fE,N:fN,T:fT,J:fJ},b5:b5,caps:{st:cST,ex:cEX,in:cIN,ag:cAG},tot:tot,mob:mob};
+  }
+
+  function renderRes(res){
+    lastRes=res;
+    const a=res.arch;
+    $('r-code').textContent=res.code+'-'+res.iden;
+    $('r-grp').textContent=a.g;
+    $('r-name').textContent=a.n;
+    $('r-mod').textContent=res.mod;
+    $('r-desc').textContent=a.d;
+    $('r-dev').textContent=res.tot.toFixed(1);
+    $('r-dev-bar').style.width=Math.min(100,Math.max(15,((res.tot-40)/30)*100))+'%';
+    $('r-rank').textContent=res.tot>=65?'SSランク(上位3%)':res.tot>=60?'Sランク(上位10%)':res.tot>=55?'Aランク(上位25%)':'Bランク(安定層)';
+
+    const capList=[
+      {l:'戦略・構造化',v:res.caps.st,c:'bg-cyan-400',t:'text-cyan-300'},
+      {l:'遂行・品質管理',v:res.caps.ex,c:'bg-indigo-400',t:'text-indigo-300'},
+      {l:'折衝・組織牽引',v:res.caps.in,c:'bg-emerald-400',t:'text-emerald-300'},
+      {l:'越境・環境適応',v:res.caps.ag,c:'bg-amber-400',t:'text-amber-300'}
+    ];
+    $('r-caps').innerHTML=capList.map(function(x){
+      const w=Math.min(100,Math.max(15,((x.v-40)/30)*100));
+      return '<div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800"><div class="flex justify-between text-[11px] mb-1"><span class="text-slate-400">'+x.l+'</span><span class="font-mono font-bold '+x.t+'">'+x.v.toFixed(1)+'</span></div><div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full '+x.c+'" style="width:'+w+'%"></div></div></div>';
+    }).join('');
+
+    const cx=130,cy=110,rm=72,ang0=-Math.PI/2,step=(Math.PI*2)/5;
+    const keys=[{k:'O',t:'開放性'},{k:'C',t:'誠実性'},{k:'E',t:'外向性'},{k:'A',t:'協調性'},{k:'ES',t:'情緒安定'}];
+    let grid='',axes='',lbls='',pts=[];
+    [.25,.5,.75,1].forEach(function(lv){
+      const p=keys.map(function(_,i){return (cx+Math.cos(ang0+i*step)*rm*lv).toFixed(1)+','+(cy+Math.sin(ang0+i*step)*rm*lv).toFixed(1);}).join(' ');
+      grid+='<polygon points="'+p+'" fill="none" stroke="rgba(148,163,184,.22)" stroke-width="1"/>';
+    });
+    keys.forEach(function(k,i){
+      const ang=ang0+i*step, xe=cx+Math.cos(ang)*rm, ye=cy+Math.sin(ang)*rm;
+      axes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+xe.toFixed(1)+'" y2="'+ye.toFixed(1)+'" stroke="rgba(148,163,184,.22)"/>';
+      const v=Math.max(10,res.b5[k.k])/100;
+      pts.push((cx+Math.cos(ang)*rm*v).toFixed(1)+','+(cy+Math.sin(ang)*rm*v).toFixed(1));
+      lbls+='<text x="'+(cx+Math.cos(ang)*(rm+20)).toFixed(1)+'" y="'+(cy+Math.sin(ang)*(rm+15)).toFixed(1)+'" fill="#cbd5e1" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="middle">'+k.t+'('+res.b5[k.k]+')</text>';
+    });
+    $('r-radar').innerHTML=grid+axes+'<polygon points="'+pts.join(' ')+'" fill="rgba(6,182,212,.28)" stroke="#22d3ee" stroke-width="2"/>'+lbls;
+
+    const bItems=[{l:'誠実性(完遂・規律)',v:res.b5.C,c:'bg-cyan-400'},{l:'情緒安定性(耐性)',v:res.b5.ES,c:'bg-indigo-400'},{l:'開放性(変革・好奇心)',v:res.b5.O,c:'bg-emerald-400'},{l:'外向性(主導・行動量)',v:res.b5.E,c:'bg-amber-400'},{l:'協調性(調整・共感)',v:res.b5.A,c:'bg-purple-400'}];
+    $('r-big5-bars').innerHTML=bItems.map(function(b){
+      return '<div><div class="flex justify-between text-[11px] mb-0.5"><span class="text-slate-300">'+b.l+'</span><span class="font-mono font-bold text-white">'+b.v+'%</span></div><div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full '+b.c+'" style="width:'+b.v+'%"></div></div></div>';
+    }).join('');
+    const spRows=[{l:'外向(E)',r:'内向(I)',p:res.spec.E},{l:'直観(N)',r:'感覚(S)',p:res.spec.N},{l:'論理(T)',r:'感情(F)',p:res.spec.T},{l:'規範(J)',r:'柔軟(P)',p:res.spec.J}];
+    $('r-spec').innerHTML=spRows.map(function(s){
+      return '<div><div class="flex justify-between text-[11px] font-bold mb-1"><span class="'+(s.p>=50?'text-cyan-300':'text-slate-400')+'">'+s.l+' '+s.p+'%</span><span class="'+(s.p<50?'text-indigo-300':'text-slate-400')+'">'+(100-s.p)+'% '+s.r+'</span></div><div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden flex"><div class="h-full bg-cyan-400" style="width:'+s.p+'%"></div><div class="h-full bg-indigo-500" style="width:'+(100-s.p)+'%"></div></div></div>';
+    }).join('');
+
+    $('r-tr-pct').textContent='越境推奨 '+res.mob+'%';
+    $('r-tr-txt').textContent=res.mob>=75?'【積極的越境推奨】変化適応力と完遂力が極めて高く、現職の枠を超えて市場価値を大きく引き上げられる状態です。':res.mob>=58?'【選択的転職推奨】一定の適応力を備えていますが、自身の強みが直結するポジションを厳選して動くべきフェーズです。':'【現環境での実績強化優先】今は急激な環境変化よりも、現職で定量実績と専門スキルを積み上げ自信を高めることが最適解です。';
+
+    const envs=[
+      {l:'10→100 成熟大手・高信頼インフラ',s:Math.min(99,Math.max(35,Math.round(a.e[0]*.7+res.b5.C*.3)))},
+      {l:'1→10 成長期テック・変革期メーカー',s:Math.min(99,Math.max(35,Math.round(a.e[1]*.7+res.b5.O*.3)))},
+      {l:'0→1 カオス期スタートアップ',s:Math.min(99,Math.max(30,Math.round(a.e[2]*.65+res.b5.ES*.35)))},
+      {l:'独立・高度専門コンサル',s:Math.min(99,Math.max(35,Math.round(a.e[3]*.65+res.b5.C*.35)))}
+    ];
+    $('r-envs').innerHTML=envs.map(function(ev){
+      return '<div class="p-2 rounded-lg bg-slate-900 border border-slate-800"><div class="flex justify-between text-[11px] font-bold mb-1"><span class="text-slate-200">'+ev.l+'</span><span class="text-cyan-300 font-mono">適合 '+ev.s+'%</span></div><div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-400 to-indigo-400" style="width:'+ev.s+'%"></div></div></div>';
+    }).join('');
+
+    $('r-roles').innerHTML=a.r.map(function(rl){
+      return '<span class="px-2 py-1 rounded bg-slate-800 border border-slate-700 text-[11px] font-semibold text-cyan-200">'+rl+'</span>';
+    }).join('');
+    $('r-trap-t').textContent='警告：'+a.tt;
+    $('r-trap-d').textContent=a.td;
+    $('r-presc').textContent=a.pr;
+  }
+
+  $('nav-home').addEventListener('click',function(){show('scr-home');});
+  $('btn-start').addEventListener('click',function(){idx=0;ans=new Array(30).fill(null);show('scr-quiz');renderQ();});
+  $('btn-retry').addEventListener('click',function(){idx=0;ans=new Array(30).fill(null);show('scr-quiz');renderQ();});
+
+  document.querySelectorAll('.opt-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      ans[idx]=parseInt(btn.dataset.v,10);
+      renderQ();
+      if($('chk-auto').checked){
+        setTimeout(function(){
+          if(idx<29){idx++;renderQ();}
+          else{renderRes(calc(ans.map(function(v){return v===null?3:v;})));show('scr-res');}
+        },160);
+      }
+    });
+  });
+    $('btn-prev').addEventListener('click',function(){if(idx>0){idx--;renderQ();}});
+  $('btn-next').addEventListener('click',function(){
+    if(ans[idx]===null)ans[idx]=3;
+    if(idx<29){idx++;renderQ();}
+    else{renderRes(calc(ans.map(function(v){return v===null?3:v;})));show('scr-res');}
+  });
+
+  document.querySelectorAll('.demo-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      const t=btn.dataset.demo;
+      let d=[];
+      if(t==='strategist') d=[2,5,2,5,2,5,3,4,4,5,2,5,5,1,5,1,3,3,4,2,5,1,5,5,5,5,4,4,5,4];
+      else if(t==='commander') d=[5,1,5,5,2,5,5,1,5,5,1,5,5,2,5,1,5,1,3,4,5,1,5,5,5,4,5,5,5,5];
+      else d=Q.map(function(){return Math.floor(Math.random()*5)+1;});
+      ans=d; renderRes(calc(d)); show('scr-res');
+    });
+  });
+
+  function openDir(){
+    $('dir-list').innerHTML=Object.values(ARCH).map(function(a){
+      return '<div data-code="'+a.c+'" class="dir-item glass rounded-xl p-3.5 cursor-pointer flex justify-between items-center"><div><span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-black text-[10px] mr-1.5">'+a.c+'</span><span class="text-[10px] text-slate-400">'+a.g+'</span><h3 class="text-xs font-bold text-white mt-1">'+a.n+'</h3></div><span class="text-slate-500 text-xs">→</span></div>';
+    }).join('');
+    document.querySelectorAll('.dir-item').forEach(function(el){
+      el.addEventListener('click',function(){
+        const c=el.dataset.code, e=c[0]==='E'?5:1, n=c[1]==='N'?5:1, t=c[2]==='T'?5:1, j=c[3]==='J'?5:1;
+        const m=[e,6-e,e,n,6-n,n,t,6-t,t,j,6-j,j,4,2,5,1,e,6-e,6-t,t,4,2,4,4,4,4,4,4,4,4];
+        renderRes(calc(m)); show('scr-res');
+      });
+    });
+    show('scr-dir');
+  }
+  $('nav-dir').addEventListener('click',openDir);
+  $('btn-all').addEventListener('click',openDir);
+  $('btn-close-dir').addEventListener('click',function(){show(lastRes?'scr-res':'scr-home');});
+
+  $('btn-copy').addEventListener('click',function(){
+    if(!lastRes)return;
+    const r=lastRes, txt='【BIG5×MBTI 30問精密ジョブ診断】\n■類型：'+r.arch.n+'('+r.code+'-'+r.iden+')\n■特性：'+r.mod+'\n■仕事偏差値：'+r.tot.toFixed(1)+'(戦略:'+r.caps.st+'/遂行:'+r.caps.ex+'/折衝:'+r.caps.in+'/越境:'+r.caps.ag+')\n■越境推奨度：'+r.mob+'%';
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(txt).then(function(){
+        $('btn-copy').textContent='コピーしました！LINEやメモに貼り付けできます';
+        setTimeout(function(){$('btn-copy').textContent='診断結果サマリーをコピー（LINE/SNS共有用）';},2200);
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

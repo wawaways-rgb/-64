@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+```html
+<!-- ... existing code ... -->
+                    <span class="block text-[10px] text-slate-400 -mt-0.5 font-medium">80 SUB-VARIANTS × 10 FACETS</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="app.openHistoryModal()" class="glass-pill px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white flex items-center space-x-1.5 transition">
+                    <i class="fa-solid fa-clock-rotate-left text-sky-400"></i>
+                    <span>履歴</span>
+                </button>
+                <button onclick="app.openAllTypesModal()" class="glass-pill px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white flex items-center space-x-1.5 transition">
+                    <i class="fa-solid fa-book-open text-purple-400"></i>
+                    <span>16類型</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container (Mobile First Max-Width) -->
+    <main class="flex-grow w-full max-w-md mx-auto px-4 py-5 pb-24">
+
+        <!-- ==================== 1. HOME SCREEN ==================== -->
+        <section id="screen-home" class="space-y-6 fade-enter">
+            <!-- Hero Card -->
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden gradient-border shadow-2xl">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[11px] font-semibold mb-4">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>全30問・3フェーズ精密解析エンジン</span>
+                </div>
+
+                <h1 class="text-2xl font-black leading-tight text-white mb-3">
+                    あなたの<span class="gradient-text">仕事偏差値</span>と<br>
+                    <span class="gradient-text">精密ジョブタイプ</span>を完全解明
+                </h1>
+
+                <p class="text-xs text-slate-300 leading-relaxed mb-5">
+                    全30問の多角的アセスメントにより、MBTIの「認知・意思決定4軸スペクトラム」と、BIG5の「5大パーソナリティ因子（逆転項目含む）」、さらに「4大実務ケイパビリティ」を同時計測。16ジョブアーキタイプ×自律安定度（-A/-T）×BIG5優勢特性の<strong>緻密なハイブリッド診断</strong>と、<strong>冷徹な転職適性・キャリア処方箋</strong>を出力します。
+                </p>
+
+                <!-- 3 Pillars Explanation -->
+                <div class="space-y-2.5 mb-6">
+                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                        <div class="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                            <span class="text-xs font-bold text-purple-300">01</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">16ジョブ類型 × A/T × BIG5優勢バッジ</h3>
+                            <p class="text-[11px] text-slate-400">『静かなる構造改革アーキテクト（INFJ）』等の16類型に、自律安定度（-A/-T）とBIG5波形を統合。</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                        <div class="w-7 h-7 rounded-lg bg-sky-500/20 border border-sky-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                            <span class="text-xs font-bold text-sky-300">02</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">総合仕事偏差値 ＆ 4大実務偏差値の算出</h3>
+                            <p class="text-[11px] text-slate-400">「戦略・構造化」「遂行・品質管理」「折衝・組織牽引」「越境・環境適応」の4大実務力を偏差値化。</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                            <span class="text-xs font-bold text-emerald-300">03</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">組織フェーズ別・転職適性 ＆ 致命的な罠の警告</h3>
+                            <p class="text-[11px] text-slate-400">10→100大手・1→10成長企業・0→1起業・独立の適合率と、陥りやすいキャリアの罠を冷徹に指摘。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button onclick="app.startQuiz()" class="w-full py-4 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 flex items-center justify-center space-x-2 transition active:scale-[0.99]">
+                    <span>30問・精密診断をスタート（約90秒〜2分）</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="mt-3 pt-3 border-t border-slate-800/80">
+                    <div class="text-[10px] text-slate-400 font-semibold mb-2 flex items-center justify-between">
+                        <span><i class="fa-solid fa-bolt text-amber-400 mr-1"></i>即時結果プレビュー（30問デモデータ自動入力）</span>
+                        <span>ワンタップ検証</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="app.runDemoPreset('strategist')" class="py-2.5 px-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-[10px] font-semibold flex flex-col items-center justify-center space-y-1 transition">
+                            <i class="fa-solid fa-chess-knight text-sky-400 text-sm"></i>
+                            <span>戦略参謀・高誠実</span>
+                        </button>
+                        <button onclick="app.runDemoPreset('director')" class="py-2.5 px-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-[10px] font-semibold flex flex-col items-center justify-center space-y-1 transition">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>
+                            <span>現場統括・高安定</span>
+                        </button>
+                        <button onclick="app.runDemoPreset('random')" class="py-2.5 px-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-[10px] font-semibold flex flex-col items-center justify-center space-y-1 transition">
+                            <i class="fa-solid fa-shuffle text-purple-400 text-sm"></i>
+                            <span>ランダム30問判定</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Phases Preview Card -->
+            <div class="glass-card rounded-xl p-4 border border-slate-800/80 space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2 text-xs font-bold text-slate-200">
+                        <i class="fa-solid fa-list-check text-sky-400"></i>
+                        <span>全30問・3フェーズ精密測定アーキテクチャ</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-mono">30 Questions</span>
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-[11px] text-slate-400">
+                    <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/60 flex items-center justify-between">
+                        <div>
+                            <span class="text-sky-400 font-bold font-mono mr-1.5">Phase 1 (Q1-Q12)</span>
+                            <span class="text-slate-200 font-semibold">MBTI 認知・意思決定スタイル</span>
+                            <p class="text-[10px] text-slate-400 mt-0.5">E/I・S/N・T/F・J/P の各軸3問ずつで方向性と偏り（50〜100%）を精密測定</p>
+                        </div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/60 flex items-center justify-between">
+                        <div>
+                            <span class="text-purple-400 font-bold font-mono mr-1.5">Phase 2 (Q13-Q22)</span>
+                            <span class="text-slate-200 font-semibold">BIG5 職務パーソナリティ因子</span>
+                            <p class="text-[10px] text-slate-400 mt-0.5">開放性・誠実性・外向性・協調性・情緒安定性を正逆ペア設問でバイアス排除測定</p>
+                        </div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-900/70 border border-slate-800/60 flex items-center justify-between">
+                        <div>
+                            <span class="text-emerald-400 font-bold font-mono mr-1.5">Phase 3 (Q23-Q30)</span>
+                            <span class="text-slate-200 font-semibold">実務ケイパビリティ＆越境耐性</span>
+                            <p class="text-[10px] text-slate-400 mt-0.5">構造化設計・完遂規律・対人折衝・カオス適応力の4大実務偏差値を直接計測</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. QUIZ SCREEN (30 QUESTIONS) ==================== -->
+        <section id="screen-quiz" class="hidden space-y-4 fade-enter">
+            <!-- Top Quiz Progress Card -->
+            <div class="glass-card rounded-2xl p-4 space-y-3 border border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span id="quiz-phase-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                            Phase 1: MBTI 認知スタイル
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span id="quiz-counter" class="text-xs font-mono font-bold text-white">Q01 / 30</span>
+                        <span id="quiz-percent" class="text-[11px] font-mono text-sky-400">(3%)</span>
+                    </div>
+                </div>
+
+                <!-- Segmented 3-Phase Progress Bar -->
+                <div class="grid grid-cols-3 gap-1.5 pt-0.5">
+                    <div>
+                        <div class="flex justify-between text-[9px] text-slate-400 mb-1">
+                            <span>P1: 認知軸</span>
+                            <span id="p1-prog-label">0/12</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="p1-prog-bar" class="h-full bg-sky-400 transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] text-slate-400 mb-1">
+                            <span>P2: BIG5特性</span>
+                            <span id="p2-prog-label">0/10</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="p2-prog-bar" class="h-full bg-purple-400 transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] text-slate-400 mb-1">
+                            <span>P3: 実務偏差値</span>
+                            <span id="p3-prog-label">0/8</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="p3-prog-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="glass-card rounded-2xl p-5 border border-slate-800/90 space-y-5 shadow-xl min-h-[380px] flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span id="q-category-tag" class="text-[11px] font-semibold text-slate-400 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-compass text-sky-400"></i>
+                            <span>エネルギー方向性 (E/I)</span>
+                        </span>
+                        <span id="q-dimension-code" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">MBTI-EI</span>
+                    </div>
+
+                    <h2 id="q-text" class="text-base sm:text-lg font-bold text-white leading-relaxed pt-1">
+                        質問テキストがここに表示されます
+                    </h2>
+
+                    <p id="q-subtext" class="text-[11px] text-slate-400 leading-normal bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/70">
+                        職場やプロジェクトでの普段の行動・判断基準に最も近いものを直感で選んでください。
+                    </p>
+                </div>
+
+                <!-- 5-Point Likert Options -->
+                <div id="q-options" class="space-y-2.5 pt-2">
+                    <!-- Rendered dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Quiz Footer Controls -->
+            <div class="flex items-center justify-between px-1">
+                <button id="btn-prev-q" onclick="app.prevQuestion()" class="px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 flex items-center space-x-1.5 transition disabled:opacity-40 disabled:pointer-events-none">
+                    <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                    <span>前の設問へ</span>
+                </button>
+
+                <label class="flex items-center space-x-2 text-xs text-slate-400 cursor-pointer select-none">
+                    <input type="checkbox" id="toggle-auto-next" checked onchange="app.toggleAutoAdvance(this.checked)" class="rounded bg-slate-800 border-slate-700 text-sky-500 focus:ring-0">
+                    <span>選択後に自動で次へ</span>
+                </label>
+
+                <button id="btn-next-q" onclick="app.nextQuestion()" class="px-4 py-2.5 rounded-xl bg-sky-600/20 hover:bg-sky-600/30 border border-sky-500/40 text-xs font-semibold text-sky-300 flex items-center space-x-1.5 transition">
+                    <span id="btn-next-label">次の設問へ</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== 3. RESULT SCREEN ==================== -->
+        <section id="screen-result" class="hidden space-y-5 fade-enter">
+
+            <!-- Top Identity & Archetype Hero Card -->
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden gradient-border shadow-2xl">
+                <div class="absolute -right-12 -top-12 w-44 h-44 bg-sky-500/15 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-12 -bottom-12 w-44 h-44 bg-purple-500/15 rounded-full blur-2xl pointer-events-none"></div>
+
+                <!-- Code & Sub-Variant Pill -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex items-center space-x-2">
+                        <span id="res-mbti-code" class="px-3 py-1 rounded-lg bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black font-mono text-sm tracking-wider shadow">
+                            INFJ-A
+                        </span>
+                        <span id="res-en-title" class="text-[11px] font-mono font-semibold text-slate-300">
+                            Insightful Reformer
+                        </span>
+                    </div>
+                    <span id="res-rarity-badge" class="px-2.5 py-0.5 rounded-full bg-purple-500/15 border border-purple-400/30 text-purple-300 text-[10px] font-bold">
+                        提唱者系ジョブ類型
+                    </span>
+                </div>
+
+                <!-- Main Japanese Job Archetype Name -->
+                <h1 id="res-jp-title" class="text-2xl font-black text-white leading-snug mb-2">
+                    静かなる構造改革アーキテクト
+                </h1>
+
+                <!-- BIG5 Hybrid Modifier Tag -->
+                <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-xl bg-slate-900/90 border border-sky-500/30 text-sky-300 text-xs font-bold mb-4">
+                    <i class="fa-solid fa-dna text-purple-400"></i>
+                    <span id="res-hybrid-badge">INFJ-A × 鉄壁遂行・高開放ハイブリッド</span>
+                </div>
+
+                <p id="res-summary-desc" class="text-xs text-slate-300 leading-relaxed mb-5">
+                    本質を見抜く長期的洞察力と、組織や業務の歪みを根本から再設計する構造化能力を併せ持つタイプです。
+                </p>
+
+                <!-- Overall Work Deviation Value (総合仕事偏差値) & 4 Sub-Deviations -->
+                <div class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800/90 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">OVERALL WORK DEVIATION</span>
+                            <div class="flex items-center space-x-2 mt-0.5">
+                                <span class="text-sm font-bold text-white">総合仕事偏差値</span>
+                                <span id="res-dev-rank" class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-black">Sランク (上位8%)</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span id="res-total-deviation" class="text-3xl font-black font-mono gradient-text">64.8</span>
+                        </div>
+                    </div>
+
+                    <!-- 4 Sub-Deviation Grid -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800/80">
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span><i class="fa-solid fa-sitemap text-sky-400 mr-1"></i>戦略・構造化</span>
+                                <span id="dev-strat-val" class="font-mono font-bold text-white text-xs">66.2</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="dev-strat-bar" class="h-full bg-sky-400 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800/80">
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span><i class="fa-solid fa-clipboard-check text-emerald-400 mr-1"></i>遂行・品質管理</span>
+                                <span id="dev-exec-val" class="font-mono font-bold text-white text-xs">63.5</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="dev-exec-bar" class="h-full bg-emerald-400 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800/80">
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span><i class="fa-solid fa-handshake text-amber-400 mr-1"></i>折衝・組織牽引</span>
+                                <span id="dev-lead-val" class="font-mono font-bold text-white text-xs">58.4</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="dev-lead-bar" class="h-full bg-amber-400 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800/80">
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span><i class="fa-solid fa-rocket text-purple-400 mr-1"></i>越境・環境適応</span>
+                                <span id="dev-adapt-val" class="font-mono font-bold text-white text-xs">62.1</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="dev-adapt-bar" class="h-full bg-purple-400 rounded-full" style="width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dual Visualization Card: BIG5 Radar Chart + MBTI 4-Axis Spectrum -->
+            <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-5">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-chart-pie text-sky-400"></i>
+                        <span>BIG5 職務パーソナリティ5角形 ＆ 認知スペクトラム</span>
+                    </h2>
+                    <span class="text-[10px] text-slate-400 font-mono">30-Item Psychometrics</span>
+                </div>
+
+                <!-- HTML5 Canvas 5-Axis Radar Chart -->
+                <div class="relative flex flex-col items-center justify-center bg-slate-950/70 rounded-xl p-3 border border-slate-800/80">
+                    <canvas id="big5RadarCanvas" width="300" height="250" class="max-w-full h-auto"></canvas>
+                </div>
+
+                <!-- BIG5 Numerical Bars & Interpretation -->
+                <div id="big5-detail-list" class="space-y-2.5 pt-1">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- MBTI 4-Axis Spectrum Bars -->
+                <div class="pt-4 border-t border-slate-800/90 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-200">MBTI 認知・意思決定 4軸スペクトラム比率</span>
+                        <span id="mbti-clearness-tag" class="text-[10px] text-sky-400 font-mono">両利き特性判定付き</span>
+                    </div>
+                    <div id="mbti-spectrum-bars" class="space-y-3">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Best Fit Jobs & Role Matrix Card -->
+            <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-briefcase text-emerald-400"></i>
+                        <span>適職・天職ロール TOP3 ＆ 職務機能マトリクス</span>
+                    </h2>
+                    <span class="text-[10px] text-emerald-400 font-semibold">精密マッチング</span>
+                </div>
+
+                <!-- Role Function Fit (4 Quadrants) -->
+                <div id="role-matrix-grid" class="grid grid-cols-2 gap-2">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Top 3 Specific Jobs -->
+                <div id="best-jobs-list" class="space-y-2.5 pt-1">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Career Transition & Environment Fit Card (転職適性・環境フェーズ判定) -->
+            <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-route text-amber-400"></i>
+                        <span>転職・キャリア越境適性ジャッジメント</span>
+                    </h2>
+                    <span id="transition-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        越境適性: 78%
+                    </span>
+                </div>
+
+                <p id="transition-verdict-text" class="text-xs text-slate-300 leading-relaxed bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                    転職適性に関する総合判定コメントがここに表示されます。
+                </p>
+
+                <!-- 4 Environment Phase Bars -->
+                <div class="space-y-2.5">
+                    <span class="text-xs font-bold text-slate-200 block">組織フェーズ別・生存＆活躍確率</span>
+                    <div id="env-fit-bars" class="space-y-2.5">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fatal Career Traps & Prescription Card (陥りやすい罠と冷徹な処方箋) -->
+            <div class="glass-card rounded-2xl p-5 border border-rose-500/30 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                        <span>陥りやすい「致命的な罠」とキャリア戦略処方箋</span>
+                    </h2>
+                    <span class="text-[10px] text-rose-300 font-mono">RISK & STRATEGY</span>
+                </div>
+
+                <div id="career-traps-container" class="space-y-3">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Bottom Action Buttons -->
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="app.copyResultSummary()" class="py-3.5 px-4 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-500/40 text-sky-300 font-bold text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>診断レポートをコピー</span>
+                </button>
+                <button onclick="app.startQuiz()" class="py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>もう一度診断する</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== MODAL 1: ALL 16 JOB ARCHETYPES ENCYCLOPEDIA ==================== -->
+    <div id="modal-all-types" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="w-full max-w-md bg-slate-900 border-t sm:border border-slate-800 rounded-t-2xl sm:rounded-2xl max-h-[88vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open text-purple-400"></i>
+                    <h3 class="text-sm font-bold text-white">全16ジョブアーキタイプ図鑑（タップで試算）</h3>
+                </div>
+                <button onclick="app.closeAllTypesModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-3 bg-slate-950/60 border-b border-slate-800/80 text-[11px] text-slate-400">
+                任意のタイプをタップすると、そのタイプの標準的な30問回答プロファイルで診断結果画面を即座にシミュレート表示します。
+            </div>
+            <div id="all-types-list" class="p-4 overflow-y-auto space-y-2.5">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: SAVED HISTORY ==================== -->
+    <div id="modal-history" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="w-full max-w-md bg-slate-900 border-t sm:border border-slate-800 rounded-t-2xl sm:rounded-2xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left text-sky-400"></i>
+                    <h3 class="text-sm font-bold text-white">過去の診断履歴（端末保存）</h3>
+                </div>
+                <button onclick="app.closeHistoryModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="history-list" class="p-4 overflow-y-auto space-y-2.5 flex-grow">
+                <!-- Populated via JS -->
+            </div>
+            <div class="p-3 border-t border-slate-800 flex justify-end">
+                <button onclick="app.clearHistory()" class="text-xs text-rose-400 hover:text-rose-300 px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                    履歴をすべて消去
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-msg" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-full bg-sky-500 text-white text-xs font-bold shadow-lg shadow-sky-500/30 flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-text">コピーしました</span>
+    </div>
+
+    <!-- ==================== APPLICATION LOGIC & PSYCHOMETRIC DATA ==================== -->
+    <script>
+        /**
+         * 1. 30 QUESTIONS DATABASE (3 PHASES)
+         * - Phase 1 (Q1-Q12): MBTI 4 Axes (3 questions per axis: EI, SN, TF, JP)
+         *   polarity: 1 means agreement pushes toward first letter (E, N, T, J), -1 pushes toward (I, S, F, P).
+         * - Phase 2 (Q13-Q22): BIG5 5 Factors (2 questions per factor: O, C, E, A, ES [Emotional Stability])
+         *   Includes reverse-scored items (polarity: -1) to eliminate acquiescence bias.
+         * - Phase 3 (Q23-Q30): 4 Core Work Competencies (2 questions each: STRAT, EXEC, LEAD, ADAPT)
+         *   Also cross-weights into BIG5/MBTI where relevant.
+         */
+        const QUESTIONS_30 = [
+            // --- PHASE 1: MBTI COGNITIVE & DECISION STYLE (Q1 - Q12) ---
+            {
+                id: 1, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "エネルギー方向性 (E / I)", code: "MBTI-EI-1",
+                text: "新しいプロジェクトや課題が立ち上がった際、まず一人でじっくり思考を整理するよりも、周囲のメンバーと議論しながら考えを広げる方がエンジンがかかる。",
+                target: "EI", polarity: 1 // +1 -> E, -1 -> I
+            },
+            {
+                id: 2, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "エネルギー方向性 (E / I)", code: "MBTI-EI-2",
+                text: "長時間の会議や社内外の折衝が続いた後は、強い充実感よりも「一人の静かな時間で集中力を回復させたい」という欲求が強く出る。",
+                target: "EI", polarity: -1 // Agree -> I
+            },
+            {
+                id: 3, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "エネルギー方向性 (E / I)", code: "MBTI-EI-3",
+                text: "初対面のステークホルダーが集まる場でも、自分から積極的に話題を振って場の主導権やネットワークを築くことが得意だ。",
+                target: "EI", polarity: 1 // Agree -> E
+            },
+            {
+                id: 4, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "情報処理・着眼点 (N / S)", code: "MBTI-SN-1",
+                text: "業務改善や企画を行う際、過去の確実な実績データや現状の手順よりも、「5年後にどうあるべきか」という未来の構想や概念モデルに強く惹かれる。",
+                target: "NS", polarity: 1 // +1 -> N, -1 -> S
+            },
+            {
+                id: 5, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "情報処理・着眼点 (N / S)", code: "MBTI-SN-2",
+                text: "抽象的なビジョンや比喩表現よりも、具体的な数値・事実・現場で今起きているリアルな事象をベースに話が進む方が圧倒的に理解しやすい。",
+                target: "NS", polarity: -1 // Agree -> S
+            },
+            {
+                id: 6, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "情報処理・着眼点 (N / S)", code: "MBTI-SN-3",
+                text: "一見無関係に見える異なる業界のトレンドや事象から、「背後に共通する構造やパターン」を直感的に見つけ出すことがよくある。",
+                target: "NS", polarity: 1 // Agree -> N
+            },
+            {
+                id: 7, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "判断・意思決定基準 (T / F)", code: "MBTI-TF-1",
+                text: "チームの意思決定で意見が割れたとき、メンバーの感情的納得感や和を保つことより、論理的整合性と費用対効果（ROI）の正しさを最優先する。",
+                target: "TF", polarity: 1 // +1 -> T, -1 -> F
+            },
+            {
+                id: 8, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "判断・意思決定基準 (T / F)", code: "MBTI-TF-2",
+                text: "どれほど論理的に正しい改革案であっても、現場で働く人のモチベーションや誇りを傷つけるやり方には強い抵抗感を覚える。",
+                target: "TF", polarity: -1 // Agree -> F
+            },
+            {
+                id: 9, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "判断・意思決定基準 (T / F)", code: "MBTI-TF-3",
+                text: "仕事上のフィードバックを行う際、相手が傷つかないようオブラートに包むより、改善すべき事実と因果関係をストレートに指摘する方が誠実だと思う。",
+                target: "TF", polarity: 1 // Agree -> T
+            },
+            {
+                id: 10, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "戦術・進行スタイル (J / P)", code: "MBTI-JP-1",
+                text: "業務を始める前にマイルストーンと完了定義を明確に固め、計画通りに順序よくタスクを消化していくことに強い安心感を覚える。",
+                target: "JP", polarity: 1 // +1 -> J, -1 -> P
+            },
+            {
+                id: 11, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "戦術・進行スタイル (J / P)", code: "MBTI-JP-2",
+                text: "最初からガチガチに計画を決めるよりも、状況の変化に応じてギリギリまで選択肢を残し、臨機応変に軌道修正しながら進める方が力を発揮できる。",
+                target: "JP", polarity: -1 // Agree -> P
+            },
+            {
+                id: 12, phase: 1, phaseName: "Phase 1: MBTI 認知・意思決定スタイル",
+                category: "戦術・進行スタイル (J / P)", code: "MBTI-JP-3",
+                text: "未決定の事項や曖昧な仕様が放置されている状態はストレスになるため、早めに白黒をつけて確定させたい。",
+                target: "JP", polarity: 1 // Agree -> J
+            },
+
+            // --- PHASE 2: BIG5 WORK PERSONALITY FACTORS (Q13 - Q22) ---
+            {
+                id: 13, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "開放性・知的好奇心 (Openness)", code: "BIG5-O-1",
+                text: "前例のない最新技術や未知のビジネスモデル、自分の専門外の領域であっても、自ら進んで学び実験してみることに強いワクワクを感じる。",
+                target: "O", polarity: 1
+            },
+            {
+                id: 14, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "開放性・知的好奇心 (Openness)", code: "BIG5-O-2",
+                text: "すでに確立された安定した手順やルールがあるなら、わざわざ新しいやり方に変えたり実験したりせず、定型通りに進める方が好ましい。",
+                target: "O", polarity: -1 // Reverse item
+            },
+            {
+                id: 15, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "誠実性・完遂規律 (Conscientiousness)", code: "BIG5-C-1",
+                text: "誰も見ていない細部の品質や納期、安全・コンプライアンス上の規律であっても、自分が納得できる水準まで一切妥協せずにやり抜く。",
+                target: "C", polarity: 1
+            },
+            {
+                id: 16, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "誠実性・完遂規律 (Conscientiousness)", code: "BIG5-C-2",
+                text: "興味が乗らないルーティン作業や細かい事務手続きは、つい後回しにしてしまい、締切直前に慌てて片付けることがよくある。",
+                target: "C", polarity: -1 // Reverse item
+            },
+            {
+                id: 17, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "外向的リーダーシップ (Extraversion)", code: "BIG5-E-1",
+                text: "組織やチームが停滞しているとき、自分が先頭に立って熱量を伝え、周囲を鼓舞しながら推進力を生み出す役割を自然と引き受ける。",
+                target: "E_B5", polarity: 1
+            },
+            {
+                id: 18, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "外向的リーダーシップ (Extraversion)", code: "BIG5-E-2",
+                text: "大勢の前でスポットライトを浴びて自己主張するよりも、裏方や参謀として静かに成果を支えるポジションの方が性に合っている。",
+                target: "E_B5", polarity: -1 // Reverse item
+            },
+            {
+                id: 19, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "協調性・利他支援 (Agreeableness)", code: "BIG5-A-1",
+                text: "他部署や後輩が困っている兆候にいち早く気づき、自分の評価に直接つながらなくてもサポートや情報共有を惜しまない。",
+                target: "A", polarity: 1
+            },
+            {
+                id: 20, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "協調性・利他支援 (Agreeableness)", code: "BIG5-A-2",
+                text: "交渉や利害調整の場では、相手への配慮よりも「自部門や自分の正当な利益・主張をいかに勝ち取るか」という勝負に徹する。",
+                target: "A", polarity: -1 // Reverse item (Low A = Tough Negotiator)
+            },
+            {
+                id: 21, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "情緒安定性・プレッシャー耐性 (Stability)", code: "BIG5-ES-1",
+                text: "突発的なトラブルや厳しい叱責、重大なクレームに直面しても、感情的に動揺せず、普段通りの冷静な判断力を維持できる。",
+                target: "ES", polarity: 1
+            },
+            {
+                id: 22, phase: 2, phaseName: "Phase 2: BIG5 職務パーソナリティ因子",
+                category: "情緒安定性・プレッシャー耐性 (Stability)", code: "BIG5-ES-2",
+                text: "仕事上の小さなミスや周囲からの微妙な反応を業務終了後もずっと引きずってしまい、夜になっても反芻して疲れ果てることがある。",
+                target: "ES", polarity: -1 // Reverse item
+            },
+
+            // --- PHASE 3: PRACTICAL COMPETENCIES & CAREER MOBILITY (Q23 - Q30) ---
+            {
+                id: 23, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "構造化・論理設計力 (Strategy)", code: "COMP-STRAT-1",
+                text: "複雑に絡み合った業務課題やトラブルに対し、「何が真のボトルネックか」を因数分解し、誰でも再現できる仕組みやフローに落とし込める。",
+                target: "STRAT", polarity: 1
+            },
+            {
+                id: 24, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "構造化・論理設計力 (Strategy)", code: "COMP-STRAT-2",
+                text: "経営層やクライアントの抽象的な要望を、具体的な要件定義・KPI・ロードマップへと翻訳して提示する作業が得意だ。",
+                target: "STRAT", polarity: 1
+            },
+            {
+                id: 25, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "完遂・品質規律力 (Execution)", code: "COMP-EXEC-1",
+                text: "複数のマルチタスクが重なる繁忙期でも、優先順位とリスクを見極め、ヒューマンエラーや抜け漏れを極小化するセルフマネジメントができている。",
+                target: "EXEC", polarity: 1
+            },
+            {
+                id: 26, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "完遂・品質規律力 (Execution)", code: "COMP-EXEC-2",
+                text: "「アイデアを出すだけ」で終わらせず、泥臭いオペレーション構築や現場への定着・数値達成まで粘り強くやり切る自信がある。",
+                target: "EXEC", polarity: 1
+            },
+            {
+                id: 27, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "対人折衝・巻き込み力 (Leadership)", code: "COMP-LEAD-1",
+                text: "考え方や利害が異なる他部署・気難しいキーマンに対しても、相手のメリットや心理を読み解きながら合意形成（ネゴシエーション）を取り付けられる。",
+                target: "LEAD", polarity: 1
+            },
+            {
+                id: 28, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "対人折衝・巻き込み力 (Leadership)", code: "COMP-LEAD-2",
+                text: "メンバーそれぞれの強み・弱み・性格特性を見極め、適切な役割分担と動機づけを行ってチーム全体の生産性を引き上げることができる。",
+                target: "LEAD", polarity: 1
+            },
+            {
+                id: 29, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "変化適応・越境サバイバル力 (Adaptability)", code: "COMP-ADAPT-1",
+                text: "マニュアルや評価制度が未整備な「カオスな環境」や異業種に放り込まれても、自らルールや役割を定義してサバイブできる。",
+                target: "ADAPT", polarity: 1
+            },
+            {
+                id: 30, phase: 3, phaseName: "Phase 3: 実務ケイパビリティ＆キャリア越境耐性",
+                category: "変化適応・越境サバイバル力 (Adaptability)", code: "COMP-ADAPT-2",
+                text: "これまでの自分の成功体験や肩書きに固執せず、市場価値を高めるためなら全く新しいスキルセットの習得や環境変化に躊躇なく踏み出せる。",
+                target: "ADAPT", polarity: 1
+            }
+        ];
+
+        /**
+         * 2. 16 JOB ARCHETYPES MASTER DATA
+         * Tailored specifically for career, work style, and organizational fit.
+         */
+        const ARCHETYPES_16 = {
+            "INTJ": {
+                code: "INTJ",
+                jpTitle: "冷徹なシステム戦略参謀",
+                enTitle: "System Architect Strategist",
+                mbtiAlias: "建築家系ジョブ類型",
+                summary: "長期的なビジョンと冷徹なまでの構造化能力を兼ね備え、非効率な組織構造やビジネスモデルを根本から再設計する戦略家タイプです。感情論や社内政治を嫌い、本質的な合理性と仕組み化によって圧倒的な成果を生み出します。",
+                jobs: [
+                    { title: "経営企画・事業戦略アーキテクト", match: 96, reason: "中長期の市場構造を読み解き、全社リソース配分や新規事業の勝ち筋を論理設計できるため。" },
+                    { title: "DX推進・業務改革（BPR）プロジェクトマネージャー", match: 93, reason: "属人化したレガシー業務を因数分解し、再現性の高いシステム・標準フローへ昇華できるため。" },
+                    { title: "R&D戦略・高度専門システム設計／データサイエンティスト", match: 90, reason: "複雑な因果関係をモデル化し、独創的かつ緻密なソリューションを構築できるため。" }
+                ],
+                baseTrap: "「正論の刃」による現場との乖離。頭の中で完璧な設計図ができると、周囲への丁寧な説明や感情的ケアを省いてしまい、実行段階で現場の反発を招くリスクがあります。",
+                baseAction: "面接や社内提案では「論理の正しさ」だけでなく、「現場の心理的ハードルをどう下げて巻き込んだか」の泥臭い定着プロセスをセットで語ると市場価値が跳ね上がります。"
+            },
+            "INTP": {
+                code: "INTP",
+                jpTitle: "真理探究の論理設計士",
+                enTitle: "Logical Truth Engineer",
+                mbtiAlias: "論理学者系ジョブ類型",
+                summary: "既存の常識や前提を疑い、事象の背後にある普遍的なメカニズムやアルゴリズムを解き明かす知のスペシャリストです。前例のない技術的難題や複雑なバグ・構造欠陥の解明において、他の追随を許さない突破力を発揮します。",
+                jobs: [
+                    { title: "先端技術R&Dエンジニア／アルゴリズム設計者", match: 95, reason: "誰も解いたことのない技術的ボトルネックに対し、独自の論理モデルで突破口を開けるため。" },
+                    { title: "データアナリスト・定量リサーチャー", match: 92, reason: "バイアスを排してデータの裏にある真の相関・因果関係を客観的に抽出できるため。" },
+                    { title: "技術顧問・スペシャリスト職（専門特化コンサル）", match: 89, reason: "管理業務に縛られず、高度な専門知を切り売りするポジションで最大のROIを出せるため。" }
+                ],
+                baseTrap: "「構想完了＝仕事完了」の錯覚。仕組みや謎が解けた瞬間に興味を失い、その後のルーティン運用やドキュメント整備、周囲への引き継ぎが疎かになりがちです。",
+                baseAction: "緻密な実行推進役（J型・高誠実タイプ）とタッグを組める環境を選ぶか、「試作・概念実証（PoC）から初期設計まで」に特化した専門職としてキャリアを定義してください。"
+            },
+            "ENTJ": {
+                code: "ENTJ",
+                jpTitle: "剛腕の事業変革コマンダー",
+                enTitle: "Executive Commander",
+                mbtiAlias: "指揮官系ジョブ類型",
+                summary: "高い視座から明確なKGI/KPIを掲げ、組織全体を強力に牽引して目標を完遂させる天性の事業リーダーです。逆境や厳しい競争環境ほど闘志が湧き、迅速な意思決定とリソース配分で事業をスケールさせます。",
+                jobs: [
+                    { title: "事業責任者（BizDev）・プロダクトオーナー", match: 97, reason: "P/L責任を背負い、開発・営業・マーケを統合指揮して事業成長をドライブできるため。" },
+                    { title: "戦略コンサルタント・ターンアラウンド（企業再生）マネジャー", match: 94, reason: "厳しい制約条件下で冷徹にボトルネックを特定し、組織改革を断行できるため。" },
+                    { title: "大規模プロジェクト統括ディレクター（PMO責任者）", match: 91, reason: "多数のステークホルダーを制御し、納期と成果に絶対コミットする推進力があるため。" }
+                ],
+                baseTrap: "「基準の押し付け」によるメンバーの疲弊。自身の処理能力とストレス耐性が高すぎるため、部下の処理限界や感情的サインを見落とし、強権的と受け取られるリスクがあります。",
+                baseAction: "権限移譲と「傾聴の仕組み化」が鍵です。あえて自身の意見を最後に述べるファシリテーションを取り入れるだけで、組織の自走力が劇的に向上します。"
+            },
+            "ENTP": {
+                code: "ENTP",
+                jpTitle: "既成概念を壊す連続起業家",
+                enTitle: "Disruptive Innovator",
+                mbtiAlias: "討論者系ジョブ類型",
+                summary: "圧倒的な発想力と弁論術を武器に、業界の固定観念や硬直したルールを打破するゲームチェンジャーです。変化の激しいカオスな状況を楽しみ、異分野の知見を掛け合わせてゼロから新しいビジネス機会を創出します。",
+                jobs: [
+                    { title: "新規事業開発（0→1 BizDev）・イノベーション推進", match: 96, reason: "海のものとも山のものともつかない領域で仮説検証を高速回転させ、突破口を作れるため。" },
+                    { title: "クリエイティブディレクター・戦略PRプランナー", match: 92, reason: "世の中のインサイトを逆手に取る斬新な切り口とストーリーを構築できるため。" },
+                    { title: "アライアンス開拓・ベンチャーキャピタリスト", match: 89, reason: "多様な業界のキーマンと対等に渡り合い、新しいエコシステムを仕掛けられるため。" }
+                ],
+                baseTrap: "「風呂敷の広げすぎ」による空中分解。次々と新しいアイデアに飛びつく一方で、地道なオペレーション構築や細部の品質管理で失速し、信用を落とす罠があります。",
+                baseAction: "年功序列で減点主義の保守的組織は避けるべきです。裁量権の大きい新規事業部門や成長ベンチャーで、「0→1の突破役」として明確にミッションを握ってください。"
+            },
+            "INFJ": {
+                code: "INFJ",
+                jpTitle: "静かなる構造改革アーキテクト",
+                enTitle: "Insightful Reformer",
+                mbtiAlias: "提唱者系ジョブ類型",
+                summary: "人々の深層心理や組織の文化的な歪みを鋭く見抜く洞察力と、それをあるべき理想の構造へと静かに作り変える計画性を併せ持つ稀有なタイプです。単なる利益追求ではなく、「社会的意義」と「現場の幸福・安全性」が一致する仕組みづくりで真価を発揮します。",
+                jobs: [
+                    { title: "組織開発（OD）・HRBP／安全衛生・品質文化改革リード", match: 96, reason: "現場の心理的安全性と高い規律・仕組み化を両立させる構造改革を推進できるため。" },
+                    { title: "UXリサーチャー・サービスデザイン設計者", match: 93, reason: "ユーザーや現場作業者が言葉にできていない潜在的ペインを深く洞察し、体験を再設計できるため。" },
+                    { title: "サステナビリティ戦略・コーポレート企画・専門アドバイザー", match: 90, reason: "長期的視座と倫理観に基づき、企業の持続的価値を高める戦略を立案できるため。" }
+                ],
+                baseTrap: "「理想と現実のギャップ」による静かな燃え尽き。表面的な売上至上主義や不誠実な企業文化に身を置くと、周囲に不満を言わないまま内面で限界を迎え、ある日突然離職（ドアスラム）しがちです。",
+                baseAction: "転職時は「ミッションへの共感度」と「品質・安全に対する誠実なカルチャー」を最優先で確認してください。参謀・企画・専門推進ポジションで極めて高い偏差値を出せます。"
+            },
+            "INFP": {
+                code: "INFP",
+                jpTitle: "信念を貫く価値創造クリエイター",
+                enTitle: "Idealistic Value Creator",
+                mbtiAlias: "仲介者系ジョブ類型",
+                summary: "揺るぎない内面的価値観と豊かな共感力を持ち、言葉・デザイン・サービスを通じて人の心を動かす本質的な価値を紡ぎ出す表現者です。画一的な管理統制下ではなく、自分の良心と美意識に誠実に向き合える環境で独自の輝きを放ちます。",
+                jobs: [
+                    { title: "コンテンツプランナー・編集者・ブランドストーリーテラー", match: 95, reason: "人の感情の機微に寄り添い、深い共感を呼ぶメッセージや世界観を構築できるため。" },
+                    { title: "キャリアカウンセラー・産業保健／メンタルヘルス支援職", match: 92, reason: "一対一の深い傾聴を通じて、相手の潜在的な可能性や痛みに誠実に向き合えるため。" },
+                    { title: "UI/UXデザイナー・インディペンデント専門職", match: 88, reason: "妥協のないこだわりとユーザー視点で、温かみのあるプロダクト体験を磨けるため。" }
+                ],
+                baseTrap: "「過度な自己批判」と「数字・政治への忌避感」。厳しいノルマ競争や社内政治が横行する環境では急速にエネルギーを消耗し、自分の能力を過小評価してしまいます。",
+                baseAction: "「何を売るか・誰を助けるか」に100%誇りを持てる商材・組織を選ぶことが絶対条件です。専門スキル（設計・執筆・資格等）を掛け合わせると独立・複業適性も大きく開花します。"
+            },
+            "ENFJ": {
+                code: "ENFJ",
+                jpTitle: "組織を覚醒させる共感メンター",
+                enTitle: "Charismatic Catalyst",
+                mbtiAlias: "主人公系ジョブ類型",
+                summary: "圧倒的な共感力と熱量のあるビジョン提示によって、チームメンバー一人ひとりの潜在能力を引き出し、組織をひとつの方向へ束ねる天性のモチベーターです。人と組織の成長そのものを事業の成長へと直結させることができます。",
+                jobs: [
+                    { title: "ピープルマネージャー・組織開発／人材育成責任者", match: 96, reason: "多様な価値観を持つメンバーの心に火をつけ、強みを活かしたチームビルディングができるため。" },
+                    { title: "カスタマーサクセス統括・コミュニティマネージャー", match: 93, reason: "顧客の成功を自分事として伴走し、熱狂的なファンと長期的な信頼関係を築けるため。" },
+                    { title: "広報・PRディレクター／チェンジマネジメント推進", match: 90, reason: "変革期における社内外の不安を払拭し、共感ベースでプロジェクトを推進できるため。" }
+                ],
+                baseTrap: "「他者課題の背負い込みすぎ」による共倒れ。部下や顧客の悩みをすべて自分で解決しようと奔走し、厳しいリストラ判断や冷徹な線引きができずにパンクするリスクがあります。",
+                baseAction: "「優しさ」と「仕組みによる規律」を分離してください。KPIや評価基準を客観的なルールとして明文化しておくことで、感情的負荷を減らしながら本来の統率力を発揮できます。"
+            },
+            "ENFP": {
+                code: "ENFP",
+                jpTitle: "境界を越える熱狂プロデューサー",
+                enTitle: "Visionary Connector",
+                mbtiAlias: "運動家系ジョブ類型",
+                summary: "溢れる好奇心と人間的魅力で、部署や企業の垣根を越えて人々とアイデアを繋ぎ合わせる触媒（カタリスト）です。閉塞感のある現場に新しい風を吹き込み、周囲を巻き込みながらムーブメントを起こす初期推進力に秀でています。",
+                jobs: [
+                    { title: "新規事業プロデューサー・オープンイノベーション推進", match: 95, reason: "社内外の異質なタレントや技術を結びつけ、前例のない企画を立ち上げられるため。" },
+                    { title: "マーケティングプランナー・イベント／プロモーション企画", match: 92, reason: "トレンドと人の感情が動くポイントを直感的に捉え、熱量のある企画を仕掛けられるため。" },
+                    { title: "ソリューション営業・スタートアップ採用広報", match: 89, reason: "ビジョンを魅力的に語り、初対面の相手の懐に飛び込んで信頼を獲得できるため。" }
+                ],
+                baseTrap: "「立ち上げ後のルーティン飽き」と「優先順位の散漫」。あれもこれもと手を広げた結果、細かい事務処理や進捗管理が破綻し、器用貧乏に陥る危険があります。",
+                baseAction: "緻密な管理者（ISTJ/ISFJ等）がペアでつく体制か、0→1の企画・開拓フェーズを次々と任される環境を選んでください。定型事務作業はツールや他者に徹底委任すべきです。"
+            },
+            "ISTJ": {
+                code: "ISTJ",
+                jpTitle: "鉄壁の品質保証インスペクター",
+                enTitle: "Precision Inspector",
+                mbtiAlias: "管理者系ジョブ類型",
+                summary: "極めて高い責任感と事実ベースの検証力を持ち、組織の品質・安全・コンプライアンスを1ミリの狂いもなく守り抜く大黒柱です。派手なパフォーマンスよりも、確実な実行と標準化によって組織の信頼性を底支えします。",
+                jobs: [
+                    { title: "品質保証（QA）・安全衛生管理・生産管理スペシャリスト", match: 97, reason: "微小な異常値や手順の綻びを見逃さず、高信頼性・ゼロ災害の現場規律を構築できるため。" },
+                    { title: "内部監査・法務コンプライアンス・財務経理統括", match: 94, reason: "法令や規程、過去データに基づき、厳格かつ公正なリスク統制を遂行できるため。" },
+                    { title: "基幹システムインフラ設計・PMO（進捗・品質統制）", match: 91, reason: "緻密なWBS管理と仕様通りの確実なデリバリーでプロジェクトの炎上を防げるため。" }
+                ],
+                baseTrap: "「前例踏襲への固執」と「急激なカオスへの拒絶反応」。朝令暮改が日常茶飯事の環境や、ルールなき思いつき経営の下では強いストレスを感じ、柔軟性を失いがちです。",
+                baseAction: "高信頼性が求められるインフラ・製造・金融・医療・大手メーカーや、成長企業の「管理体制構築（10→100）フェーズ」において、代替不可能な最高ランクの評価を得られます。"
+            },
+            "ISFJ": {
+                code: "ISFJ",
+                jpTitle: "組織の盾となる精密ガーディアン",
+                enTitle: "Dedicated Guardian",
+                mbtiAlias: "擁護者系ジョブ類型",
+                summary: "細部への徹底した気配りと強い使命感を持ち、現場で働く人々の安全・安心と業務の安定稼働を献身的に守り抜く守護者です。周囲が気づかない潜在的なリスクやメンバーの不調を誰よりも早く察知し、先回りで手を打ちます。",
+                jobs: [
+                    { title: "労働安全衛生・総務ファシリティ・労務管理スペシャリスト", match: 96, reason: "現場の働きやすさと安全規律の両面に目を配り、事故や離職を未然に防ぐ体制を作れるため。" },
+                    { title: "カスタマーサポート品質統括・医療／福祉コーディネーター", match: 93, reason: "相手の立場に立った丁寧な対応と、正確な事務処理・記録管理を高い次元で両立できるため。" },
+                    { title: "エグゼクティブ秘書・バックオフィス業務改善リード", match: 90, reason: "組織の潤滑油として抜け漏れのないサポートを行い、チームの生産性を最大化できるため。" }
+                ],
+                baseTrap: "「サイレント過重労働」と「自己アピール不足」。頼まれごとを断れずに業務を抱え込み、しかも自分の貢献を控えめにしか語らないため、都合よく使われて疲弊するリスクがあります。",
+                baseAction: "職務経歴書や評価面談では、「自分が先回りして防いだトラブル件数・改善した定量実績」を意識的に数値化して提示してください。誠実さを正当に評価する組織選びが最重要です。"
+            },
+            "ESTJ": {
+                code: "ESTJ",
+                jpTitle: "現場統括のオペレーションディレクター",
+                enTitle: "Operations Director",
+                mbtiAlias: "幹部系ジョブ類型",
+                summary: "明確な指揮系統と標準化されたルールを敷き、大規模な現場や複雑なオペレーションを遅滞なく回し切る実務統括のプロフェッショナルです。曖昧さを排し、納期・コスト・品質の目標を確実に達成する組織を作り上げます。",
+                jobs: [
+                    { title: "工場長・製造／物流オペレーション統括マネージャー", match: 97, reason: "QCD（品質・コスト・納期）と安全規律を厳格に管理し、現場の稼働率を最大化できるため。" },
+                    { title: "営業組織マネージャー・支店長・店舗運営統括", match: 94, reason: "明確な行動指標（KPI）を設定し、規律あるマネジメントで確実に目標数字を達成できるため。" },
+                    { title: "業務推進・PMOディレクター・管理部門長", match: 91, reason: "複雑なプロジェクトの進捗・予算・人員配置を現実的にコントロールできるため。" }
+                ],
+                baseTrap: "「マイクロマネジメント」と「異質な才能の排除」。自分の成功パターンや既存のルールから外れる部下（N型・P型）を「怠慢」と決めつけ、組織の創造性を潰してしまう危険があります。",
+                baseAction: "「ルールの目的」を共有した上で、達成手段には一定の裁量を認めるマネジメントへ進化すると、現場統括者から「経営幹部（COOクラス）」へと一気に視座が上がります。"
+            },
+            "ESFJ": {
+                code: "ESFJ",
+                jpTitle: "チームの絆を編むハーモニーマネージャー",
+                enTitle: "Harmony Coordinator",
+                mbtiAlias: "領事官系ジョブ類型",
+                summary: "抜群の社交性と面倒見の良さで、組織内のコミュニケーションを活性化し、誰も孤立させない強固なチームワークを構築する調整役です。顧客や現場スタッフとの信頼関係構築において無類の強さを発揮します。",
+                jobs: [
+                    { title: "カスタマーサクセス・クライアントリレーションマネージャー", match: 95, reason: "きめ細やかなフォローと誠実な対話で、顧客満足度とLTV（継続率）を劇的に高められるため。" },
+                    { title: "採用・オンボーディング責任者／店舗・拠点マネージャー", match: 92, reason: "新入社員や現場スタッフの定着を支援し、活気ある職場風土を作れるため。" },
+                    { title: "営業コーディネーター・イベント／コミュニティ運営統括", match: 89, reason: "多様な関係者の利害や感情に配慮しながら、プロジェクトを円滑に進行できるため。" }
+                ],
+                baseTrap: "「八方美人による決断遅れ」と「批判への過敏さ」。全員から好かれようとするあまり、不人気だが重要な改革や厳しい評価を下す場面で躊躇してしまう傾向があります。",
+                baseAction: "「嫌われる勇気」を個人の性格ではなく「役割上のルール」として割り切る訓練が有効です。チームワークが成果に直結するピープルビジネス領域で最高の輝きを放ちます。"
+            },
+            "ISTP": {
+                code: "ISTP",
+                jpTitle: "危機を打破する孤高のトラブルシューター",
+                enTitle: "Master Troubleshooter",
+                mbtiAlias: "巨匠系ジョブ類型",
+                summary: "どれほど緊迫したトラブル現場でも眉一つ動かさず、最小の労力で最大の成果を出す急所を即座に見抜く実務の達人です。無駄な会議や形式的な報告書を嫌い、現場のツール・機械・システムを自在に操って問題を鮮やかに解決します。",
+                jobs: [
+                    { title: "フィールドエンジニア・設備保全／高度技術スペシャリスト", match: 96, reason: "現場の物理的・技術的トラブルに対し、鋭い観察眼と実践スキルで即座に対処できるため。" },
+                    { title: "セキュリティエンジニア・インシデントレスポンス（SRE）", match: 93, reason: "システム障害や緊急事態において、パニックにならず冷静に原因特定と復旧を行えるため。" },
+                    { title: "外科的業務改善コンサル・独立系テクニカル職人", match: 89, reason: "しがらみに囚われず、目の前の機能不全を合理的かつスピーディに修理できるため。" }
+                ],
+                baseTrap: "「ブラックボックス化」と「形式主義への反発」。自分の頭と手の中で完結してしまうため、手順の言語化や部下への育成、無意味に見える社内手続きを極端に嫌って孤立しがちです。",
+                baseAction: "「自分の暗黙知をマニュアルや仕組みに落とすこと」を意識すると、単なる一匹狼の職人から「技術部門の最高責任者」へと市場価値が一段階引き上がります。"
+            },
+            "ISFP": {
+                code: "ISFP",
+                jpTitle: "美意識を宿す実務アルチザン",
+                enTitle: "Tactical Artisan",
+                mbtiAlias: "冒険家系ジョブ類型",
+                summary: "五感の鋭敏なセンスと柔軟な適応力を持ち、目の前のプロダクトや現場サービスに独自の品質と心地よさを吹き込む実務家です。権威を振りかざすことなく、謙虚な姿勢と確かな手仕事で周囲からの厚い信頼を獲得します。",
+                jobs: [
+                    { title: "プロダクトデザイナー・UI/UX実装クリエイター", match: 94, reason: "ユーザーの触り心地や視覚的快適性を細部まで追求し、形にできるため。" },
+                    { title: "品質検査・クラフト製造・専門技術スタッフ", match: 91, reason: "微細な違和感や質感の差を五感で捉え、妥協のないクオリティを維持できるため。" },
+                    { title: "ホスピタリティ専門職・ウェルネス／空間コーディネーター", match: 88, reason: "押し付けがましくない自然な気配りで、顧客に心地よい体験を提供できるため。" }
+                ],
+                baseTrap: "「長期キャリア設計の不在」と「対立からの逃避」。目の前の仕事に没頭する一方で、3〜5年後の市場価値計算や、理不尽な要求に対するタフな交渉を避けてしまいがちです。",
+                baseAction: "自分の「センス・実務スキル」を客観的なポートフォリオや資格・実績数値として可視化しておくと、転職市場で買い叩かれるリスクを確実に防げます。"
+            },
+            "ESTP": {
+                code: "ESTP",
+                jpTitle: "最前線を突破する機動フィクサー",
+                enTitle: "Frontline Fixer",
+                mbtiAlias: "起業家系ジョブ類型",
+                summary: "机上の空論を嫌い、まず現場に飛び込んで状況を掌握する圧倒的な行動力と交渉センスの持ち主です。刻々と変わる市場環境やタフな商談・危機的局面において、動物的な勘と度胸でチャンスを掴み取ります。",
+                jobs: [
+                    { title: "エンタープライズ新規開拓営業・トップセールス", match: 96, reason: "相手の反応をリアルタイムに読み取り、絶妙な間合いと胆力で大型商談をまとめ上げるため。" },
+                    { title: "新規拠点立ち上げ責任者・現場トラブルシューティング統括", match: 93, reason: "予測不能なトラブルが頻発する最前線で、即断即決の指揮を執れるため。" },
+                    { title: "トレーダー・バイヤー・M&A仲介ディレクター", match: 90, reason: "リスクとリターンを瞬時に天秤にかけ、勝負どころで迷わず踏み込めるため。" }
+                ],
+                baseTrap: "「短期成果への偏重」と「コンプライアンス・管理の軽視」。目先のスピードや突破力を優先するあまり、契約書類の不備や中長期的な安全・品質リスクを見落とす危うさがあります。",
+                baseAction: "緻密なバックオフィスや品質管理部門を「自分のアクセルを安全に全開にするためのパートナー」として尊重し、タッグを組むことで無敵の事業推進者になれます。"
+            },
+            "ESFP": {
+                code: "ESFP",
+                jpTitle: "現場を沸かせるダイナミックパフォーマー",
+                enTitle: "Dynamic Entertainer",
+                mbtiAlias: "エンターテイナー系ジョブ類型",
+                summary: "抜群の愛嬌とポジティブなエネルギーで、どんなに重苦しい現場の空気も一瞬で明るく変えてしまうムードメーカーです。人を楽しませ、現場の一体感を高める実践的なコミュニケーション能力に長けています。",
+                jobs: [
+                    { title: "接客・リテール統括・ホスピタリティプロデューサー", match: 95, reason: "顧客とスタッフの双方を笑顔にし、現場の熱量と売上を同時に引き上げられるため。" },
+                    { title: "PRアンバサダー・イベントディレクター・インフルエンサーマーケティング", match: 92, reason: "華やかな発信力とフットワークの軽さで、商品やブランドの魅力をダイレクトに伝えられるため。" },
+                    { title: "法人・個人向け提案営業・人材コーディネーター", match: 89, reason: "初対面でも瞬時に心の壁を取り払い、本音を引き出す対人センスがあるため。" }
+                ],
+                baseTrap: "「孤独な分析業務での失速」と「計画性の欠如」。一日中PCに向かってデータ分析や規程文書を作成するような環境では、急速にモチベーションが枯渇します。",
+                baseAction: "「人とのリアルタイムな接点」と「現場の裁量」がある環境を軸にキャリアを選んでください。そこに簡単な数値管理（KPI）の習慣を加えるだけで、トップクラスのマネージャーへ躍進できます。"
+            }
+        };
+
+        /**
+         * 3. MAIN APPLICATION CONTROLLER
+         */
+        const app = {
+            currentQuestionIndex: 0,
+            answers: new Array(30).fill(null),
+            autoAdvance: true,
+            lastResult: null,
+
+            init() {
+                this.renderAllTypesModalList();
+                // Pre-fill default neutral or keep null until started
+            },
+
+            showScreen(screenId) {
+                ['home', 'quiz', 'result'].forEach(id => {
+                    const el = document.getElementById(`screen-${id}`);
+                    if (el) {
+                        if (id === screenId) {
+                            el.classList.remove('hidden');
+                        } else {
+                            el.classList.add('hidden');
+                        }
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            startQuiz() {
+                this.currentQuestionIndex = 0;
+                this.answers = new Array(30).fill(null);
+                this.showScreen('quiz');
+                this.renderQuestion();
+            },
+
+            toggleAutoAdvance(checked) {
+                this.autoAdvance = checked;
+            },
+
+            renderQuestion() {
+                const q = QUESTIONS_30[this.currentQuestionIndex];
+                const total = QUESTIONS_30.length;
+                const idx = this.currentQuestionIndex;
+
+                // Update Phase Badge
+                const phaseBadge = document.getElementById('quiz-phase-badge');
+                phaseBadge.textContent = q.phaseName;
+                if (q.phase === 1) {
+                    phaseBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30";
+                } else if (q.phase === 2) {
+                    phaseBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30";
+                } else {
+                    phaseBadge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                }
+
+                // Counter & Percent
+                document.getElementById('quiz-counter').textContent = `Q${String(idx + 1).padStart(2, '0')} / ${total}`;
+                document.getElementById('quiz-percent').textContent = `(${Math.round(((idx + 1) / total) * 100)}%)`;
+
+                // 3-Phase Progress Bars
+                const p1Answered = this.answers.slice(0, 12).filter(v => v !== null).length;
+                const p2Answered = this.answers.slice(12, 22).filter(v => v !== null).length;
+                const p3Answered = this.answers.slice(22, 30).filter(v => v !== null).length;
+
+                document.getElementById('p1-prog-label').textContent = `${p1Answered}/12`;
+                document.getElementById('p1-prog-bar').style.width = `${(p1Answered / 12) * 100}%`;
+
+                document.getElementById('p2-prog-label').textContent = `${p2Answered}/10`;
+                document.getElementById('p2-prog-bar').style.width = `${(p2Answered / 10) * 100}%`;
+
+                document.getElementById('p3-prog-label').textContent = `${p3Answered}/8`;
+                document.getElementById('p3-prog-bar').style.width = `${(p3Answered / 8) * 100}%`;
+
+                // Question Meta & Text
+                document.getElementById('q-category-tag').innerHTML = `<i class="fa-solid fa-compass text-sky-400"></i><span>${q.category}</span>`;
+                document.getElementById('q-dimension-code').textContent = q.code;
+                document.getElementById('q-text').textContent = `Q${idx + 1}. ${q.text}`;
+
+                // Options Rendering (5-point Likert Scale: 1 to 5)
+                const optionsMeta = [
+                    { val: 5, label: "非常に当てはまる", sub: "Strongly Agree", color: "sky" },
+                    { val: 4, label: "やや当てはまる", sub: "Agree", color: "sky" },
+                    { val: 3, label: "どちらとも言えない（中立）", sub: "Neutral", color: "slate" },
+                    { val: 2, label: "あまり当てはまらない", sub: "Disagree", color: "purple" },
+                    { val: 1, label: "全く当てはまらない", sub: "Strongly Disagree", color: "purple" }
+                ];
+
+                const currentVal = this.answers[idx];
+                const optionsContainer = document.getElementById('q-options');
+                optionsContainer.innerHTML = optionsMeta.map(opt => {
+                    const isSelected = currentVal === opt.val;
+                    const activeClasses = isSelected
+                        ? "bg-gradient-to-r from-sky-500/30 to-indigo-500/30 border-sky-400 text-white shadow-md shadow-sky-500/10"
+                        : "bg-slate-900/85 hover:bg-slate-800/90 border-slate-800 text-slate-200";
+                    const circleClasses = isSelected
+                        ? "bg-sky-400 border-sky-300 text-slate-950"
+                        : "bg-slate-800 border-slate-700 text-slate-400";
+
+                    return `
+                        <button onclick="app.selectOption(${opt.val})" class="option-btn w-full p-3.5 rounded-xl border ${activeClasses} flex items-center justify-between text-left">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 rounded-full border ${circleClasses} flex items-center justify-center text-xs font-bold font-mono">
+                                    ${opt.val}
+                                </div>
+                                <div>
+                                    <span class="text-xs sm:text-sm font-bold block">${opt.label}</span>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-400">${opt.sub}</span>
+                        </button>
+                    `;
+                }).join('');
+
+                // Footer buttons state
+                document.getElementById('btn-prev-q').disabled = (idx === 0);
+                const nextBtnLabel = document.getElementById('btn-next-label');
+                if (idx === total - 1) {
+                    nextBtnLabel.textContent = "診断結果を算出";
+                } else {
+                    nextBtnLabel.textContent = "次の設問へ";
+                }
+            },
+
+            selectOption(val) {
+                this.answers[this.currentQuestionIndex] = val;
+                this.renderQuestion();
+
+                if (this.autoAdvance) {
+                    setTimeout(() => {
+                        if (this.currentQuestionIndex < QUESTIONS_30.length - 1) {
+                            this.currentQuestionIndex++;
+                            this.renderQuestion();
+                        } else {
+                            this.finishQuiz();
+                        }
+                    }, 180);
+                }
+            },
+
+            prevQuestion() {
+                if (this.currentQuestionIndex > 0) {
+                    this.currentQuestionIndex--;
+                    this.renderQuestion();
+                }
+            },
+
+            nextQuestion() {
+                if (this.answers[this.currentQuestionIndex] === null) {
+                    this.answers[this.currentQuestionIndex] = 3; // default neutral if skipped
+                }
+                if (this.currentQuestionIndex < QUESTIONS_30.length - 1) {
+                    this.currentQuestionIndex++;
+                    this.renderQuestion();
+                } else {
+                    this.finishQuiz();
+                }
+            },
+
+            /**
+             * Quick Demo Presets for instant 30-question testing
+             */
+            runDemoPreset(presetType) {
+                if (presetType === 'strategist') {
+                    // INFJ / INTJ border with high Conscientiousness, high Openness, high Strategy
+                    this.answers = [
+                        2, 5, 2, // I
+                        5, 2, 5, // N
+                        3, 4, 3, // F/T balanced leaning F/T
+                        5, 2, 5, // J
+                        5, 1,    // High Openness
+                        5, 1,    // High Conscientiousness
+                        3, 4,    // Moderate-Introverted Leadership
+                        4, 3,    // High-Moderate Agreeableness
+                        4, 2,    // High Emotional Stability (-A)
+                        5, 5,    // High Strategy
+                        5, 5,    // High Execution
+                        4, 4,    // Good Leadership
+                        4, 5     // High Adaptability
+                    ];
+                } else if (presetType === 'director') {
+                    // ESTJ / ISTJ High Execution & Operations Director
+                    this.answers = [
+                        4, 2, 4, // E
+                        2, 5, 2, // S
+                        5, 2, 4, // T
+                        5, 1, 5, // J
+                        3, 3,    // Moderate O
+                        5, 1,    // Very High C
+                        5, 2,    // High E
+                        3, 2,    // Tough Negotiator
+                        5, 1,    // Very High ES (-A)
+                        4, 4,    // Strategy
+                        5, 5,    // Max Execution
+                        5, 5,    // Max Leadership
+                        3, 4     // Moderate Adaptability
+                    ];
+                } else {
+                    // Random 30 answers with realistic variance
+                    this.answers = QUESTIONS_30.map(() => Math.floor(Math.random() * 5) + 1);
+                }
+                this.finishQuiz();
+            },
+
+            /**
+             * Simulate any of the 16 MBTI types directly from the Encyclopedia Modal
+             */
+            simulateArchetype(mbtiCode) {
+                const isE = mbtiCode[0] === 'E';
+                const isN = mbtiCode[1] === 'N';
+                const isT = mbtiCode[2] === 'T';
+                const isJ = mbtiCode[3] === 'J';
+
+                this.answers = QUESTIONS_30.map(q => {
+                    if (q.target === 'EI') return (isE ? (q.polarity === 1 ? 5 : 1) : (q.polarity === 1 ? 1 : 5));
+                    if (q.target === 'NS') return (isN ? (q.polarity === 1 ? 5 : 1) : (q.polarity === 1 ? 1 : 5));
+                    if (q.target === 'TF') return (isT ? (q.polarity === 1 ? 5 : 1) : (q.polarity === 1 ? 1 : 5));
+                    if (q.target === 'JP') return (isJ ? (q.polarity === 1 ? 5 : 1) : (q.polarity === 1 ? 1 : 5));
+                    if (q.target === 'O') return (isN ? (q.polarity === 1 ? 5 : 2) : (q.polarity === 1 ? 3 : 3));
+                    if (q.target === 'C') return (isJ ? (q.polarity === 1 ? 5 : 1) : (q.polarity === 1 ? 3 : 3));
+                    if (q.target === 'E_B5') return (isE ? (q.polarity === 1 ? 5 : 2) : (q.polarity === 1 ? 3 : 4));
+                    if (q.target === 'A') return (!isT ? (q.polarity === 1 ? 5 : 2) : (q.polarity === 1 ? 3 : 3));
+                    if (q.target === 'ES') return (q.polarity === 1 ? 4 : 2);
+                    if (q.target === 'STRAT') return (isN || isT) ? 5 : 4;
+                    if (q.target === 'EXEC') return isJ ? 5 : 4;
+                    if (q.target === 'LEAD') return isE ? 5 : 4;
+                    if (q.target === 'ADAPT') return (!isJ || isN) ? 5 : 4;
+                    return 4;
+                });
+
+                this.closeAllTypesModal();
+                this.finishQuiz();
+            },
+
+            /**
+             * 4. CORE PSYCHOMETRIC CALCULATION ENGINE
+             */
+            finishQuiz() {
+                // Ensure no nulls remain
+                this.answers = this.answers.map(v => (v === null ? 3 : v));
+
+                // Helper to normalize raw score [-6, +6] or similar into 0..100 percentage
+                const calcAxisPercent = (targetCode) => {
+                    const items = QUESTIONS_30.filter(q => q.target === targetCode);
+                    let sum = 0;
+                    let maxPossible = items.length * 2; // each question centered at 3 gives [-2..+2]
+                    items.forEach(q => {
+                        const raw = this.answers[q.id - 1] - 3; // -2 to +2
+                        sum += raw * q.polarity;
+                    });
+                    // Convert [-maxPossible, +maxPossible] to [0, 100]
+                    return Math.round(((sum + maxPossible) / (2 * maxPossible)) * 100);
+                };
+
+                // 1. MBTI 4 Axes Percentages (0..100 toward E, N, T, J)
+                let pctE = calcAxisPercent('EI');
+                let pctN = calcAxisPercent('NS');
+                let pctT = calcAxisPercent('TF');
+                let pctJ = calcAxisPercent('JP');
+
+                // Prevent exact 50% tie for clean archetype resolution by slight tie-breaker from Phase 2/3
+                const pctO = calcAxisPercent('O');
+                const pctC = calcAxisPercent('C');
+                const pctEB5 = calcAxisPercent('E_B5');
+                const pctA = calcAxisPercent('A');
+                const pctES = calcAxisPercent('ES');
+
+                if (pctE === 50) pctE = pctEB5 >= 50 ? 52 : 48;
+                if (pctN === 50) pctN = pctO >= 50 ? 52 : 48;
+                if (pctT === 50) pctT = pctA < 50 ? 52 : 48;
+                if (pctJ === 50) pctJ = pctC >= 50 ? 52 : 48;
+
+                const letter1 = pctE >= 50 ? 'E' : 'I';
+                const letter2 = pctN >= 50 ? 'N' : 'S';
+                const letter3 = pctT >= 50 ? 'T' : 'F';
+                const letter4 = pctJ >= 50 ? 'J' : 'P';
+                const mbtiBase = `${letter1}${letter2}${letter3}${letter4}`;
+                const identitySuffix = pctES >= 52 ? 'A' : 'T';
+                const fullMbtiCode = `${mbtiBase}-${identitySuffix}`;
+
+                // 2. Phase 3 Practical Competencies (0..100)
+                const rawStrat = calcAxisPercent('STRAT');
+                const rawExec = calcAxisPercent('EXEC');
+                const rawLead = calcAxisPercent('LEAD');
+                const rawAdapt = calcAxisPercent('ADAPT');
+
+                // Blend Phase 3 direct competency scores with BIG5 & MBTI synergies for high precision
+                const compStrat = Math.round(rawStrat * 0.60 + pctO * 0.20 + pctN * 0.10 + pctT * 0.10);
+                const compExec  = Math.round(rawExec * 0.60 + pctC * 0.25 + pctJ * 0.15);
+                const compLead  = Math.round(rawLead * 0.60 + pctEB5 * 0.20 + pctA * 0.10 + pctES * 0.10);
+                const compAdapt = Math.round(rawAdapt * 0.60 + pctO * 0.20 + pctES * 0.20);
+
+                // Convert 0..100 competency scores to Realistic Work Deviation Scores (偏差値 38.0 - 76.0)
+                const toDeviation = (score100) => {
+                    const dev = 38 + (score100 / 100) * 36;
+                    return Number(dev.toFixed(1));
+                };
+
+                const devStrat = toDeviation(compStrat);
+                const devExec  = toDeviation(compExec);
+                const devLead  = toDeviation(compLead);
+                const devAdapt = toDeviation(compAdapt);
+
+                // Overall Work Deviation Score (weighted toward Conscientiousness, Strategy, Execution, Stability)
+                const overallDev = Number(((devStrat * 0.28) + (devExec * 0.30) + (devLead * 0.20) + (devAdapt * 0.22)).toFixed(1));
+
+                // Determine Hybrid BIG5 Badge
+                const big5Map = [
+                    { key: 'C', val: pctC, highTag: '鉄壁完遂', lowTag: '柔軟臨機' },
+                    { key: 'O', val: pctO, highTag: '高開放イノベーター', lowTag: '実務堅実' },
+                    { key: 'ES', val: pctES, highTag: '不動メンタル', lowTag: '高感度リスク察知' },
+                    { key: 'E', val: pctEB5, highTag: '組織牽引', lowTag: '深層思考' },
+                    { key: 'A', val: pctA, highTag: '共感協調', lowTag: '論理突破' }
+                ];
+                const sortedB5 = [...big5Map].sort((a, b) => b.val - a.val);
+                const top1 = sortedB5[0];
+                const top2 = sortedB5[1];
+                const hybridBadge = `${fullMbtiCode} × ${top1.highTag}・${top2.highTag}型`;
+
+                // Build Result Object
+                const resultObj = {
+                    timestamp: new Date().toLocaleString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                    mbtiBase,
+                    identitySuffix,
+                    fullMbtiCode,
+                    hybridBadge,
+                    mbtiPct: { E: pctE, I: 100 - pctE, N: pctN, S: 100 - pctN, T: pctT, F: 100 - pctT, J: pctJ, P: 100 - pctJ },
+                    big5: { O: pctO, C: pctC, E: pctEB5, A: pctA, ES: pctES },
+                    comp: { strat: compStrat, exec: compExec, lead: compLead, adapt: compAdapt },
+                    dev: { total: overallDev, strat: devStrat, exec: devExec, lead: devLead, adapt: devAdapt }
+                };
+
+                this.lastResult = resultObj;
+                this.saveResultToHistory(resultObj);
+                this.renderResultScreen(resultObj);
+                this.showScreen('result');
+            },
+
+            /**
+             * 5. RENDER GRANULAR RESULT SCREEN
+             */
+            renderResultScreen(res) {
+                const arch = ARCHETYPES_16[res.mbtiBase];
+
+                // Header Identity
+                document.getElementById('res-mbti-code').textContent = res.fullMbtiCode;
+                document.getElementById('res-en-title').textContent = arch.enTitle;
+                document.getElementById('res-rarity-badge').textContent = arch.mbtiAlias;
+                document.getElementById('res-jp-title').textContent = arch.jpTitle;
+                document.getElementById('res-hybrid-badge').textContent = res.hybridBadge;
+                document.getElementById('res-summary-desc').textContent = arch.summary;
+
+                // Deviation Scores
+                document.getElementById('res-total-deviation').textContent = res.dev.total.toFixed(1);
+                let rankText = "Bランク (標準実務圏)";
+                if (res.dev.total >= 68) rankText = "SSランク (上位3% エグゼクティブ級)";
+                else if (res.dev.total >= 63) rankText = "Sランク (上位10% ハイパフォーマー)";
+                else if (res.dev.total >= 57) rankText = "Aランク (上位25% 即戦力中核人材)";
+                document.getElementById('res-dev-rank').textContent = rankText;
+
+                document.getElementById('dev-strat-val').textContent = res.dev.strat.toFixed(1);
+                document.getElementById('dev-strat-bar').style.width = `${res.comp.strat}%`;
+
+                document.getElementById('dev-exec-val').textContent = res.dev.exec.toFixed(1);
+                document.getElementById('dev-exec-bar').style.width = `${res.comp.exec}%`;
+
+                document.getElementById('dev-lead-val').textContent = res.dev.lead.toFixed(1);
+                document.getElementById('dev-lead-bar').style.width = `${res.comp.lead}%`;
+
+                document.getElementById('dev-adapt-val').textContent = res.dev.adapt.toFixed(1);
+                document.getElementById('dev-adapt-bar').style.width = `${res.comp.adapt}%`;
+
+                // Draw BIG5 5-Axis Radar Chart
+                this.drawRadarChart(res.big5);
+
+                // BIG5 Detail List
+                const b5Meta = [
+                    { key: 'C', name: '誠実性・完遂規律 (Conscientiousness)', val: res.big5.C, color: 'emerald', desc: res.big5.C >= 65 ? '納期・品質・安全規律を徹底遵守する極めて高い信頼性' : '細則に縛られず状況に応じて柔軟に動くスタイル' },
+                    { key: 'O', name: '開放性・概念構築 (Openness)', val: res.big5.O, color: 'sky', desc: res.big5.O >= 65 ? '抽象概念・最新技術・構造変革を好む高い知的好奇心' : '実証済みの手法や現場のリアリティを重視する堅実派' },
+                    { key: 'ES', name: '情緒安定性・耐圧 (Emotional Stability)', val: res.big5.ES, color: 'purple', desc: res.big5.ES >= 65 ? '修羅場やプレッシャー下でも動じない自律安定型 (-A)' : '微細なリスクや違和感にいち早く気づく高感度改善型 (-T)' },
+                    { key: 'E', name: '外向的推進力 (Extraversion)', val: res.big5.E, color: 'amber', desc: res.big5.E >= 65 ? '対人折衝や場の主導権握りに強いエネルギッシュな推進力' : '単独または少人数での深い集中と参謀ワークで最大出力' },
+                    { key: 'A', name: '協調性・組織融和 (Agreeableness)', val: res.big5.A, color: 'rose', desc: res.big5.A >= 65 ? '心理的安全性の醸成と利他的サポートに長けた調整力' : '馴れ合いを排し、論理的交渉と課題解決に徹するタフネス' }
+                ];
+
+                document.getElementById('big5-detail-list').innerHTML = b5Meta.map(item => `
+                    <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80">
+                        <div class="flex items-center justify-between text-xs mb-1">
+                            <span class="font-bold text-slate-200">${item.name}</span>
+                            <span class="font-mono font-bold text-${item.color}-400">${item.val}%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-1.5">
+                            <div class="h-full bg-${item.color}-400 rounded-full" style="width: ${item.val}%"></div>
+                        </div>
+                        <p class="text-[10px] text-slate-400">${item.desc}</p>
+                    </div>
+                `).join('');
+
+                // MBTI 4-Axis Spectrum Bars
+                const axesMeta = [
+                    { leftCode: 'E (外向・対人駆動)', rightCode: 'I (内向・深層思考)', leftVal: res.mbtiPct.E, rightVal: res.mbtiPct.I, color: 'sky' },
+                    { leftCode: 'N (直観・未来構想)', rightCode: 'S (感覚・現場事実)', leftVal: res.mbtiPct.N, rightVal: res.mbtiPct.S, color: 'purple' },
+                    { leftCode: 'T (論理・合理判断)', rightCode: 'F (感情・価値共感)', leftVal: res.mbtiPct.T, rightVal: res.mbtiPct.F, color: 'indigo' },
+                    { leftCode: 'J (計画・規律完遂)', rightCode: 'P (知覚・柔軟適応)', leftVal: res.mbtiPct.J, rightVal: res.mbtiPct.P, color: 'emerald' }
+                ];
+
+                document.getElementById('mbti-spectrum-bars').innerHTML = axesMeta.map(ax => {
+                    const isBalanced = Math.abs(ax.leftVal - ax.rightVal) <= 16;
+                    const badge = isBalanced ? `<span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[9px]">両利きハイブリッド</span>` : '';
+                    return `
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="${ax.leftVal >= 50 ? 'font-bold text-white' : 'text-slate-400'}">${ax.leftCode} ${ax.leftVal}%</span>
+                                ${badge}
+                                <span class="${ax.rightVal > 50 ? 'font-bold text-white' : 'text-slate-400'}">${ax.rightVal}% ${ax.rightCode}</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden flex">
+                                <div class="h-full bg-${ax.color}-500" style="width: ${ax.leftVal}%"></div>
+                                <div class="h-full bg-slate-700" style="width: ${ax.rightVal}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Role Function Matrix (4 Quadrants)
+                const fitSpecialist = Math.min(98, Math.round((res.comp.strat * 0.45) + (res.comp.exec * 0.35) + (res.mbtiPct.I * 0.20)));
+                const fitPMO        = Math.min(98, Math.round((res.comp.strat * 0.40) + (res.comp.exec * 0.40) + (res.mbtiPct.J * 0.20)));
+                const fitManagement = Math.min(98, Math.round((res.comp.lead * 0.50) + (res.comp.exec * 0.25) + (res.big5.ES * 0.25)));
+                const fitPioneer    = Math.min(98, Math.round((res.comp.adapt * 0.50) + (res.big5.O * 0.30) + (res.comp.lead * 0.20)));
+
+                const rolesMatrix = [
+                    { name: '参謀・企画・品質統制 (PMO/BPR)', score: fitPMO, icon: 'fa-chess' },
+                    { name: '高度専門特化・スペシャリスト', score: fitSpecialist, icon: 'fa-microscope' },
+                    { name: 'ライン管理職・ピープル統括', score: fitManagement, icon: 'fa-users-gear' },
+                    { name: '新規開拓・0→1事業開発', score: fitPioneer, icon: 'fa-compass' }
+                ];
+
+                document.getElementById('role-matrix-grid').innerHTML = rolesMatrix.map(r => `
+                    <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
+                            <i class="fa-solid ${r.icon} text-sky-400"></i>
+                            <span class="font-mono font-black ${r.score >= 80 ? 'text-emerald-400' : 'text-sky-300'}">${r.score}%</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-white leading-tight">${r.name}</span>
+                    </div>
+                `).join('');
+
+                // Top 3 Jobs List
+                document.getElementById('best-jobs-list').innerHTML = arch.jobs.map((job, i) => {
+                    const adjustedMatch = Math.min(99, Math.max(78, Math.round(job.match * 0.7 + ((res.dev.total - 50) * 1.1))));
+                    return `
+                        <div class="p-3.5 rounded-xl bg-slate-900/85 border border-slate-800/90 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold flex items-center justify-center">0${i + 1}</span>
+                                    <h3 class="text-xs sm:text-sm font-bold text-white">${job.title}</h3>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-emerald-400">適合 ${adjustedMatch}%</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 leading-relaxed pl-7">${job.reason}</p>
+                        </div>
+                    `;
+                }).join('');
+
+                // Career Transition Readiness & 4 Environment Phases
+                const transitionScore = Math.min(96, Math.max(45, Math.round(res.comp.adapt * 0.45 + res.comp.exec * 0.30 + res.comp.strat * 0.25)));
+                document.getElementById('transition-badge').textContent = `越境成功確率: ${transitionScore}%`;
+
+                // Environment Phase Calculations
+                const envEnterprise = Math.min(98, Math.round(res.big5.C * 0.45 + res.mbtiPct.J * 0.30 + res.comp.exec * 0.25));
+                const envGrowth     = Math.min(98, Math.round(res.comp.strat * 0.35 + res.comp.exec * 0.35 + res.comp.adapt * 0.30));
+                const envStartup    = Math.min(98, Math.round(res.comp.adapt * 0.45 + res.big5.O * 0.30 + res.big5.ES * 0.25));
+                const envIndep      = Math.min(98, Math.round(res.comp.strat * 0.35 + res.big5.C * 0.35 + res.mbtiPct.I * 0.15 + res.comp.adapt * 0.15));
+
+                let verdictText = "";
+                if (envEnterprise >= envStartup && res.big5.C >= 65) {
+                    verdictText = `【判定：高規格・仕組み化推進キャリア適性】高い誠実性（${res.big5.C}%）と完遂規律を備えているため、ルールや責任範囲が曖昧で朝令暮改が続くカオスな零細企業よりも、安全・品質・コンプライアンス基準が明確な「成熟大手・インフラ・高規格メーカー」や「成長企業の管理体制構築（1→10 / 10→100）フェーズ」への転職で圧倒的な評価と年収アップを実現できます。`;
+                } else if (envStartup >= 75) {
+                    verdictText = `【判定：変革期・0→1越境サバイバー適性】変化適応力と概念構築力が極めて高く、既存の枠組みに縛られない環境でこそ真価を発揮します。年功序列の保守的組織に留まるよりも、裁量権の大きい新規事業開発や変革期テック企業への越境転職が強く推奨されます。`;
+                } else {
+                    verdictText = `【判定：専門性深化×段階的キャリア拡張】現時点では突発的なカオス環境へ飛び込むよりも、自身の得意な機能領域（${rolesMatrix.sort((a,b)=>b.score-a.score)[0].name}）を軸足に置きつつ、中期的な育成・評価制度が整った成長企業へステップアップする戦略が最も安全かつ高リターンです。`;
+                }
+                document.getElementById('transition-verdict-text').textContent = verdictText;
+
+                const envsMeta = [
+                    { name: '10→100 成熟大手・高信頼インフラ・品質重視企業', val: envEnterprise, color: 'sky' },
+                    { name: '1→10 成長期テック・変革期メーカー（仕組み化推進）', val: envGrowth, color: 'emerald' },
+                    { name: '独立・高度専門職・社内プロフェッショナル契約', val: envIndep, color: 'purple' },
+                    { name: '0→1 カオス期スタートアップ・連続起業環境', val: envStartup, color: 'amber' }
+                ];
+
+                document.getElementById('env-fit-bars').innerHTML = envsMeta.map(e => `
+                    <div class="space-y-1">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="text-slate-200 font-medium">${e.name}</span>
+                            <span class="font-mono font-bold text-${e.color}-400">${e.val}%</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-${e.color}-400 rounded-full" style="width: ${e.val}%"></div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Dynamic Fatal Traps & Prescription (Archetype + BIG5 Weakness/Strength)
+                let big5SpecificTrap = "";
+                if (res.big5.C >= 70 && res.big5.A >= 65) {
+                    big5SpecificTrap = "【高誠実×高協調の罠：過剰品質と抱え込み】責任感と周囲への配慮が強すぎるため、本来他者がやるべき不備の尻拭いまで引き受け、見えないところでキャパシティを超過する危険があります。";
+                } else if (res.big5.ES < 50) {
+                    big5SpecificTrap = "【高感度センサー（-T）の罠：反芻疲労】リスク察知能力が高い反面、組織内の不条理や人間関係の摩擦を真正面から受け止めすぎてエネルギーを消耗しやすい傾向があります。";
+                } else if (res.big5.O >= 70 && res.big5.C < 50) {
+                    big5SpecificTrap = "【高開放×低規律の罠：構想倒れ】本質を見抜くアイデアは抜群ですが、緻密なルーティン管理や泥臭い定着作業で飽きが生じやすい点に注意が必要です。";
+                } else {
+                    big5SpecificTrap = "【自立遂行の罠：暗黙知の属人化】自分自身の基準で高いクオリティを出せるがゆえに、周囲のレベルの低さに内心苛立ち、自分でやった方が早いと抱え込む傾向があります。";
+                }
+
+                document.getElementById('career-traps-container').innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-1.5">
+                        <span class="text-[11px] font-bold text-rose-300 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-skull-crossbones"></i>
+                            <span>タイプ固有の死角（${res.mbtiBase}）</span>
+                        </span>
+                        <p class="text-xs text-slate-300 leading-relaxed">${arch.baseTrap}</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-amber-950/25 border border-amber-500/30 space-y-1.5">
+                        <span class="text-[11px] font-bold text-amber-300 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            <span>BIG5波形から見た要注意トラップ</span>
+                        </span>
+                        <p class="text-xs text-slate-300 leading-relaxed">${big5SpecificTrap}</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-sky-950/30 border border-sky-500/30 space-y-1.5">
+                        <span class="text-[11px] font-bold text-sky-300 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-chess-queen"></i>
+                            <span>面接・キャリア市場価値を最大化する処方箋</span>
+                        </span>
+                        <p class="text-xs text-slate-300 leading-relaxed">${arch.baseAction}</p>
+                    </div>
+                `;
+            },
+
+            /**
+             * 6. HTML5 CANVAS 5-AXIS RADAR CHART
+             */
+            drawRadarChart(big5) {
+                const canvas = document.getElementById('big5RadarCanvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const dpr = window.devicePixelRatio || 1;
+                const width = 300;
+                const height = 250;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                canvas.style.width = `${width}px`;
+                canvas.style.height = `${height}px`;
+                ctx.scale(dpr, dpr);
+
+                ctx.clearRect(0, 0, width, height);
+
+                const cx = width / 2;
+                const cy = height / 2 + 6;
+                const maxR = 82;
+
+                const axes = [
+                    { label: '開放性 (O)', val: big5.O },
+                    { label: '誠実性 (C)', val: big5.C },
+                    { label: '外向性 (E)', val: big5.E },
+                    { label: '協調性 (A)', val: big5.A },
+                    { label: '情緒安定 (ES)', val: big5.ES }
+                ];
+
+                const numAxes = axes.length;
+                const angleStep = (Math.PI * 2) / numAxes;
+                const startAngle = -Math.PI / 2;
+
+                // Draw Concentric Pentagons (25%, 50%, 75%, 100%)
+                [0.25, 0.5, 0.75, 1.0].forEach(level => {
+                    ctx.beginPath();
+                    for (let i = 0; i < numAxes; i++) {
+                        const angle = startAngle + i * angleStep;
+                        const r = maxR * level;
+                        const x = cx + Math.cos(angle) * r;
+                        const y = cy + Math.sin(angle) * r;
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.strokeStyle = level === 0.5 ? 'rgba(148, 163, 184, 0.35)' : 'rgba(148, 163, 184, 0.16)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                });
+
+                // Draw Axis Spokes & Labels
+                ctx.font = 'bold 11px "Inter", "Noto Sans JP", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                axes.forEach((ax, i) => {
+                    const angle = startAngle + i * angleStep;
+                    const xEnd = cx + Math.cos(angle) * maxR;
+                    const yEnd = cy + Math.sin(angle) * maxR;
+
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    ctx.lineTo(xEnd, yEnd);
+                    ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+                    ctx.stroke();
+
+                    // Label positioning
+                    const labelR = maxR + 24;
+                    const lx = cx + Math.cos(angle) * labelR;
+                    const ly = cy + Math.sin(angle) * labelR;
+
+                    ctx.fillStyle = '#e2e8f0';
+                    ctx.fillText(`${ax.label}`, lx, ly - 5);
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.font = 'bold 10px monospace';
+                    ctx.fillText(`${ax.val}%`, lx, ly + 8);
+                    ctx.font = 'bold 11px "Inter", "Noto Sans JP", sans-serif';
+                });
+
+                // Draw User Data Polygon
+                ctx.beginPath();
+                axes.forEach((ax, i) => {
+                    const angle = startAngle + i * angleStep;
+                    const r = maxR * (ax.val / 100);
+                    const x = cx + Math.cos(angle) * r;
+                    const y = cy + Math.sin(angle) * r;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+
+                const grad = ctx.createLinearGradient(cx - maxR, cy - maxR, cx + maxR, cy + maxR);
+                grad.addColorStop(0, 'rgba(56, 189, 248, 0.42)');
+                grad.addColorStop(1, 'rgba(168, 85, 247, 0.42)');
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                ctx.strokeStyle = '#38bdf8';
+                ctx.lineWidth = 2.2;
+                ctx.stroke();
+
+                // Draw Data Vertices
+                axes.forEach((ax, i) => {
+                    const angle = startAngle + i * angleStep;
+                    const r = maxR * (ax.val / 100);
+                    const x = cx + Math.cos(angle) * r;
+                    const y = cy + Math.sin(angle) * r;
+
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = '#f8fafc';
+                    ctx.fill();
+                    ctx.strokeStyle = '#0ea5e9';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                });
+            },
+
+            /**
+             * 7. MODALS, CLIPBOARD & LOCALSTORAGE HISTORY
+             */
+            renderAllTypesModalList() {
+                const container = document.getElementById('all-types-list');
+                if (!container) return;
+                container.innerHTML = Object.values(ARCHETYPES_16).map(arch => `
+                    <div onclick="app.simulateArchetype('${arch.code}')" class="p-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800/90 border border-slate-800 cursor-pointer transition flex items-center justify-between">
+                        <div class="space-y-0.5 pr-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-500/40 text-sky-300 font-mono font-bold text-xs">${arch.code}</span>
+                                <span class="text-xs font-bold text-white">${arch.jpTitle}</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 line-clamp-1">${arch.summary}</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-xs shrink-0"></i>
+                    </div>
+                `).join('');
+            },
+
+            openAllTypesModal() {
+                document.getElementById('modal-all-types').classList.remove('hidden');
+            },
+            closeAllTypesModal() {
+                document.getElementById('modal-all-types').classList.add('hidden');
+            },
+
+            saveResultToHistory(res) {
+                try {
+                    const raw = localStorage.getItem('core_type_pro30_history');
+                    const list = raw ? JSON.parse(raw) : [];
+                    list.unshift(res);
+                    localStorage.setItem('core_type_pro30_history', JSON.stringify(list.slice(0, 15)));
+                } catch (e) {
+                    console.warn('History storage unavailable', e);
+                }
+            },
+
+            openHistoryModal() {
+                const container = document.getElementById('history-list');
+                try {
+                    const raw = localStorage.getItem('core_type_pro30_history');
+                    const list = raw ? JSON.parse(raw) : [];
+                    if (list.length === 0) {
+                        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">まだ診断履歴がありません。</p>`;
+                    } else {
+                        container.innerHTML = list.map((item, idx) => {
+                            const arch = ARCHETYPES_16[item.mbtiBase] || { jpTitle: item.mbtiBase };
+                            return `
+                                <div onclick="app.loadHistoryItem(${idx})" class="p-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 cursor-pointer transition flex items-center justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono font-bold text-xs">${item.fullMbtiCode}</span>
+                                            <span class="text-xs font-bold text-white">${arch.jpTitle}</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 block mt-1">${item.timestamp} | 総合仕事偏差値: <strong class="text-sky-300">${item.dev.total}</strong></span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+                                </div>
+                            `;
+                        }).join('');
+                    }
+                } catch (e) {
+                    container.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">履歴を読み込めませんでした。</p>`;
+                }
+                document.getElementById('modal-history').classList.remove('hidden');
+            },
+
+            loadHistoryItem(index) {
+                try {
+                    const list = JSON.parse(localStorage.getItem('core_type_pro30_history') || '[]');
+                    if (list[index]) {
+                        this.lastResult = list[index];
+                        this.renderResultScreen(list[index]);
+                        this.closeHistoryModal();
+                        this.showScreen('result');
+                    }
+                } catch (e) {}
+            },
+
+            closeHistoryModal() {
+                document.getElementById('modal-history').classList.add('hidden');
+            },
+
+            clearHistory() {
+                try {
+                    localStorage.removeItem('core_type_pro30_history');
+                } catch (e) {}
+                this.openHistoryModal();
+            },
+
+            copyResultSummary() {
+                if (!this.lastResult) return;
+                const r = this.lastResult;
+                const arch = ARCHETYPES_16[r.mbtiBase];
+                const text = [
+                    `【CORE-TYPE PRO 30問精密診断レポート】`,
+                    `■ ジョブアーキタイプ: ${arch.jpTitle} (${r.fullMbtiCode})`,
+                    `■ 特性バッジ: ${r.hybridBadge}`,
+                    `■ 総合仕事偏差値: ${r.dev.total} (戦略:${r.dev.strat} / 遂行:${r.dev.exec} / 折衝:${r.dev.lead} / 越境:${r.dev.adapt})`,
+                    `■ BIG5スコア: 開放性${r.big5.O}% / 誠実性${r.big5.C}% / 外向性${r.big5.E}% / 協調性${r.big5.A}% / 情緒安定性${r.big5.ES}%`,
+                    `■ 推奨適職TOP3: ${arch.jobs.map(j => j.title).join(' / ')}`
+                ].join('\n');
+
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    this.showToast('診断レポートをクリップボードにコピーしました');
+                } catch (e) {
+                    this.showToast('コピーに失敗しました');
+                }
+                document.body.removeChild(textarea);
+            },
+
+            showToast(msg) {
+                const toast = document.getElementById('toast-msg');
+                document.getElementById('toast-text').textContent = msg;
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 2600);
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>
+```
